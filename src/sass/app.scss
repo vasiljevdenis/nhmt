@@ -1,0 +1,88 @@
+@import 'fonts';
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+}
+.item-random {
+  animation-name: b;
+  animation-duration: .5s;
+}
+
+@keyframes b {
+  0% {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 0.2em;
+  height: 0.2em;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.00);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #293896;
+  outline: 1px solid #293896;
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+.gridList {
+  flex-wrap: nowrap;
+  transform: translateZ(0);
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  outline: none;
+  z-index: 100;
+}
+
+img:focus-visible {
+  outline: none !important;
+}
+
+.br {
+  display: block;
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+ol, ul {
+  font-weight: 400;
+}
