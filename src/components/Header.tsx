@@ -42,7 +42,7 @@ const Header = observer(() => {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={3} p={2} sx={{
+      <Grid item xs={12} md={4} p={2} sx={{
         display: 'flex',
         alignItems: 'center'
       }}>
@@ -59,7 +59,7 @@ const Header = observer(() => {
           }}>Химическая отрасль</Typography>
         </Link>
       </Grid>
-      <Grid item xs={12} md={6} p={2} sx={{
+      <Grid item xs={12} md={4} p={2} sx={{
         display: 'flex',
         alignItems: 'end'
       }}>
@@ -76,16 +76,15 @@ const Header = observer(() => {
           }}>{MainData.title()}</Typography>
         </Box> */}
       </Grid>
-      <Grid item xs={12} md={3} p={2} sx={{
+      <Grid item xs={12} md={4} p={2} sx={{
         display: 'flex',
         alignItems: 'center'
       }}>
         <Box sx={{
-          borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
           pl: 2,
           display: 'inline-block'
         }}>
-          <Typography variant='body1' component="p" onClick={handleClickOpen} gutterBottom sx={{
+          <Typography variant='body1' component="p" onClick={handleClickOpen} sx={{
             color: 'primary.main',
             cursor: 'pointer',
             position: 'relative',
@@ -114,7 +113,7 @@ const Header = observer(() => {
           ml: 2,
           display: 'inline-block'
         }}>
-          <Typography variant='body1' component="p" onClick={handleClickOpenKeywords} gutterBottom sx={{
+          <Typography variant='body1' component="p" onClick={handleClickOpenKeywords} sx={{
             color: 'primary.main',
             cursor: 'pointer',
             position: 'relative',

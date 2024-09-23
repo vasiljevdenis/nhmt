@@ -38,6 +38,13 @@ function App() {
             }
           }
         }
+      },
+      MuiDialog: {
+        styleOverrides: {
+          paperWidthMd: {
+            borderRadius: 40
+          }
+        }
       }
     }
   });

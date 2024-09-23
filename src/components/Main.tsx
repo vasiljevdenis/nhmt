@@ -3,6 +3,9 @@ import books from "../assets/images/books.webp";
 import computer from "../assets/images/computer.svg";
 import teaching from "../assets/images/teaching.webp";
 import demo from "../assets/images/demo.svg";
+import card1 from "../assets/images/card1-bg.png";
+import card2 from "../assets/images/card2-bg.png";
+import card3 from "../assets/images/card3-bg.png";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
@@ -55,7 +58,14 @@ const Main = observer(() => {
         <Box sx={{
           width: '100%',
           height: '100%',
-          border: '1px solid #293896',
+          border: 'none',
+          borderRadius: '40px',
+          backgroundColor: 'primary.main',
+          backgroundImage: `url(${card1})`,
+          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          boxShadow: '0 19px 18px 0 rgba(24, 36, 102, 0.37), 0 4px 6px 0 rgba(67, 75, 121, 0.71)',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
@@ -91,29 +101,20 @@ const Main = observer(() => {
               </IconButton>
             </Tooltip>
           </Box>
-          <svg style={{
-            transform: 'rotate(180deg)',
-            transformOrigin: 'center center',
-            position: 'absolute',
-            top: 0,
-            right: 0
-          }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-            <path fill="#293896" fillOpacity="1" d="M0,0L1440,130L1440,320L0,320Z"></path>
-          </svg>
-          <svg style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0
-          }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-            <path fill="#293896" fillOpacity="1" d="M0,0L1440,130L1440,320L0,320Z"></path>
-          </svg>
         </Box>
       </Grid>
       <Grid item xs={12} sm={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
         <Box sx={{
           width: '100%',
           height: '100%',
-          border: '1px solid #293896',
+          border: 'none',
+          borderRadius: '40px',
+          backgroundColor: '#3E3E3E',
+          backgroundImage: `url(${card2})`,
+          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          boxShadow: '0 19px 18px 0 rgba(24, 36, 102, 0.37), 0 4px 6px 0 rgba(67, 75, 121, 0.71)',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
@@ -136,7 +137,7 @@ const Main = observer(() => {
               </Grid>
               <Grid item xs={2}>
               </Grid>
-            </Grid>          
+            </Grid>
             <Typography variant='body2' color={"primary.main"} component="p" gutterBottom>Виртуальный тренажер</Typography>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton aria-label="info" sx={{ mr: 1 }} onClick={handleClickOpenVirtual}>
@@ -149,28 +150,20 @@ const Main = observer(() => {
               </IconButton>
             </Tooltip>
           </Box>
-          <svg style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: -1
-          }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 1440" height={'100%'}>
-            <path fill="#293896" fillOpacity="1" d="M0,0L0,1440L120,0Z"></path>
-          </svg>
-          <svg style={{
-            position: 'absolute',
-            top: 0,
-            right: 0
-          }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 1440" height={'100%'}>
-            <path fill="#293896" fillOpacity="1" d="M120,1440L0,1440L120,0Z"></path>
-          </svg>
         </Box>
       </Grid>
       <Grid item xs={12} sm={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
         <Box sx={{
           width: '100%',
           height: '100%',
-          border: '1px solid #293896',
+          border: 'none',
+          borderRadius: '40px',
+          backgroundColor: '#798BFF',
+          backgroundImage: `url(${card3})`,
+          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          boxShadow: '0 19px 18px 0 rgba(24, 36, 102, 0.37), 0 4px 6px 0 rgba(67, 75, 121, 0.71)',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
@@ -211,22 +204,6 @@ const Main = observer(() => {
               </IconButton>
             </Tooltip>
           </Box>
-          <svg style={{
-            transform: 'rotate(180deg)',
-            transformOrigin: 'center center',
-            position: 'absolute',
-            top: 0,
-            right: 0
-          }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-            <path fill="#293896" fillOpacity="1" d="M0,0L1440,130L1440,320L0,320Z"></path>
-          </svg>
-          <svg style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0
-          }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-            <path fill="#293896" fillOpacity="1" d="M0,0L1440,130L1440,320L0,320Z"></path>
-          </svg>
         </Box>
       </Grid>
       <Dialog
@@ -241,7 +218,7 @@ const Main = observer(() => {
           <span>Динамическая инфографика</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleClose} />
         </DialogTitle>
         <DialogContent>
-        {MainData.infographics()}
+          {MainData.infographics()}
         </DialogContent>
       </Dialog>
       <Dialog
@@ -256,7 +233,7 @@ const Main = observer(() => {
           <span>Виртуальный тренажер</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseVirtual} />
         </DialogTitle>
         <DialogContent>
-        {MainData.training()}
+          {MainData.training()}
         </DialogContent>
       </Dialog>
       <Dialog
@@ -271,7 +248,7 @@ const Main = observer(() => {
           <span>Интерактивная мини-игра</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseInter} />
         </DialogTitle>
         <DialogContent>
-        {MainData.game()}
+          {MainData.game()}
         </DialogContent>
       </Dialog>
     </Grid>
