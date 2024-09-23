@@ -1,4 +1,5 @@
 import { Box, Dialog, DialogContent, DialogTitle, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import logo from '../assets/images/logo.svg';
 import chemical from '../assets/images/chemical.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -34,49 +35,35 @@ const Header = observer(() => {
 
   useEffect(() => {
     if (store.frst) {
-      navigator('/eom');
+      // navigator('/eom');
       store.setFirst();
     }
   }, []);
 
   return (
     <Grid container>
-      <Grid item xs={12} md={3} p={2}>
+      <Grid item xs={12} md={3} p={2} sx={{
+        display: 'flex',
+        alignItems: 'center'
+      }}>
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <img src={chemical} alt="Логотип Профессионалитет" style={{ width: '100%', maxWidth: '45px' }} />
+          <img src={logo} alt="Логотип Профессионалитет" style={{ width: '100%', maxWidth: '58px', marginRight: '1rem' }} />
         </Link>
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <Typography variant='body1' mt={1} gutterBottom sx={{
-            fontWeight: '600',
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            fontFamily: 'DeltaGothicOne',
-            color: 'rgba(0, 0, 0, 0.87)'
-          }}>Профессионалитет</Typography>
+          <img src={chemical} alt="Химическая отрасль" style={{ width: '100%', maxWidth: '58px', marginRight: '1rem' }} />
         </Link>
-        <Typography variant='h6' component="p" sx={{
-          position: 'relative',
-          '&::after': {
-            content: '""',
-            width: '80px',
-            height: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            borderRight: '1px solid #000000',
-            transform: 'rotate(35deg)'
-          }
-        }}>2023</Typography>
-        <Typography variant='body2' component="p" sx={{
-          float: 'right',
-          mr: 'calc(100% - 250px)'
-        }}>клиническая <br /> и профилактическая <br /> медицина</Typography>
+        <Link to="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
+          <Typography variant='h5' gutterBottom sx={{
+            fontWeight: '700',
+            color: '#3e3e3e'
+          }}>Химическая отрасль</Typography>
+        </Link>
       </Grid>
       <Grid item xs={12} md={6} p={2} sx={{
         display: 'flex',
         alignItems: 'end'
       }}>
-        <Box sx={{
+        {/* <Box sx={{
           borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
           pl: 2
         }}>
@@ -87,9 +74,12 @@ const Header = observer(() => {
             fontWeight: '600',
             letterSpacing: '1px'
           }}>{MainData.title()}</Typography>
-        </Box>
+        </Box> */}
       </Grid>
-      <Grid item xs={12} md={3} p={2}>
+      <Grid item xs={12} md={3} p={2} sx={{
+        display: 'flex',
+        alignItems: 'center'
+      }}>
         <Box sx={{
           borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
           pl: 2,
@@ -98,10 +88,25 @@ const Header = observer(() => {
           <Typography variant='body1' component="p" onClick={handleClickOpen} gutterBottom sx={{
             color: 'primary.main',
             cursor: 'pointer',
+            position: 'relative',
             "&:hover": {
               opacity: '.7'
+            },
+            "&::after": {
+              content: '""',
+              height: '1px',
+              width: '0%',
+              backgroundColor: 'primary.main',
+              position: 'absolute',
+              top: '100%',
+              left: '0',
+              opacity: '1'
+            },
+            "&:hover::after": {
+              width: '100%',
+              transition: 'width .3s ease-out'
             }
-          }}>Информация <br /> о контенте</Typography>
+          }}>Информация о контенте</Typography>
         </Box>
         <Box sx={{
           borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
@@ -112,10 +117,25 @@ const Header = observer(() => {
           <Typography variant='body1' component="p" onClick={handleClickOpenKeywords} gutterBottom sx={{
             color: 'primary.main',
             cursor: 'pointer',
+            position: 'relative',
             "&:hover": {
               opacity: '.7'
+            },
+            "&::after": {
+              content: '""',
+              height: '1px',
+              width: '0%',
+              backgroundColor: 'primary.main',
+              position: 'absolute',
+              top: '100%',
+              left: '0',
+              opacity: '1'
+            },
+            "&:hover::after": {
+              width: '100%',
+              transition: 'width .3s ease-out'
             }
-          }}>Ключевые <br /> слова</Typography>
+          }}>Ключевые слова</Typography>
         </Box>
       </Grid>
       <Dialog
@@ -129,7 +149,7 @@ const Header = observer(() => {
           <span>Информация о контенте</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleClose} />
         </DialogTitle>
         <DialogContent>
-        {MainData.info()}
+          {MainData.info()}
         </DialogContent>
       </Dialog>
       <Dialog

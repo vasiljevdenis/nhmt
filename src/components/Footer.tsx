@@ -1,93 +1,103 @@
 import { Box, Grid, Typography } from "@mui/material";
 import wrapper from "../assets/images/professionalitet.svg";
 import agriculture from "../assets/images/agriculture.svg";
-import art from "../assets/images/art.svg";
 import atomic from "../assets/images/atomic.svg";
-import avia from "../assets/images/avia.svg";
-import building from "../assets/images/building.svg";
-import chemical from "../assets/images/chemical.svg";
-import communication from "../assets/images/communication.svg";
-import electrical from "../assets/images/electrical.svg";
-import farma from "../assets/images/farma.svg";
-import forest from "../assets/images/forest.svg";
-import fuel from "../assets/images/fuel.svg";
 import industry from "../assets/images/industry.svg";
-import it from "../assets/images/it.svg";
-import law from "../assets/images/law.svg";
 import mech from "../assets/images/mech.svg";
-import medicine from "../assets/images/medicine.svg";
 import metallurgy from "../assets/images/metallurgy.svg";
 import mining from "../assets/images/mining.svg";
-import pedagogy from "../assets/images/pedagogy.svg";
-import radioelectronic from "../assets/images/radioelectronic.svg";
 import railway from "../assets/images/railway.svg";
-import shipbuilding from "../assets/images/shipbuilding.svg";
-import tourism from "../assets/images/tourism.svg";
-import transport from "../assets/images/transport.svg";
-import water from "../assets/images/water.svg";
+import chemical from "../assets/images/chemical.svg";
+import year from "../assets/images/2024.svg";
 import { useEffect, useState } from "react";
 import MainData from "../Eoms/data/8/MainData";
 
-const images: string[] = [
-  medicine,
-  railway,
-  transport,
-  shipbuilding,
-  atomic,
-  building,
-  mining,
-  agriculture,
-  art,
-  avia,
-  chemical,
-  communication,
-  electrical,
-  farma,
-  forest,
-  fuel,
-  industry,
-  it,
-  law,
-  mech,
-  metallurgy,
-  pedagogy,
-  radioelectronic,
-  tourism,
-  water
-];
+interface logoImage {
+  id: number;
+  src: string;
+  scale: 1,
+  posY: number;
+  posX: number;
+}
 
-const pos: number[][] = [
-  [23, 41],
-  [42, 22],
-  [65, 23],
-  [81, 42],
-  [81, 23],
-  [65, 7],
-  [42, 5],
-  [23, 22]
-];
+const images: logoImage[] = [
+  {
+    id: 1,
+    src: agriculture,
+    scale: 1,
+    posY: 23,
+    posX: 41
+  },
+  {
 
-const getRandomImage = (visibleImages: string[]) => {
-  const availableImages = images.filter((image) => !visibleImages.includes(image));
-  const randomIndex = Math.floor(Math.random() * availableImages.length);
-  return availableImages[randomIndex];
-};
+    id: 2,
+    src: railway,
+    scale: 1,
+    posY: 42,
+    posX: 22
+  },
+  {
+
+    id: 3,
+    src: atomic,
+    scale: 1,
+    posY: 65,
+    posX: 23
+  },
+  {
+
+    id: 4,
+    src: mining,
+    scale: 1,
+    posY: 81,
+    posX: 42
+  },
+  {
+
+    id: 5,
+    src: industry,
+    scale: 1,
+    posY: 81,
+    posX: 23
+  },
+  {
+
+    id: 6,
+    src: chemical,
+    scale: 1,
+    posY: 65,
+    posX: 7
+  },
+  {
+
+    id: 7,
+    src: metallurgy,
+    scale: 1,
+    posY: 42,
+    posX: 5
+  },
+  {
+
+    id: 8,
+    src: mech,
+    scale: 1,
+    posY: 23,
+    posX: 22
+  },
+];
 
 function Footer() {
 
-  const [visibleImages, setVisibleImages] = useState<string[]>(images.slice(0, 8));
+  const [visibleImages, setVisibleImages] = useState<logoImage[]>(images);
+  const [currentImage, setCurrentImage] = useState<number>(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setVisibleImages((prevVisibleImages) => {
-        const randomIndex = Math.floor(Math.random() * prevVisibleImages.length);
-        const newVisibleImages = [...prevVisibleImages];
-        newVisibleImages[randomIndex] = getRandomImage(newVisibleImages);
-        return newVisibleImages;
-      });
-    }, 2000);
-    return () => clearInterval(intervalId);
-  }, []);
+    const interval = setInterval(() => {
+      setCurrentImage((prevIndex) => (prevIndex + 1) % visibleImages.length);
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [visibleImages.length]);
 
   return (
     <Grid container sx={{ position: 'relative', mt: 'auto' }}>
@@ -141,15 +151,27 @@ function Footer() {
           {visibleImages.map((img, i) => (
             <img
               key={i}
-              src={img}
+              src={img.src}
               className="item"
               style={{
-                top: pos[i][0] + '%',
-                right: i > 3 ? 'auto' : pos[i][1] + '%',
-                left: i < 4 ? 'auto' : pos[i][1] + '%'
+                top: img.posY + '%',
+                right: i > 3 ? 'auto' : img.posX + '%',
+                left: i < 4 ? 'auto' : img.posX + '%',
+                transform: `scale(${currentImage === i ? 1.3 : 1})`,
+                transition: "transform 0.5s ease"
               }}
             />
           ))}
+          <img
+            src={year}
+            className="item"
+            style={{
+              top: '50%',
+              right: '50%',
+              width: '1.5rem',
+              height: 'auto'
+            }}
+          />
         </Box>
       </Grid>
       <Box sx={{
