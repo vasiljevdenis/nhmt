@@ -1,4 +1,4 @@
-import { Box, Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import books from "../assets/images/books.webp";
 import computer from "../assets/images/computer.svg";
 import teaching from "../assets/images/teaching.webp";
@@ -6,9 +6,10 @@ import demo from "../assets/images/demo.svg";
 import card1 from "../assets/images/card1-bg.png";
 import card2 from "../assets/images/card2-bg.png";
 import card3 from "../assets/images/card3-bg.png";
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import PlayArrow from '@mui/icons-material/PlayArrow';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 import EomState from '../store/EomState';
 import { observer } from 'mobx-react-lite';
@@ -83,22 +84,42 @@ const Main = observer(() => {
               </Grid>
               <Grid item xs={8} textAlign={"center"}>
                 <Typography variant='h6' component="p" gutterBottom sx={{
-                  fontWeight: '600'
+                  fontWeight: '600',
+                  color: "#FFFFFF"
                 }}>Освоение < br />нового материала <br /><br /></Typography>
               </Grid>
               <Grid item xs={2}>
               </Grid>
             </Grid>
-            <Typography variant='body2' color={"primary.main"} component="p" gutterBottom>Динамическая инфографика</Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Динамическая инфографика</Typography>
             <Tooltip title="Рекомендации" arrow placement="top">
-              <IconButton aria-label="info" sx={{ mr: 1 }} onClick={handleClickOpen}>
-                <img src={books} alt="Динамическая инфографика" style={{ width: '44px', marginRight: 2 }} />
+              <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpen}>
+                <InfoIcon fontSize='inherit' />
               </IconButton>
             </Tooltip>
             <Tooltip title="Начать" arrow placement="top">
-              <IconButton aria-label="play" size="large" sx={{ color: 'black', ml: 1 }} onClick={() => toEom(0)}>
-                <PlayCircleOutlineIcon fontSize="large" />
-              </IconButton>
+              <>
+                <Button variant="contained" size="small" sx={{
+                  borderRadius: '40px',
+                  backgroundColor: '#ffffff',
+                  p: '3px 35px',
+                  border: 'none',
+                  color: "#798BFF",
+                  fontSize: '1rem',
+                  textTransform: 'capitalize'
+                }}>
+                  Начать
+                </Button>
+                <IconButton aria-label="play" size="large" sx={{ 
+                  color: '#ffffff',                  
+                  ml: '-25px',
+                  p: '3px',
+                  border: '3px solid #ffffff',
+                  backgroundColor: '#798BFF'
+                   }} onClick={() => toEom(0)}>
+                  <PlayArrow fontSize="large" sx={{ backgroundColor: '' }} />
+                </IconButton>
+              </>
             </Tooltip>
           </Box>
         </Box>
@@ -146,7 +167,7 @@ const Main = observer(() => {
             </Tooltip>
             <Tooltip title="Начать" arrow placement="top">
               <IconButton aria-label="play" size="large" sx={{ color: 'black', ml: 1 }} onClick={() => toEom(1)}>
-                <PlayCircleOutlineIcon fontSize="large" />
+                {/* <PlayCircleOutlineIcon fontSize="large" /> */}
               </IconButton>
             </Tooltip>
           </Box>
@@ -200,7 +221,7 @@ const Main = observer(() => {
             </Tooltip>
             <Tooltip title="Начать" arrow placement="top">
               <IconButton aria-label="play" size="large" sx={{ color: 'black', ml: 1 }} onClick={() => toEom(2)}>
-                <PlayCircleOutlineIcon fontSize="large" />
+                {/* <PlayCircleOutlineIcon fontSize="large" /> */}
               </IconButton>
             </Tooltip>
           </Box>
