@@ -86,10 +86,10 @@ img:focus-visible {
     display: none;
   }
 }
-.br-xl {
+.br-lg {
   display: block;
 
-  @media screen and (max-width: 1536px) {
+  @media screen and (max-width: 1200px) {
     display: none;
   }
 }

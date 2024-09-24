@@ -113,10 +113,11 @@ function Footer() {
         }}>
           <Typography variant='body1' component="p" gutterBottom sx={{
             borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-            fontWeight: '600'
+            fontWeight: '800',
+            color: 'primary.main'
           }}>{MainData.fgos.title()}</Typography>
           <Typography variant='body1' component="p" gutterBottom sx={{
-            color: 'primary.main'
+            color: '#3E3E3E'
           }}>{MainData.fgos.name()}</Typography>
         </Box>
         <Box sx={{
@@ -131,10 +132,11 @@ function Footer() {
         }}>
           <Typography variant='body1' component="p" gutterBottom sx={{
             borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-            fontWeight: '600'
+            fontWeight: '800',
+            color: 'primary.main'
           }}>{MainData.mdk.title()}</Typography>
           <Typography variant='body1' component="p" gutterBottom sx={{
-            color: 'primary.main'
+            color: '#3E3E3E'
           }}>{MainData.mdk.name()}</Typography>
         </Box>
         <Box sx={{
@@ -187,7 +189,8 @@ function Footer() {
       }}>
         <Typography variant='h6' component="p" gutterBottom sx={{
           textTransform: 'uppercase',
-          writingMode: 'vertical-lr'
+          writingMode: 'vertical-lr',
+          color: '#3e3e3e'
         }}>ЦИФРОВОЙ ОБРАЗОВАТЕЛЬНЫЙ КОНТЕНТ</Typography>
       </Box>
     </Grid>

@@ -163,34 +163,66 @@ const Main = observer(() => {
           justifyContent: 'center'
         }}>
           <Box sx={{
-            textAlign: 'center',
-            px: 1,
-            py: 3,
+            px: 5,
+            py: 8,
             width: '100%'
           }}>
             <Grid container>
-              <Grid item xs={2} textAlign={"right"}>
-                <img src={demo} alt="Виртуальный тренажер" style={{ width: '42px' }} />
-              </Grid>
-              <Grid item xs={8} textAlign={"center"}>
-                <Typography variant='h6' component="p" gutterBottom sx={{
-                  fontWeight: '600'
-                }}>Применение <br /> изученного материала <br /><br /></Typography>
-              </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={12}>
+                <Typography variant='h5' component="p" gutterBottom sx={{
+                  fontWeight: '600',
+                  fontSize: '32px',
+                  color: "#FFFFFF"
+                }}>Применение изученного < br /> материала <br /></Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' color={"primary.main"} component="p" gutterBottom>Виртуальный тренажер</Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Виртуальный тренажер <br /><br /></Typography>
+            <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
-              <IconButton aria-label="info" sx={{ mr: 1 }} onClick={handleClickOpenVirtual}>
-                <img src={books} alt="Виртуальный тренажер" style={{ width: '44px', marginRight: 2 }} />
+              <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpenVirtual}>
+                <InfoIcon fontSize='inherit' />
               </IconButton>
             </Tooltip>
             <Tooltip title="Начать" arrow placement="top">
-              <IconButton aria-label="play" size="large" sx={{ color: 'black', ml: 1 }} onClick={() => toEom(1)}>
-                {/* <PlayCircleOutlineIcon fontSize="large" /> */}
-              </IconButton>
+              <Box sx={{ display: 'inline-block' }}>
+                <Button variant="contained" size="small" onClick={() => toEom(1)}
+                  onMouseEnter={() => handleMouseEnter('button2')}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{
+                    borderRadius: '40px',
+                    backgroundColor: hoveredButton === 'button2' ? '#FFFFFFCC' : '#ffffff',
+                    p: '3px 35px',
+                    border: 'none',
+                    boxShadow: 'none',
+                    color: "#798BFF",
+                    fontSize: '1rem',
+                    textTransform: 'capitalize',
+                    "&:hover": {
+                      backgroundColor: '#FFFFFFCC',
+                      boxShadow: 'none'
+                    }
+                  }}>
+                  Начать
+                </Button>
+                <IconButton aria-label="play" size="large"
+                  onMouseEnter={() => handleMouseEnter('button2')}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{
+                    color: hoveredButton === 'button2' ? '#FFFFFFCC' : '#ffffff',
+                    ml: hoveredButton === 'button2' ? '-23px' : '-25px',
+                    p: '3px',
+                    border: hoveredButton === 'button2' ? '3px solid #FFFFFFCC' : '3px solid #ffffff',
+                    backgroundColor: '#798BFF',
+                    transition: 'all 150ms ease',
+                    "&:hover": {
+                      backgroundColor: '#798BFF'
+                    }
+                  }} onClick={() => toEom(1)}>
+                  <PlayArrow fontSize="large" sx={{ backgroundColor: '' }} />
+                </IconButton>
+              </Box>
             </Tooltip>
+            </Box>
           </Box>
         </Box>
       </Grid>
@@ -212,39 +244,66 @@ const Main = observer(() => {
           justifyContent: 'center'
         }}>
           <Box sx={{
-            textAlign: 'center',
-            px: 1,
-            py: 3,
+            px: 5,
+            py: 8,
             width: '100%'
           }}>
             <Grid container>
-              <Grid item xs={2} textAlign={"right"}>
-                <img src={computer} alt="Интерактивная мини-игра" style={{ width: '50px' }} />
-              </Grid>
-              <Grid item xs={8} textAlign={"center"}>
-                <Typography variant='h6' component="p" sx={{
-                  fontWeight: '600'
-                }}>Диагностика <br /> приобретенных</Typography>
-              </Grid>
-              <Grid item xs={2}>
-              </Grid>
-              <Grid item xs={12} textAlign={"center"}>
-                <Typography variant='h6' component="p" gutterBottom sx={{
-                  fontWeight: '600'
-                }}>знаний, умений, навыков</Typography>
+              <Grid item xs={12}>
+                <Typography variant='h5' component="p" gutterBottom sx={{
+                  fontWeight: '600',
+                  fontSize: '32px',
+                  color: "#FFFFFF"
+                }}>Диагностика приобретенных < br /> знаний, умений, навыков <br /></Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' color={"primary.main"} component="p" gutterBottom>Интерактивная мини-игра</Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Интерактивная мини-игра <br /><br /></Typography>
+            <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
-              <IconButton aria-label="info" sx={{ mr: 1 }} onClick={handleClickOpenInter}>
-                <img src={books} alt="Интерактивная мини-игра" style={{ width: '44px', marginRight: 2 }} />
+              <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpenInter}>
+                <InfoIcon fontSize='inherit' />
               </IconButton>
             </Tooltip>
             <Tooltip title="Начать" arrow placement="top">
-              <IconButton aria-label="play" size="large" sx={{ color: 'black', ml: 1 }} onClick={() => toEom(2)}>
-                {/* <PlayCircleOutlineIcon fontSize="large" /> */}
-              </IconButton>
+              <Box sx={{ display: 'inline-block' }}>
+                <Button variant="contained" size="small" onClick={() => toEom(2)}
+                  onMouseEnter={() => handleMouseEnter('button3')}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{
+                    borderRadius: '40px',
+                    backgroundColor: hoveredButton === 'button3' ? '#FFFFFFCC' : '#ffffff',
+                    p: '3px 35px',
+                    border: 'none',
+                    boxShadow: 'none',
+                    color: "#798BFF",
+                    fontSize: '1rem',
+                    textTransform: 'capitalize',
+                    "&:hover": {
+                      backgroundColor: '#FFFFFFCC',
+                      boxShadow: 'none'
+                    }
+                  }}>
+                  Начать
+                </Button>
+                <IconButton aria-label="play" size="large"
+                  onMouseEnter={() => handleMouseEnter('button3')}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{
+                    color: hoveredButton === 'button3' ? '#FFFFFFCC' : '#ffffff',
+                    ml: hoveredButton === 'button3' ? '-23px' : '-25px',
+                    p: '3px',
+                    border: hoveredButton === 'button3' ? '3px solid #FFFFFFCC' : '3px solid #ffffff',
+                    backgroundColor: '#798BFF',
+                    transition: 'all 150ms ease',
+                    "&:hover": {
+                      backgroundColor: '#798BFF'
+                    }
+                  }} onClick={() => toEom(2)}>
+                  <PlayArrow fontSize="large" sx={{ backgroundColor: '' }} />
+                </IconButton>
+              </Box>
             </Tooltip>
+            </Box>
           </Box>
         </Box>
       </Grid>

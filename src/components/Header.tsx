@@ -137,10 +137,10 @@ const Header = observer(() => {
             letterSpacing: '1px',
             color: '#3e3e3e',
             typography: {
-              xs: 'h5',
-              sm: 'h4',
-              md: 'h3',
-              lg: 'h2'
+              xs: 'h6',
+              sm: 'h5',
+              md: 'h4',
+              lg: 'h3'
             }
           }}>{MainData.title()}</Typography>
         </Box>
