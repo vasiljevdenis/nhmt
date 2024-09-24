@@ -1,7 +1,6 @@
 import { Box, Button, Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import books from "../assets/images/books.webp";
 import computer from "../assets/images/computer.svg";
-import teaching from "../assets/images/teaching.webp";
 import demo from "../assets/images/demo.svg";
 import card1 from "../assets/images/card1-bg.png";
 import card2 from "../assets/images/card2-bg.png";
@@ -48,6 +47,16 @@ const Main = observer(() => {
     setOpenInter(false);
   };
 
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+
+  const handleMouseEnter = (button: string) => {
+    setHoveredButton(button);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredButton(null);
+  };
+
   const toEom = (i: number) => {
     store.setExercise(i);
     navigator('/eom');
@@ -73,54 +82,66 @@ const Main = observer(() => {
           justifyContent: 'center'
         }}>
           <Box sx={{
-            textAlign: 'center',
-            px: 1,
-            py: 3,
+            px: 5,
+            py: 8,
             width: '100%'
           }}>
             <Grid container>
-              <Grid item xs={2} textAlign={"center"}>
-                <img src={teaching} alt="Динамическая инфографика" style={{ width: '50px' }} />
-              </Grid>
-              <Grid item xs={8} textAlign={"center"}>
-                <Typography variant='h6' component="p" gutterBottom sx={{
+              <Grid item xs={12}>
+                <Typography variant='h5' component="p" gutterBottom sx={{
                   fontWeight: '600',
+                  fontSize: '32px',
                   color: "#FFFFFF"
-                }}>Освоение < br />нового материала <br /><br /></Typography>
-              </Grid>
-              <Grid item xs={2}>
+                }}>Освоение нового < br /> материала <br /></Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Динамическая инфографика</Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Динамическая инфографика <br /><br /></Typography>
+            <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpen}>
                 <InfoIcon fontSize='inherit' />
               </IconButton>
             </Tooltip>
             <Tooltip title="Начать" arrow placement="top">
-              <>
-                <Button variant="contained" size="small" sx={{
-                  borderRadius: '40px',
-                  backgroundColor: '#ffffff',
-                  p: '3px 35px',
-                  border: 'none',
-                  color: "#798BFF",
-                  fontSize: '1rem',
-                  textTransform: 'capitalize'
-                }}>
+              <Box sx={{ display: 'inline-block' }}>
+                <Button variant="contained" size="small" onClick={() => toEom(0)}
+                  onMouseEnter={() => handleMouseEnter('button1')}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{
+                    borderRadius: '40px',
+                    backgroundColor: hoveredButton === 'button1' ? '#FFFFFFCC' : '#ffffff',
+                    p: '3px 35px',
+                    border: 'none',
+                    boxShadow: 'none',
+                    color: "#798BFF",
+                    fontSize: '1rem',
+                    textTransform: 'capitalize',
+                    "&:hover": {
+                      backgroundColor: '#FFFFFFCC',
+                      boxShadow: 'none'
+                    }
+                  }}>
                   Начать
                 </Button>
-                <IconButton aria-label="play" size="large" sx={{ 
-                  color: '#ffffff',                  
-                  ml: '-25px',
-                  p: '3px',
-                  border: '3px solid #ffffff',
-                  backgroundColor: '#798BFF'
-                   }} onClick={() => toEom(0)}>
+                <IconButton aria-label="play" size="large"
+                  onMouseEnter={() => handleMouseEnter('button1')}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{
+                    color: hoveredButton === 'button1' ? '#FFFFFFCC' : '#ffffff',
+                    ml: hoveredButton === 'button1' ? '-23px' : '-25px',
+                    p: '3px',
+                    border: hoveredButton === 'button1' ? '3px solid #FFFFFFCC' : '3px solid #ffffff',
+                    backgroundColor: '#798BFF',
+                    transition: 'all 150ms ease',
+                    "&:hover": {
+                      backgroundColor: '#798BFF'
+                    }
+                  }} onClick={() => toEom(0)}>
                   <PlayArrow fontSize="large" sx={{ backgroundColor: '' }} />
                 </IconButton>
-              </>
+              </Box>
             </Tooltip>
+            </Box>
           </Box>
         </Box>
       </Grid>

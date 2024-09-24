@@ -86,6 +86,13 @@ img:focus-visible {
     display: none;
   }
 }
+.br-xl {
+  display: block;
+
+  @media screen and (max-width: 1536px) {
+    display: none;
+  }
+}
 
 ol, ul {
   font-weight: 400;

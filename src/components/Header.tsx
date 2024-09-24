@@ -41,8 +41,8 @@ const Header = observer(() => {
   }, []);
 
   return (
-    <Grid container>
-      <Grid item xs={12} md={4} p={2} sx={{
+    <Grid container sx={{ px: { xs: 2, sm: 3, lg: 7 }, pt: 2 }}>
+      <Grid item xs={12} md={4} px={0} py={2} sx={{
         display: 'flex',
         alignItems: 'center'
       }}>
@@ -59,30 +59,17 @@ const Header = observer(() => {
           }}>Химическая отрасль</Typography>
         </Link>
       </Grid>
-      <Grid item xs={12} md={4} p={2} sx={{
+      <Grid item xs={12} md={4} p={2}></Grid>
+      <Grid item xs={12} md={4} px={0} py={2} sx={{
         display: 'flex',
-        alignItems: 'end'
-      }}>
-        {/* <Box sx={{
-          borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
-          pl: 2
-        }}>
-          <Typography variant='h6' component="p" gutterBottom sx={{
-            color: 'primary.main'
-          }}>Тема:</Typography>
-          <Typography variant='h6' component="p" mt={2} sx={{
-            fontWeight: '600',
-            letterSpacing: '1px'
-          }}>{MainData.title()}</Typography>
-        </Box> */}
-      </Grid>
-      <Grid item xs={12} md={4} p={2} sx={{
-        display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: {
+          xs: 'center',
+          md: 'end'
+        }
       }}>
         <Box sx={{
-          pl: 2,
-          display: 'inline-block'
+          display: 'inline-block'          
         }}>
           <Typography variant='body1' component="p" onClick={handleClickOpen} sx={{
             color: 'primary.main',
@@ -135,6 +122,27 @@ const Header = observer(() => {
               transition: 'width .3s ease-out'
             }
           }}>Ключевые слова</Typography>
+        </Box>
+      </Grid>
+      <Grid item xs={12} px={0} py={2} sx={{
+        display: 'flex',
+        alignItems: 'end'
+      }}>
+        <Box>
+          <Typography variant='h4' component="p" gutterBottom sx={{
+            color: '#3e3e3e'
+          }}>Тема:</Typography>
+          <Typography variant='h2' component="h1" mt={2} sx={{
+            fontWeight: '800 !important',
+            letterSpacing: '1px',
+            color: '#3e3e3e',
+            typography: {
+              xs: 'h5',
+              sm: 'h4',
+              md: 'h3',
+              lg: 'h2'
+            }
+          }}>{MainData.title()}</Typography>
         </Box>
       </Grid>
       <Dialog

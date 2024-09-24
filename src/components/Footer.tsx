@@ -100,7 +100,7 @@ function Footer() {
   }, [visibleImages.length]);
 
   return (
-    <Grid container sx={{ position: 'relative', mt: 'auto' }}>
+    <Grid container sx={{ position: 'relative', mt: 'auto', pt: 2, pb: 5 }}>
       <Grid item xs={12} md={3} px={2} pt={2}>
       </Grid>
       <Grid item xs={12} md={9} px={2} pt={2} sx={{ textAlign: { xs: 'left' } }}>
@@ -190,9 +190,6 @@ function Footer() {
           writingMode: 'vertical-lr'
         }}>ЦИФРОВОЙ ОБРАЗОВАТЕЛЬНЫЙ КОНТЕНТ</Typography>
       </Box>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
-        <path fill="#293896" fillOpacity="1" d="M0,0L1100,100L0,100Z"></path>
-      </svg>
     </Grid>
   )
 }

@@ -1,5 +1,5 @@
 import { CssBaseline, Grid, ThemeProvider, createTheme } from '@mui/material';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import style from './sass/app.scss?inline';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -56,7 +56,7 @@ function App() {
   }, []);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={newTheme}>
         <CssBaseline />
             <Header />
@@ -72,7 +72,7 @@ function App() {
             </Grid>
             <Footer />
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 
