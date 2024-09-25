@@ -1,7 +1,4 @@
 import { Box, Button, Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
-import books from "../assets/images/books.webp";
-import computer from "../assets/images/computer.svg";
-import demo from "../assets/images/demo.svg";
 import card1 from "../assets/images/card1-bg.png";
 import card2 from "../assets/images/card2-bg.png";
 import card3 from "../assets/images/card3-bg.png";
@@ -9,7 +6,7 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import EomState from '../store/EomState';
 import { observer } from 'mobx-react-lite';
 import MainData from '../Eoms/data/8/MainData';
@@ -17,7 +14,7 @@ import MainData from '../Eoms/data/8/MainData';
 const Main = observer(() => {
 
   const [store] = useState(EomState);
-  const navigator = useNavigate();
+  // const navigator = useNavigate();
 
   const [open, setOpen] = useState<boolean>(false);
   const [openVirtual, setOpenVirtual] = useState<boolean>(false);
@@ -59,12 +56,12 @@ const Main = observer(() => {
 
   const toEom = (i: number) => {
     store.setExercise(i);
-    navigator('/eom');
+    // navigator('/eom');
   }
 
   return (
     <Grid container sx={{ height: '100%', position: 'relative' }}>
-      <Grid item xs={12} sm={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
+      <Grid item xs={12} md={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
         <Box sx={{
           width: '100%',
           height: '100%',
@@ -88,9 +85,13 @@ const Main = observer(() => {
           }}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant='h5' component="p" gutterBottom sx={{
+                <Typography variant='h6' component="p" gutterBottom sx={{
                   fontWeight: '600',
-                  fontSize: '32px',
+                  typography: {
+                    xs: 'h6',
+                    xl: 'h5',
+                    xxl: 'h4'
+                  },
                   color: "#FFFFFF"
                 }}>Освоение нового < br /> материала <br /></Typography>
               </Grid>
@@ -145,7 +146,7 @@ const Main = observer(() => {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
+      <Grid item xs={12} sm={6} md={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
         <Box sx={{
           width: '100%',
           height: '100%',
@@ -169,9 +170,13 @@ const Main = observer(() => {
           }}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant='h5' component="p" gutterBottom sx={{
+                <Typography variant='h6' component="p" gutterBottom sx={{
                   fontWeight: '600',
-                  fontSize: '32px',
+                  typography: {
+                    xs: 'h6',
+                    xl: 'h5',
+                    xxl: 'h4'
+                  },
                   color: "#FFFFFF"
                 }}>Применение изученного < br /> материала <br /></Typography>
               </Grid>
@@ -226,7 +231,7 @@ const Main = observer(() => {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={4} sx={{ px: { xs: 2, sm: 3, lg: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
+      <Grid item xs={12} sm={6} md={4} sx={{ px: { xs: 2, sm: 3, lg: 6, xxl: 7 }, py: { xs: 1, sm: 2, lg: 4 } }}>
         <Box sx={{
           width: '100%',
           height: '100%',
@@ -250,9 +255,13 @@ const Main = observer(() => {
           }}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant='h5' component="p" gutterBottom sx={{
+                <Typography variant='h6' component="p" gutterBottom sx={{
                   fontWeight: '600',
-                  fontSize: '32px',
+                  typography: {
+                    xs: 'h6',
+                    xl: 'h5',
+                    xxl: 'h4'
+                  },
                   color: "#FFFFFF"
                 }}>Диагностика приобретенных < br /> знаний, умений, навыков <br /></Typography>
               </Grid>

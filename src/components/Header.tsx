@@ -11,7 +11,7 @@ import EomState from '../store/EomState';
 const Header = observer(() => {
 
   const [store] = useState(EomState);
-  const navigator = useNavigate();
+  // const navigator = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [openKeywords, setOpenKeywords] = useState(false);
@@ -130,7 +130,12 @@ const Header = observer(() => {
       }}>
         <Box>
           <Typography variant='h4' component="p" gutterBottom sx={{
-            color: '#3e3e3e'
+            color: '#3e3e3e',
+            typography: {
+              xs: 'h6',
+              sm: 'h5',
+              md: 'h4'
+            }
           }}>Тема:</Typography>
           <Typography variant='h2' component="h1" mt={2} sx={{
             fontWeight: '800 !important',

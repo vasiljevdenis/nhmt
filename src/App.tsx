@@ -7,6 +7,12 @@ import Main from './components/Main';
 import Eom from './components/Eom';
 import { useEffect, useState } from 'react';
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xxl: true;
+  }
+}
+
 function App() {
 
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -22,6 +28,16 @@ function App() {
         "Lato",
         'sans-serif'
       ].join(',')
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+        xxl: 1800
+      },
     },
     components: {
       MuiCssBaseline: {
@@ -52,6 +68,11 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoaded(true);
+      console.clear();
+      console.log("%cДизайн и архитектурная сборка:", "color: black; font-size: 16px; font-weight: bold");
+      console.log("%cDenPiligrim", "color: #207BB2; font-size: 20px; font-weight: bold");
+      console.log("%cПо всем вопросам в Телеграм:", "color: black; font-size: 16px; font-weight: bold");
+      console.log("%c@denpiligrim", "color: #207BB2; font-size: 16px; font-weight: bold");
     }, 1000);
   }, []);
 

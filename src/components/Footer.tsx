@@ -122,6 +122,7 @@ function Footer() {
         </Box>
         <Box sx={{
           pl: { xs: 2, sm: 3 },
+          mt: {xs: 1, sm: 0},
           display: 'inline-block',
           textAlign: 'left',
           verticalAlign: 'top',
@@ -179,18 +180,19 @@ function Footer() {
       <Box sx={{
         position: 'fixed',
         top: 0,
-        right: '8px',
+        right: 0,
         height: '100vh',
         display: {
           xs: 'none',
-          sm: 'flex'
+          md: 'flex'
         },
         alignItems: 'center'
       }}>
         <Typography variant='h6' component="p" gutterBottom sx={{
           textTransform: 'uppercase',
           writingMode: 'vertical-lr',
-          color: '#3e3e3e'
+          color: '#3e3e3e',
+          px: 1
         }}>ЦИФРОВОЙ ОБРАЗОВАТЕЛЬНЫЙ КОНТЕНТ</Typography>
       </Box>
     </Grid>

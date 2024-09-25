@@ -1,24 +1,2 @@
 <course>
-<title>ФГОС 31.02.05 МДК 02.02 Изготовление несъёмных протезов</title>
-<description/>
-<language>ru</language>
-<code>111038529</code>
-<fgos_title>ФГОС СПО 31.02.05</fgos_title>
-<fgos_text>Стоматология ортопедическая</fgos_text>
-<mdk_title>МДК.02.02</mdk_title>
-<mdk_text>Изготовление несъёмных протезов</mdk_text>
-<structure>
-<item0>
-<name>Цифровое моделирование несъемных протезов из циркония</name>
-<code>01_01</code>
-</item0>
-<item1>
-<name>Цифровое моделирование несъемных протезов из циркония</name>
-<code>02_01</code>
-</item1>
-<item2>
-<name>Цифровое моделирование несъемных протезов из циркония</name>
-<code>03_01</code>
-</item2>
-</structure>
 </course>
