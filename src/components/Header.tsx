@@ -16,7 +16,7 @@ const Header = observer(() => {
   const [open, setOpen] = useState(false);
   const [openKeywords, setOpenKeywords] = useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,15 +47,19 @@ const Header = observer(() => {
         alignItems: 'center'
       }}>
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <img src={logo} alt="Логотип Профессионалитет" style={{ width: '100%', maxWidth: '58px', marginRight: '1rem' }} />
+          <img src={logo} alt="Логотип Профессионалитет" style={{ width: '100%', maxWidth: isMobile ? '38px' : '58px', marginRight: '1rem' }} />
         </Link>
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <img src={chemical} alt="Химическая отрасль" style={{ width: '100%', maxWidth: '58px', marginRight: '1rem' }} />
+          <img src={chemical} alt="Химическая отрасль" style={{ width: '100%', maxWidth: isMobile ? '38px' : '58px', marginRight: '1rem' }} />
         </Link>
         <Link to="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
           <Typography variant='h5' gutterBottom sx={{
             fontWeight: '700',
-            color: '#3e3e3e'
+            color: '#3e3e3e',
+            typography: {
+              xs: 'h6',
+              sm: 'h5'
+            }
           }}>Химическая отрасль</Typography>
         </Link>
       </Grid>
@@ -151,7 +155,7 @@ const Header = observer(() => {
         </Box>
       </Grid>
       <Dialog
-        fullScreen={fullScreen}
+        fullScreen={isMobile}
         maxWidth="md"
         open={open}
         onClose={handleClose}
@@ -165,7 +169,7 @@ const Header = observer(() => {
         </DialogContent>
       </Dialog>
       <Dialog
-        fullScreen={fullScreen}
+        fullScreen={isMobile}
         maxWidth="md"
         open={openKeywords}
         onClose={handleCloseKeywords}

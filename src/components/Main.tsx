@@ -85,15 +85,16 @@ const Main = observer(() => {
           }}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant='h6' component="p" gutterBottom sx={{
-                  fontWeight: '600',
+                <Typography variant="h6" component="h2" gutterBottom sx={{
+                  fontWeight: 600,
+                  color: 'white',
                   typography: {
                     xs: 'h6',
-                    xl: 'h5',
-                    xxl: 'h4'
-                  },
-                  color: "#FFFFFF"
-                }}>Освоение нового < br /> материала <br /></Typography>
+                    xl: 'h5'
+                  }
+                }}>
+                  Освоение нового <br /> материала <br />
+                </Typography>
               </Grid>
             </Grid>
             <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Динамическая инфографика <br /><br /></Typography>
@@ -174,8 +175,7 @@ const Main = observer(() => {
                   fontWeight: '600',
                   typography: {
                     xs: 'h6',
-                    xl: 'h5',
-                    xxl: 'h4'
+                    xl: 'h5'
                   },
                   color: "#FFFFFF"
                 }}>Применение изученного < br /> материала <br /></Typography>
@@ -259,8 +259,7 @@ const Main = observer(() => {
                   fontWeight: '600',
                   typography: {
                     xs: 'h6',
-                    xl: 'h5',
-                    xxl: 'h4'
+                    xl: 'h5'
                   },
                   color: "#FFFFFF"
                 }}>Диагностика приобретенных < br /> знаний, умений, навыков <br /></Typography>

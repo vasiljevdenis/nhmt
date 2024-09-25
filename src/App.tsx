@@ -59,6 +59,9 @@ function App() {
         styleOverrides: {
           paperWidthMd: {
             borderRadius: 40
+          },
+          paperFullScreen: {
+            borderRadius: '0'
           }
         }
       }
