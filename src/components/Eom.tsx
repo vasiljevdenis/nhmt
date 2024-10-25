@@ -5,7 +5,7 @@ import Infographics from "../Eoms/Infographics";
 import Training from "../Eoms/Training";
 import Game from "../Eoms/Game";
 import { observer } from "mobx-react-lite";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 
 const Eom = observer(() => {
@@ -20,7 +20,14 @@ const Eom = observer(() => {
 
   return (
     <Grid container sx={{ width: '100%', height: '100%', p: {xs: 1, sm: 3, md: 5, lg: 7} }}>
-      <Grid item xs={12} sx={{ width: '100%', height: '100%', border: '1px solid #293896', position: 'relative' }}>
+      <Grid item xs={12} sx={{ 
+        width: '100%', 
+        height: '100%', 
+        border: 'none',
+        borderRadius: 10,    
+        backgroundColor: 'white',
+        position: 'relative'
+         }}>
         {store.currentEx === 0 ? (
           <Infographics />
         ) : store.currentEx === 1 ? (
@@ -35,10 +42,7 @@ const Eom = observer(() => {
           left: -5,
           zIndex: 100
         }}>
-          <Button variant="text" startIcon={<ArrowBackIcon sx={{
-            border: '1px solid ' + theme.palette.primary.main,
-            borderRadius: '50%'
-          }} />}
+          <Button variant="text" startIcon={<ArrowBackIosIcon />}
             sx={{ textTransform: 'none' }}
             onClick={toMain}>
             На главную

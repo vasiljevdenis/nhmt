@@ -6,15 +6,15 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import EomState from '../store/EomState';
 import { observer } from 'mobx-react-lite';
-import MainData from '../Eoms/data/8/MainData';
+import MainData from '../Eoms/data/1/MainData';
 
 const Main = observer(() => {
 
   const [store] = useState(EomState);
-  // const navigator = useNavigate();
+  const navigator = useNavigate();
 
   const [open, setOpen] = useState<boolean>(false);
   const [openVirtual, setOpenVirtual] = useState<boolean>(false);
@@ -24,7 +24,7 @@ const Main = observer(() => {
 
   const handleClickOpen = () => {
     setOpen(true);
-  };
+  }
 
   const handleClose = () => {
     setOpen(false);
@@ -56,7 +56,7 @@ const Main = observer(() => {
 
   const toEom = (i: number) => {
     store.setExercise(i);
-    // navigator('/eom');
+    navigator('/eom');
   }
 
   return (

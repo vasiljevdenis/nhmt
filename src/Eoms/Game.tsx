@@ -1,6 +1,6 @@
 
 import { Box, Button, Card, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, Grid, IconButton, LinearProgress, LinearProgressProps, Tooltip, Typography, useTheme } from '@mui/material';
-import GameData from './data/8/GameData';
+import GameData from './data/1/GameData';
 import React, { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';
@@ -208,6 +208,8 @@ const Game = observer(() => {
     <Grid container>
       <Grid item xs={12} sx={{
         background: theme.palette.primary.main,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
         py: 1
       }}>
         <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Интерактивная мини-игра</Typography>

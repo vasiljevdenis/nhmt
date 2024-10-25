@@ -22,26 +22,26 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'перцептивная',
-                isCorrect: false
-            },
-            {
-                value: 'информационная',
-                isCorrect: false
-            },
-            {
-                value: 'коммуникативная',
+                value: 'Программа для создания трехмерных моделей зубов',
                 isCorrect: true
             },
             {
-                value: 'интерактивная',
+                value: 'Программа для редактирования фотографий',
+                isCorrect: false
+            },
+            {
+                value: 'Программа для создания виртуальных игр',
+                isCorrect: false
+            },
+            {
+                value: 'Программа для общения в социальных сетях',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Медсестра рассказывает пациенту о правилах поведения в стационаре. Пациент узнает, что можно и нельзя делать. Какая это сторона общения?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Что такое Exocad и для чего используется в цифровом моделировании?</Typography>
                 </>
             )
         }
@@ -53,26 +53,26 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'контактная',
+                value: 'Создание трехмерных моделей зубов и анатомических структур',
                 isCorrect: true
             },
             {
-                value: 'информационная',
+                value: 'Редактирование текстовых документов',
                 isCorrect: false
             },
             {
-                value: 'побудительная',
+                value: 'Разработка графических иллюстраций',
                 isCorrect: false
             },
             {
-                value: 'функция понимания',
+                value: 'Создание музыкальных композиций',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Благодаря общению каждый из нас может осознавать и фиксировать свое место в системе отношений. Какая это функция общения?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие основные функции предоставляет Exocad при создании цифровых моделей?</Typography>
                 </>
             )
         }
@@ -84,26 +84,26 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'информационная',
+                value: 'С помощью специальной технологии распознавания речи',
                 isCorrect: false
             },
             {
-                value: 'контактная',
+                value: 'С помощью использования высокоточных 3D сканеров',
                 isCorrect: true
             },
             {
-                value: 'побудительная',
+                value: 'С помощью автоматического алгоритма случайного выбора',
                 isCorrect: false
             },
             {
-                value: 'эмотивная',
+                value: 'С помощью принципа конструктивизма',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Медицинская сестра здоровается с пациентом, узнает об его самочувствии и готовности к беседе. Какая это функция общения?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Каким образом Exocad обеспечивает точность и качество цифровых моделей?</Typography>
                 </>
             )
         }
@@ -115,26 +115,26 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'внутриличностное общение',
+                value: 'Только изображения в формате JPEG',
+                isCorrect: false
+            },
+            {
+                value: 'Текстовые файлы в формате PDF',
+                isCorrect: false
+            },
+            {
+                value: '3D сканы, файлы DICOM, фотографии',
                 isCorrect: true
             },
             {
-                value: 'межличностное общение',
-                isCorrect: false
-            },
-            {
-                value: 'общественное общение',
-                isCorrect: false
-            },
-            {
-                value: 'самоанализирующее общение',
+                value: 'Видеофайлы в формате AVI',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Общение человека с самим собой – это…?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие типы данных можно импортировать в Exocad для создания моделей?</Typography>
                 </>
             )
         }
@@ -146,26 +146,26 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'Способность ясно выражать свои мысли',
-                isCorrect: false
-            },
-            {
-                value: 'Речь',
+                value: 'Инструмент «Автоконтур»',
                 isCorrect: true
             },
             {
-                value: 'Мимика',
+                value: 'Инструмент «Рисование»',
                 isCorrect: false
             },
             {
-                value: 'Голос',
+                value: 'Инструмент «Создание текста»',
+                isCorrect: false
+            },
+            {
+                value: 'Инструмент «Печать»',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Универсальным средством коммуникации и общения является:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какая функция Exocad позволяет эффективно анализировать и модифицировать модели?</Typography>
                 </>
             )
         }
@@ -177,26 +177,26 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'оптико-кинетическая система',
+                value: 'Инструменты для создания протезов',
                 isCorrect: false
             },
             {
-                value: 'паралингвистическая система',
+                value: 'Инструменты для анализа костной структуры',
+                isCorrect: false
+            },
+            {
+                value: 'Инструменты для дизайна улыбок',
                 isCorrect: true
             },
             {
-                value: 'экстралингвистическая система',
-                isCorrect: false
-            },
-            {
-                value: 'проксемика',
+                value: 'Инструменты для создания аппаратов ИКТ',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Качества голоса, его диапазона, тональности, фразовых и логических ударений, предпочитаемых конкретным человеком - это…?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие специализированные инструменты предоставляет Exocad для работы с анатомическими моделями?</Typography>
                 </>
             )
         }
@@ -208,57 +208,57 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'жесты, мимика, пантомимика',
+                value: 'Возможность создания виртуальных имплантов в точном соответствии с пациентом',
+                isCorrect: false
+            },
+            {
+                value: 'Возможность создания трехмерных моделей всего зубного ряда',
+                isCorrect: false
+            },
+            {
+                value: 'Возможность создания моделей для различных типов имплантатов',
                 isCorrect: true
             },
             {
-                value: 'исследование зрительного контакта',
-                isCorrect: false
-            },
-            {
-                value: 'анализируются паузы в речи, покашливание, смех и сам темп речи',
-                isCorrect: false
-            },
-            {
-                value: 'пространство и время организации процесса общения',
+                value: 'Возможность создания моделей для внутриротовых камер',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Экстралингвистическая система – это…?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие возможности предоставляет Exocad для создания моделей для имплантологии?</Typography>
                 </>
             )
         }
     },
     {
         id: 7,
-        title: 'Выберите несколько правильных ответов',
-        type: 'multiple',
+        title: 'Выберите один правильный ответ',
+        type: 'single',
         score: 20,
         answers: [
             {
-                value: 'Закрытая, напряженная поза',
+                value: 'Поддержка только одной модели сканера и одной CAD/CAM системы',
                 isCorrect: false
             },
             {
-                value: 'Открытая, расслабленная поза',
+                value: 'Поддержка работы с несколькими моделями сканеров и CAD/CAM систем',
                 isCorrect: true
             },
             {
-                value: 'Контакт глаз средней интенсивности',
-                isCorrect: true
+                value: 'Не поддерживает работу со сканерами и CAD/CAM системами',
+                isCorrect: false
             },
             {
-                value: 'Прикосновения',
-                isCorrect: true
+                value: 'Поддержка только сканеров и CAD/CAM систем, произведенных компанией Exocad',
+                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Отметьте, какие невербальные элементы выражают позитивное отношение к партнеру:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как Exocad поддерживает работу с различными типами сканеров и CAD/CAM систем?</Typography>
                 </>
             )
         }
@@ -270,26 +270,26 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'Аттракция',
+                value: 'Только простые текстовые документы',
                 isCorrect: false
             },
             {
-                value: 'Эмпатия',
+                value: 'Отчеты с графиками и диаграммами',
+                isCorrect: false
+            },
+            {
+                value: 'Только таблицы с данными',
+                isCorrect: false
+            },
+            {
+                value: 'Одинаковые отчеты для всех типов моделей',
                 isCorrect: true
-            },
-            {
-                value: 'Рефлексия',
-                isCorrect: false
-            },
-            {
-                value: 'Саморефлексия',
-                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Умение сопереживать другому человеку, способность понимать его не столько умом, сколько сердцем, т.е. постижение эмоционального состояния другого человека – это…?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие типы документации и отчетов можно сгенерировать в Exocad?</Typography>
                 </>
             )
         }
@@ -301,26 +301,26 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'интимная',
+                value: 'Только в формате PDF',
                 isCorrect: false
             },
             {
-                value: 'личная (персональная)',
+                value: 'Только в формате JPEG',
+                isCorrect: false
+            },
+            {
+                value: 'В различных форматах, включая STL, OBJ, и другие',
                 isCorrect: true
             },
             {
-                value: 'социальная',
-                isCorrect: false
-            },
-            {
-                value: 'публичная (официальная)',
+                value: 'В формате видеофайлов',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Зона комфортности от 46 до 120 см называется:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие варианты экспорта моделей предоставляет Exocad?</Typography>
                 </>
             )
         }
@@ -332,26 +332,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'Не всегда идут на контакт, забывают выполнять назначения, нередко капризны или досаждают бесчисленными жалобами',
+                value: 'Нет дополнительных модулей и расширений',
                 isCorrect: false
             },
             {
-                value: 'Не в состоянии сообщить о своих ощущениях, жалобах. Медику необходимо взять анамнез у взрослых',
+                value: 'Модуль для анализа зубной эмали',
                 isCorrect: false
             },
             {
-                value: 'Боятся врачей, склонны скрывать страдания или вводить в заблуждение врача. Но они доверчивы, неопытны, при установлении контакта способны искренне верить врачу и этим помогают лечению',
+                value: 'Модуль для дизайна коронок и мостовидных протезов',
                 isCorrect: true
             },
             {
-                value: 'Отрицание авторитетов, проявление самоутверждения личности, поиск собственного пути в жизни',
+                value: 'Модуль для создания анимированных моделей',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Отметьте, какая особенность общения соответствует детям старшего возраста:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие дополнительные модули и расширения доступны для использования в Exocad?</Typography>
                 </>
             )
         }
@@ -363,26 +363,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'Обмен знаниями, т.е. общение, связанное с различными видами познавательной или учебной деятельности (например, обучение пациента элементам самоухода или информирование о правильном приеме лекарственных препаратов)',
+                value: 'Не обеспечивает конфиденциальность и безопасность данных',
+                isCorrect: false
+            },
+            {
+                value: 'С помощью шифрования данных и протоколов безопасности',
                 isCorrect: true
             },
             {
-                value: 'Обмен действиями, операциями, умениями, навыками, т.е. информация, совершенствующая и развивающая способности субъекта (например, обучение членов семьи пациента умению оказать ему доврачебную помощь при приступе бронхиальной астмы или формирование у пациентки навыка по самообследованию молочной железы)',
+                value: 'С помощью публичного доступа к данным',
                 isCorrect: false
             },
             {
-                value: 'Обмен психическими или физиологическими состояниями; при данном общении один человек оказывает на другого влияние, рассчитанное на то, чтобы привести его в определенное физическое или психическое состояние и тем самым воздействовать на самочувствие (например, поднять настроение хорошей информацией или испортить плохим сообщением, успокоить человека или, наоборот, активизировать)',
-                isCorrect: false
-            },
-            {
-                value: 'Обмен продуктами и предметами деятельности, которые в свою очередь служат средством удовлетворения актуальных потребностей субъектов',
+                value: 'С помощью передачи данных без шифрования',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Когнитивному виду общения соответствует следующее определение:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Каким образом Exocad обеспечивает конфиденциальность и безопасность данных пользователя?</Typography>
                 </>
             )
         }
@@ -394,26 +394,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'Функция оказания влияния',
+                value: 'Операционная система Windows и процессор Intel Core i7',
                 isCorrect: true
             },
             {
-                value: 'Информационная',
+                value: 'Операционная система MacOS и процессор AMD Ryzen 5',
                 isCorrect: false
             },
             {
-                value: 'Побудительная',
+                value: 'Операционная система Linux и процессор Intel Pentium',
                 isCorrect: false
             },
             {
-                value: 'Функция понимания',
+                value: 'Операционная система Android и процессор Qualcomm Snapdragon',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Мы можем менять поведение, мнение, установки партнера. Какая это функция общения?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие системные требования необходимы для работы с Exocad?</Typography>
                 </>
             )
         }
@@ -425,26 +425,30 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'Косвенное',
+                value: 'Только поворот и масштабирование моделей',
                 isCorrect: false
             },
             {
-                value: 'Прямое',
+                value: 'Отражение, перемещение и поворот моделей',
+                isCorrect: false
+            },
+            {
+                value: 'Только масштабирование моделей',
+                isCorrect: false
+            },
+            {
+                value: 'Отражение и перемещение моделей',
+                isCorrect: false
+            },
+            {
+                value: 'Все перечисленное',
                 isCorrect: true
-            },
-            {
-                value: 'Непосредственное',
-                isCorrect: false
-            },
-            {
-                value: 'Опосредованное',
-                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какое общение подразумевает естественный контакт «лицом к лицу» при помощи вербальных (речевых) и невербальных (жесты, мимика, пантомимика) средств?</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие виды манипулирования и преобразования моделей поддерживает Exocad?</Typography>
                 </>
             )
         }
@@ -456,26 +460,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'Пространство и время организации процесса общения',
+                value: 'Возможность создания моделей только для верхней челюсти',
                 isCorrect: false
             },
             {
-                value: 'Исследование зрительного контакта',
+                value: 'Возможность создания моделей только для нижней челюсти',
                 isCorrect: false
             },
             {
-                value: 'Качество голоса, его диапазон, тональность, фразовые и логические ударения, предпочитаемые конкретным человеком',
-                isCorrect: false
-            },
-            {
-                value: 'Жесты, мимика, пантомимика',
+                value: 'Возможность создания моделей для верхней и нижней челюстей',
                 isCorrect: true
+            },
+            {
+                value: 'Возможность создания моделей только для канатного протезирования',
+                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>К оптико-кинетической системе относятся:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие возможности предоставляет Exocad для создания виртуальных моделей зубов?</Typography>
                 </>
             )
         }

@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import TrainingData from "../Eoms/data/8/TrainingData";
+import TrainingData from "../Eoms/data/1/TrainingData";
 
 interface Answer {
   slideId: number;

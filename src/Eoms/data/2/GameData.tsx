@@ -22,26 +22,26 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'через прямую кишку',
-                isCorrect: false
-            },
-            {
-                value: 'сублингвальный',
-                isCorrect: false
-            },
-            {
-                value: 'на кожу, слизистые',
+                value: 'Программа для создания трехмерных моделей зубов',
                 isCorrect: true
             },
             {
-                value: 'внутрикожный',
+                value: 'Программа для редактирования фотографий',
+                isCorrect: false
+            },
+            {
+                value: 'Программа для создания виртуальных игр',
+                isCorrect: false
+            },
+            {
+                value: 'Программа для общения в социальных сетях',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Наружный способ применения лекарственных средств</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Что такое Exocad и для чего используется в цифровом моделировании?</Typography>
                 </>
             )
         }
@@ -53,119 +53,119 @@ const GameData: Test[] = [
         score: 10,
         answers: [
             {
-                value: 'внутривенно - капельно',
+                value: 'Создание трехмерных моделей зубов и анатомических структур',
                 isCorrect: true
             },
             {
-                value: 'через прямую кишку',
+                value: 'Редактирование текстовых документов',
                 isCorrect: false
             },
             {
-                value: 'через зонд в желудок',
+                value: 'Разработка графических иллюстраций',
                 isCorrect: false
             },
             {
-                value: 'под язык',
+                value: 'Создание музыкальных композиций',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Один из способов парентерального поступления лекарственных веществ в организм предусматривает их введение</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие основные функции предоставляет Exocad при создании цифровых моделей?</Typography>
                 </>
             )
         }
     },
     {
         id: 2,
-        title: 'Выберите несколько правильных ответов',
-        type: 'miltiple',
+        title: 'Выберите один правильный ответ',
+        type: 'single',
         score: 10,
         answers: [
             {
-                value: 'внутримышечный',
+                value: 'С помощью специальной технологии распознавания речи',
                 isCorrect: false
             },
             {
-                value: 'пероральный (через рот)',
+                value: 'С помощью использования высокоточных 3D сканеров',
                 isCorrect: true
             },
             {
-                value: 'внутривенный',
+                value: 'С помощью автоматического алгоритма случайного выбора',
                 isCorrect: false
             },
             {
-                value: 'сублингвальный',
-                isCorrect: true
+                value: 'С помощью принципа конструктивизма',
+                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Энтеральным следует назвать способ введения лекарств</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Каким образом Exocad обеспечивает точность и качество цифровых моделей?</Typography>
                 </>
             )
         }
     },
     {
         id: 3,
-        title: 'Выберите несколько правильных ответов',
-        type: 'multiple',
+        title: 'Выберите один правильный ответ',
+        type: 'single',
         score: 10,
         answers: [
             {
-                value: 'быстрота действия, точность дозировки',
+                value: 'Только изображения в формате JPEG',
                 isCorrect: false
             },
             {
-                value: 'возможность рассчитать максимальную концентрацию лекарственного вещества в плазме крови',
+                value: 'Текстовые файлы в формате PDF',
                 isCorrect: false
             },
             {
-                value: 'препараты поступает в кровоток, минуя печень, не разрушаются',
+                value: '3D сканы, файлы DICOM, фотографии',
                 isCorrect: true
             },
             {
-                value: 'не раздражают слизистую желудка',
-                isCorrect: true
+                value: 'Видеофайлы в формате AVI',
+                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>К преимуществу ректального пути введения лекарств относятся</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие типы данных можно импортировать в Exocad для создания моделей?</Typography>
                 </>
             )
         }
     },
     {
         id: 4,
-        title: 'Выберите несколько правильных ответов',
-        type: 'multiple',
+        title: 'Выберите один правильный ответ',
+        type: 'single',
         score: 10,
         answers: [
             {
-                value: 'поступление лекарственного средства в кровь в неизмененном виде',
+                value: 'Инструмент «Автоконтур»',
                 isCorrect: true
             },
             {
-                value: 'медленное всасывание',
+                value: 'Инструмент «Рисование»',
                 isCorrect: false
             },
             {
-                value: 'возможность создания «депо» препарата в месте инъекции',
+                value: 'Инструмент «Создание текста»',
                 isCorrect: false
             },
             {
-                value: 'быстрое развитие терапевтического эффекта',
-                isCorrect: true
+                value: 'Инструмент «Печать»',
+                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>К преимуществу парентерального пути введения пути введения лекарств относятся</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какая функция Exocad позволяет эффективно анализировать и модифицировать модели?</Typography>
                 </>
             )
         }
@@ -177,26 +177,26 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'в прямую кишку',
+                value: 'Инструменты для создания протезов',
                 isCorrect: false
             },
             {
-                value: 'в дыхательные пути',
+                value: 'Инструменты для анализа костной структуры',
                 isCorrect: false
             },
             {
-                value: 'под язык',
+                value: 'Инструменты для дизайна улыбок',
                 isCorrect: true
             },
             {
-                value: 'на кожу',
+                value: 'Инструменты для создания аппаратов ИКТ',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Сублингвальный путь введения лекарственных веществ – это введение</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие специализированные инструменты предоставляет Exocad для работы с анатомическими моделями?</Typography>
                 </>
             )
         }
@@ -208,26 +208,26 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'в ротовой полости',
+                value: 'Возможность создания виртуальных имплантов в точном соответствии с пациентом',
                 isCorrect: false
             },
             {
-                value: 'в желудке',
+                value: 'Возможность создания трехмерных моделей всего зубного ряда',
                 isCorrect: false
             },
             {
-                value: 'в тонком кишечнике',
+                value: 'Возможность создания моделей для различных типов имплантатов',
                 isCorrect: true
             },
             {
-                value: 'в толстом кишечнике',
+                value: 'Возможность создания моделей для внутриротовых камер',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Где в основном происходят, всасывание большей части лекарственных средств</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие возможности предоставляет Exocad для создания моделей для имплантологии?</Typography>
                 </>
             )
         }
@@ -239,88 +239,88 @@ const GameData: Test[] = [
         score: 20,
         answers: [
             {
-                value: 'в дыхательные пути',
+                value: 'Поддержка только одной модели сканера и одной CAD/CAM системы',
+                isCorrect: false
+            },
+            {
+                value: 'Поддержка работы с несколькими моделями сканеров и CAD/CAM систем',
                 isCorrect: true
             },
             {
-                value: 'под язык',
+                value: 'Не поддерживает работу со сканерами и CAD/CAM системами',
                 isCorrect: false
             },
             {
-                value: 'в ткани',
-                isCorrect: false
-            },
-            {
-                value: 'на слизистые оболочки',
+                value: 'Поддержка только сканеров и CAD/CAM систем, произведенных компанией Exocad',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>К ингаляционному способу относится введения лекарственных средств</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как Exocad поддерживает работу с различными типами сканеров и CAD/CAM систем?</Typography>
                 </>
             )
         }
     },
     {
         id: 8,
-        title: 'Выберите несколько правильных ответов',
-        type: 'multiple',
+        title: 'Выберите один правильный ответ',
+        type: 'single',
         score: 20,
         answers: [
             {
-                value: 'существует вероятность инфицирования пациента',
-                isCorrect: true
-            },
-            {
-                value: 'медленное всасывание',
+                value: 'Только простые текстовые документы',
                 isCorrect: false
             },
             {
-                value: 'возможность развития контактного дерматита',
+                value: 'Отчеты с графиками и диаграммами',
                 isCorrect: false
             },
             {
-                value: 'необходимость участия квалифицированного медицинского персонала',
+                value: 'Только таблицы с данными',
+                isCorrect: false
+            },
+            {
+                value: 'Одинаковые отчеты для всех типов моделей',
                 isCorrect: true
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Недостаток инъекционного применения лекарственных средств</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие типы документации и отчетов можно сгенерировать в Exocad?</Typography>
                 </>
             )
         }
     },
     {
         id: 9,
-        title: 'Выберите несколько правильных ответов',
-        type: 'multiple',
+        title: 'Выберите один правильный ответ',
+        type: 'single',
         score: 20,
         answers: [
             {
-                value: 'применяют в острых состояниях',
+                value: 'Только в формате PDF',
+                isCorrect: false
+            },
+            {
+                value: 'Только в формате JPEG',
+                isCorrect: false
+            },
+            {
+                value: 'В различных форматах, включая STL, OBJ, и другие',
                 isCorrect: true
             },
             {
-                value: 'не требуют профессиональных знаний',
-                isCorrect: true
-            },
-            {
-                value: 'лекарственные средства быстро поступают в кровь',
-                isCorrect: true
-            },
-            {
-                value: 'всасывающая поверхность подъязычной области очень мала',
+                value: 'В формате видеофайлов',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Преимущества сублингвального способа применения лекарственных средств</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие варианты экспорта моделей предоставляет Exocad?</Typography>
                 </>
             )
         }
@@ -332,26 +332,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'Жанэ',
+                value: 'Нет дополнительных модулей и расширений',
+                isCorrect: false
+            },
+            {
+                value: 'Модуль для анализа зубной эмали',
+                isCorrect: false
+            },
+            {
+                value: 'Модуль для дизайна коронок и мостовидных протезов',
                 isCorrect: true
             },
             {
-                value: 'Люэра',
-                isCorrect: false
-            },
-            {
-                value: 'Боброва',
-                isCorrect: false
-            },
-            {
-                value: 'Рекорд',
+                value: 'Модуль для создания анимированных моделей',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Шприц, используемый для промывания полостей:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие дополнительные модули и расширения доступны для использования в Exocad?</Typography>
                 </>
             )
         }
@@ -363,26 +363,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'миллиметрах',
+                value: 'Не обеспечивает конфиденциальность и безопасность данных',
                 isCorrect: false
             },
             {
-                value: 'сантиметрах',
-                isCorrect: false
-            },
-            {
-                value: 'литрах',
-                isCorrect: false
-            },
-            {
-                value: 'миллилитрах',
+                value: 'С помощью шифрования данных и протоколов безопасности',
                 isCorrect: true
+            },
+            {
+                value: 'С помощью публичного доступа к данным',
+                isCorrect: false
+            },
+            {
+                value: 'С помощью передачи данных без шифрования',
+                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Доза лекарственного средства для инъекционного введения выражается в:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Каким образом Exocad обеспечивает конфиденциальность и безопасность данных пользователя?</Typography>
                 </>
             )
         }
@@ -394,26 +394,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'лечащий врач',
+                value: 'Операционная система Windows и процессор Intel Core i7',
                 isCorrect: true
             },
             {
-                value: 'главный врач',
+                value: 'Операционная система MacOS и процессор AMD Ryzen 5',
                 isCorrect: false
             },
             {
-                value: 'старшая медицинская сестра',
+                value: 'Операционная система Linux и процессор Intel Pentium',
                 isCorrect: false
             },
             {
-                value: 'палатная медицинская сестра',
+                value: 'Операционная система Android и процессор Qualcomm Snapdragon',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Способ введения лекарственного вещества определяет:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие системные требования необходимы для работы с Exocad?</Typography>
                 </>
             )
         }
@@ -425,26 +425,30 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'самостоятельно',
+                value: 'Только поворот и масштабирование моделей',
                 isCorrect: false
             },
             {
-                value: 'в присутствии родственников',
+                value: 'Отражение, перемещение и поворот моделей',
                 isCorrect: false
             },
             {
-                value: 'в присутствии медсестры',
+                value: 'Только масштабирование моделей',
+                isCorrect: false
+            },
+            {
+                value: 'Отражение и перемещение моделей',
+                isCorrect: false
+            },
+            {
+                value: 'Все перечисленное',
                 isCorrect: true
-            },
-            {
-                value: 'в присутствии пациентов',
-                isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите, как осуществляется прием лекарственных средств пациентом:</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие виды манипулирования и преобразования моделей поддерживает Exocad?</Typography>
                 </>
             )
         }
@@ -456,26 +460,26 @@ const GameData: Test[] = [
         score: 30,
         answers: [
             {
-                value: 'инсулина',
+                value: 'Возможность создания моделей только для верхней челюсти',
+                isCorrect: false
+            },
+            {
+                value: 'Возможность создания моделей только для нижней челюсти',
+                isCorrect: false
+            },
+            {
+                value: 'Возможность создания моделей для верхней и нижней челюстей',
                 isCorrect: true
             },
             {
-                value: 'вакцины',
-                isCorrect: false
-            },
-            {
-                value: 'гепарина',
-                isCorrect: false
-            },
-            {
-                value: 'глюкозы',
+                value: 'Возможность создания моделей только для канатного протезирования',
                 isCorrect: false
             }
         ],
         content: () => {
             return (
                 <>
-                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Шприц – ручка используется для подкожного введения</Typography>
+                    <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие возможности предоставляет Exocad для создания виртуальных моделей зубов?</Typography>
                 </>
             )
         }
