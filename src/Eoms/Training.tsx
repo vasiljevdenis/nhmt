@@ -1,6 +1,6 @@
 
 import { Card, CardActionArea, CardContent, CardMedia, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, Grid, IconButton, TextField, Tooltip, Typography, useTheme } from '@mui/material';
-import TrainingData from './data/1/TrainingData';
+import TrainingData from '@data/TrainingData';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';

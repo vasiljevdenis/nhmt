@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
-import img1 from '../../../assets/images/8/training1.webp';
-import img2 from '../../../assets/images/8/training2.webp';
-import img5 from '../../../assets/images/8/training5.webp';
-import img6 from '../../../assets/images/8/training6.webp';
-import img13 from '../../../assets/images/8/training13.webp';
-import img14 from '../../../assets/images/8/training14.webp';
+import img1 from '@images/training1.webp';
+import img2 from '@images/training2.webp';
+import img5 from '@images/training5.webp';
+import img6 from '@images/training6.webp';
+import img13 from '@images/training13.webp';
+import img14 from '@images/training14.webp';
 import { ReactNode } from 'react';
 
 interface Answer {

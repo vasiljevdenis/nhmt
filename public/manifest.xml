@@ -1,2 +1,25 @@
+<?xml version="1.0"?>
 <course>
+  <title/>
+  <description/>
+  <language>ru</language>
+  <code>301121129</code>
+  <fgos_title>Name1</fgos_title>
+  <fgos_text>Name</fgos_text>
+  <mdk_title>Name</mdk_title>
+  <mdk_text>Name</mdk_text>
+  <structure>
+    <item0>
+      <name>Name</name>
+      <code>01_01</code>
+    </item0>
+    <item1>
+      <name>Name</name>
+      <code>02_01</code>
+    </item1>
+    <item2>
+      <name>Name</name>
+      <code>03_01</code>
+    </item2>
+  </structure>
 </course>

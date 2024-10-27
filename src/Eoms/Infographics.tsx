@@ -1,5 +1,5 @@
 import { Card, CardActionArea, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useTheme } from '@mui/material';
-import InfographicsData from './data/1/InfographicsData';
+import InfographicsData from '@data/InfographicsData';
 import { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';

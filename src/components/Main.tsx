@@ -9,7 +9,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 import EomState from '../store/EomState';
 import { observer } from 'mobx-react-lite';
-import MainData from '../Eoms/data/1/MainData';
+import MainData from '@data/MainData';
 
 const Main = observer(() => {
 

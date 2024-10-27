@@ -4,7 +4,7 @@ import chemical from '../assets/images/chemical.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import MainData from '../Eoms/data/1/MainData';
+import MainData from '@data/MainData';
 import { observer } from 'mobx-react-lite';
 import EomState from '../store/EomState';
 

@@ -1,20 +1,20 @@
 import { Typography } from '@mui/material';
-import img1 from '../../../assets/images/8/infographics1.webp';
-import img2 from '../../../assets/images/8/infographics2.webp';
-import img3 from '../../../assets/images/8/infographics3.webp';
-import img4 from '../../../assets/images/8/infographics4.webp';
-import img5 from '../../../assets/images/8/infographics5.webp';
-import img6 from '../../../assets/images/8/infographics6.webp';
-import img7 from '../../../assets/images/8/infographics7.webp';
-import img8 from '../../../assets/images/8/infographics8.webp';
-import img1Content from '../../../assets/images/8/infographicsContent1.webp';
-import img2Content from '../../../assets/images/8/infographicsContent2.webp';
-import img3Content from '../../../assets/images/8/infographicsContent3.webp';
-import img4Content from '../../../assets/images/8/infographicsContent4.webp';
-import img5Content from '../../../assets/images/8/infographicsContent5.webp';
-import img6Content from '../../../assets/images/8/infographicsContent6.webp';
-import img7Content from '../../../assets/images/8/infographicsContent7.webp';
-import img8Content from '../../../assets/images/8/infographicsContent8.webp';
+import img1 from '@images/infographics1.webp';
+import img2 from '@images/infographics2.webp';
+import img3 from '@images/infographics3.webp';
+import img4 from '@images/infographics4.webp';
+import img5 from '@images/infographics5.webp';
+import img6 from '@images/infographics6.webp';
+import img7 from '@images/infographics7.webp';
+import img8 from '@images/infographics8.webp';
+import img1Content from '@images/infographicsContent1.webp';
+import img2Content from '@images/infographicsContent2.webp';
+import img3Content from '@images/infographicsContent3.webp';
+import img4Content from '@images/infographicsContent4.webp';
+import img5Content from '@images/infographicsContent5.webp';
+import img6Content from '@images/infographicsContent6.webp';
+import img7Content from '@images/infographicsContent7.webp';
+import img8Content from '@images/infographicsContent8.webp';
 import { ReactNode } from 'react';
 
 interface Slide {
@@ -28,7 +28,7 @@ interface Slide {
 const InfographicsData: Slide[] = [
     {
         id: 0,
-        title: 'Несъемное протезирование',
+        title: 'Технология ремонта внутрицеховых электросетей и осветительных электроустановок',
         image: img1,
         imageContent: img1Content,
         content: () => {
@@ -43,7 +43,7 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 1,
-        title: 'CAD/CAM системы',
+        title: 'Возможные повреждения и ремонт электросетей',
         image: img2,
         imageContent: img2Content,
         content: () => {
@@ -63,7 +63,7 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 2,
-        title: 'Преимущества компьютерного моделирования и протезирования',
+        title: 'Повреждения и ремонт шинопроводов и электрооборудования силовых и осветительных распределительных пунктов сетей и установок',
         image: img3,
         imageContent: img3Content,
         content: () => {
@@ -77,7 +77,7 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 3,
-        title: 'Снятие слепков или 3D-сканирование полости рта',
+        title: 'Ремонт кабелей со свинцовой оболочкой',
         image: img4,
         imageContent: img4Content,
         content: () => {
@@ -94,7 +94,7 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 4,
-        title: 'Фото и видеосессия, оценка параметров прикуса',
+        title: 'Ремонт кабелей с поливинилхлоридной оболочкой',
         image: img5,
         imageContent: img5Content,
         content: () => {
@@ -108,7 +108,7 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 5,
-        title: 'Виртуальное моделирование улыбки',
+        title: 'Ремонт концевых заделок, соединительных и концевых муфт',
         image: img6,
         imageContent: img6Content,
         content: () => {
@@ -129,7 +129,7 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 6,
-        title: 'Программное обеспечение Exocad',
+        title: 'Возможные повреждения заземляющих устройств',
         image: img7,
         imageContent: img7Content,
         content: () => {
@@ -144,7 +144,32 @@ const InfographicsData: Slide[] = [
     },
     {
         id: 7,
-        title: 'Возможности программного обеспечения Exocad',
+        title: 'Техника безопасности при ремонте электрических внутрицеховых сетей и освещения',
+        image: img8,
+        imageContent: img8Content,
+        content: () => {
+            return (
+                <>
+                    <Typography variant='body1' component="p" gutterBottom>Базовая функциональность программного обеспечения будет расширяться вместе с опытом пользователя. Например, можно копировать предыдущие конструкции или зеркально воспроизводить здоровые зубы, загружать обычные двухмерные изображения при проектировании, работать с предоперационными моделями и адаптировать под них собственные реставрации, сохранять реальные 3Д-файлы в формате PDF с последующей возможностью их отправки по электронной почте и открытия в обычной программе, способной просматривать PDF-файлы.</Typography>
+                    <Typography variant='body1' component="p" gutterBottom>Стандартная комплектация программного обеспечения Exocad позволяет охватить широкий ассортимент показаний, в который входят:</Typography>
+                    <ul>
+                        <li>анатомические коронки;</li>
+                        <li>простые и анатомические колпачки;</li>
+                        <li>виниры;</li>
+                        <li>вкладки и накладки;</li>
+                        <li>аттачменты;</li>
+                        <li>мостовидные каркасы и каркасы на базе восковых моделей;</li>
+                        <li>цифровое копировальное фрезерование восковых моделей;</li>
+                        <li>замковые крепления внекоронкового типа;</li>
+                        <li>телескопические коронки.</li>
+                    </ul>
+                </>
+            )
+        }
+    },
+    {
+        id: 8,
+        title: 'Ремонт осветительных электроустановок',
         image: img8,
         imageContent: img8Content,
         content: () => {

@@ -5,6 +5,7 @@
   "homepage": "./",
   "type": "module",
   "scripts": {
+    "manifest": "ts-node generateManifest.ts",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -24,6 +25,7 @@
     "sass": "^1.68.0"
   },
   "devDependencies": {
+    "@types/node": "^22.8.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -32,7 +34,9 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "xmlbuilder": "^15.1.1"
   }
 }

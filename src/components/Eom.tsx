@@ -21,10 +21,10 @@ const Eom = observer(() => {
   return (
     <Grid container sx={{ width: '100%', height: '100%', p: {xs: 1, sm: 3, md: 5, lg: 7} }}>
       <Grid item xs={12} sx={{ 
-        width: '100%', 
-        height: '100%', 
-        border: 'none',
-        borderRadius: 10,    
+        width: '100%',
+        height: '100%',
+        border: '1px solid ' + theme.palette.primary.main,
+        borderRadius: 10,
         backgroundColor: 'white',
         position: 'relative'
          }}>

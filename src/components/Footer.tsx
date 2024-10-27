@@ -10,7 +10,7 @@ import railway from "../assets/images/railway.svg";
 import chemical from "../assets/images/chemical.svg";
 import year from "../assets/images/2024.svg";
 import { useEffect, useState } from "react";
-import MainData from "../Eoms/data/1/MainData";
+import MainData from "@data/MainData";
 
 interface logoImage {
   id: number;
