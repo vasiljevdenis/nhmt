@@ -1,24 +1,23 @@
-<?xml version="1.0"?>
 <course>
-  <title/>
-  <description/>
+  <title>ФГОС 29.01.04 МДК 01.01 Разработка эскизов моделей одежды с учетом исторического костюма или тенденции моды</title>
+  <description />
   <language>ru</language>
   <code>301121129</code>
-  <fgos_title>Name1</fgos_title>
-  <fgos_text>Name</fgos_text>
-  <mdk_title>Name</mdk_title>
-  <mdk_text>Name</mdk_text>
+  <fgos_title>ФГОС СПО 29.01.04</fgos_title>
+  <fgos_text>Художник по костюму</fgos_text>
+  <mdk_title>МДК 01.01</mdk_title>
+  <mdk_text>Разработка эскизов моделей одежды с учетом исторического костюма или тенденции моды</mdk_text>
   <structure>
     <item0>
-      <name>Name</name>
+      <name>Отражение народных традиций в одежде</name>
       <code>01_01</code>
     </item0>
     <item1>
-      <name>Name</name>
+      <name>Отражение народных традиций в одежде</name>
       <code>02_01</code>
     </item1>
     <item2>
-      <name>Name</name>
+      <name>Отражение народных традиций в одежде</name>
       <code>03_01</code>
     </item2>
   </structure>

@@ -21,7 +21,7 @@ const generateManifest = () => {
     .up()
     .ele('structure')
     .ele('item0')
-    .ele('name', 'Name').up()
+    .ele('name', process.env.VITE_CURRENT_COK).up()
     .ele('code', '01_01').up()
     .up()
     .ele('item1')
