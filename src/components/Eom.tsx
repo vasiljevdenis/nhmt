@@ -7,6 +7,9 @@ import Game from "../Eoms/Game";
 import { observer } from "mobx-react-lite";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
+import Animation from "../Eoms/Animation";
+import Laboratory from "../Eoms/Laboratory";
+import Tasks from "../Eoms/Tasks";
 
 const Eom = observer(() => {
 
@@ -29,11 +32,11 @@ const Eom = observer(() => {
         position: 'relative'
          }}>
         {store.currentEx === 0 ? (
-          <Infographics />
+          import.meta.env.VITE_MASTERING_TYPE === "infographics" ? <Infographics /> : <Animation />
         ) : store.currentEx === 1 ? (
-          <Training />
+          import.meta.env.VITE_USAGE_TYPE === "training" ? <Training /> : <Laboratory />
         ) : (
-          <Game />
+          import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? <Game /> : <Tasks />
         )
         }
         <Box sx={{

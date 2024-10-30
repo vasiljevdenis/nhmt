@@ -14,7 +14,7 @@ const generateManifest = () => {
   const codeDP = '140';
   const codeChuvashia = '579';
   const codeYear = '24'; // current year
-  const code = codeDP + codeChuvashia + codeYear + process.env.VITE_CURRENT_COK;  
+  const code = codeDP + codeChuvashia + codeYear + process.env.VITE_CURRENT_COK;
   const current_cok = parseInt(process.env.VITE_CURRENT_COK || '0');
   const data: MetaData[] = [
     {
@@ -86,7 +86,7 @@ const generateManifest = () => {
     .up()
     .up();
 
-  const xml = manifest.end({ pretty: true });
+  const xml = manifest.end({ pretty: true, spaceBeforeSlash: true });
 
   const outputPath = './public/manifest.xml';
   writeFileSync(outputPath, xml);

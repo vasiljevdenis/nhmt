@@ -13,6 +13,7 @@ interface Answer {
 }
 interface Slide {
     id: number;
+    // questionType: string;
     title: string;
     image: string | null;
     imageContent: string | null;
