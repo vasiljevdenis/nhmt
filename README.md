@@ -7,7 +7,7 @@
 ```json
   {
     "compilerOptions": {
-      "module": "CommonJS",
+      "module": "CommonJS"
     }
   }
 ```
@@ -22,7 +22,7 @@
 ## Установка cwebp
 ### Шаг 1: Скачайте WebP Tools
 
-1. Перейдите на [страницу WebP от Google](https://developers.google.com/speed/webp/download){:target="_blank"}.
+1. Перейдите на [страницу WebP от Google](https://developers.google.com/speed/webp/download).
 2. Скачайте **WebP Utilities for Windows**, обычно архив называется `libwebp-x.x.x-windows.zip`, где `x.x.x` — версия.
 3. Распакуйте скачанный архив в удобное место, например, в папку `C:\webp`.
 
@@ -47,7 +47,7 @@ cwebp -version
 
 ## Конвертация изображений в webp
 ```powershell
-Get-ChildItem -File | Where-Object { $_.Extension -match '\.(jpg|JPG|PNG|png)$' } | ForEach-Object { cwebp -q 80 $_.FullName -o "$($_.DirectoryName)\$($_.BaseName).webp" }
+Get-ChildItem -File | Where-Object { $_.Extension -match '\.(webp|jpg|jpeg|JPG|PNG|png)$' } | ForEach-Object { cwebp -q 90 $_.FullName -o "$($_.DirectoryName)\$($_.BaseName).webp" }
 ```
 
 # React + TypeScript + Vite

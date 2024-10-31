@@ -7,6 +7,7 @@ import img5 from '@images/infographics5.webp';
 import img6 from '@images/infographics6.webp';
 import img7 from '@images/infographics7.webp';
 import img8 from '@images/infographics8.webp';
+import img9 from '@images/infographics9.webp';
 import img1Content from '@images/infographicsContent1.webp';
 import img2Content from '@images/infographicsContent2.webp';
 import img3Content from '@images/infographicsContent3.webp';
@@ -170,7 +171,7 @@ const InfographicsData: Slide[] = [
     {
         id: 8,
         title: 'Ремонт осветительных электроустановок',
-        image: img8,
+        image: img9,
         imageContent: img8Content,
         content: () => {
             return (
