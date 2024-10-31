@@ -1,6 +1,7 @@
 # NHMT - проект для сборки ЦОК
-Разработано разработчиком @denpiligrim
-
+Сделано разработчиком @denpiligrim
+- [тг канал](https://t.me/cok_professionalitet)
+- [тг разработчика](https://t.me/denpiligrim)
 ## Запускаем генерацию манифеста
 В tsconfig.json определяем параметр:
 ```json
