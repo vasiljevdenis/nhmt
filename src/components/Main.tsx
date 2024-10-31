@@ -97,7 +97,7 @@ const Main = observer(() => {
                 </Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Динамическая инфографика <br /><br /></Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_MASTERING_TYPE === "infographics" ? 'Динамическая инфографика' : 'Анимация'} <br /><br /></Typography>
             <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpen}>
@@ -181,7 +181,7 @@ const Main = observer(() => {
                 }}>Применение изученного < br /> материала <br /></Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Виртуальный тренажер <br /><br /></Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_USAGE_TYPE === "training" ? 'Виртуальный тренажер' : 'Виртуальная лаборатория'} <br /><br /></Typography>
             <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpenVirtual}>
@@ -265,7 +265,7 @@ const Main = observer(() => {
                 }}>Диагностика приобретенных < br /> знаний, умений, навыков <br /></Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>Интерактивная мини-игра <br /><br /></Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? 'Интерактивная мини-игра' : 'Интерактивный тренажер по выполнению заданий'} <br /><br /></Typography>
             <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpenInter}>
@@ -324,7 +324,7 @@ const Main = observer(() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <span>Динамическая инфографика</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleClose} />
+          <span>{import.meta.env.VITE_MASTERING_TYPE === "infographics" ? 'Динамическая инфографика' : 'Анимация'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleClose} />
         </DialogTitle>
         <DialogContent>
           {MainData.infographics()}
@@ -339,7 +339,7 @@ const Main = observer(() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <span>Виртуальный тренажер</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseVirtual} />
+          <span>{import.meta.env.VITE_USAGE_TYPE === "training" ? 'Виртуальный тренажер' : 'Виртуальная лаборатория'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseVirtual} />
         </DialogTitle>
         <DialogContent>
           {MainData.training()}
@@ -354,7 +354,7 @@ const Main = observer(() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <span>Интерактивная мини-игра</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseInter} />
+          <span>{import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? 'Интерактивная мини-игра' : 'Интерактивный тренажер по выполнению заданий'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseInter} />
         </DialogTitle>
         <DialogContent>
           {MainData.game()}
