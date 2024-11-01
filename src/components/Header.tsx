@@ -75,7 +75,7 @@ const Header = observer(() => {
         <Box sx={{
           display: 'inline-block'          
         }}>
-          <Typography variant='body1' component="p" onClick={handleClickOpen} sx={{
+          <Typography variant='body1' component="p" fontWeight={600} onClick={handleClickOpen} sx={{
             color: 'primary.main',
             cursor: 'pointer',
             position: 'relative',
@@ -104,7 +104,7 @@ const Header = observer(() => {
           ml: 2,
           display: 'inline-block'
         }}>
-          <Typography variant='body1' component="p" onClick={handleClickOpenKeywords} sx={{
+          <Typography variant='body1' component="p" fontWeight={600} onClick={handleClickOpenKeywords} sx={{
             color: 'primary.main',
             cursor: 'pointer',
             position: 'relative',

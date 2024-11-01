@@ -10,7 +10,7 @@ import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ImageModal from '../components/ImageModal';
 import { useNavigate } from 'react-router-dom';
-import bgCard from "../assets/images/bg-card.png";
+import bgCard from "../assets/images/bg-card.webp";
 
 const Infographics = observer(() => {
 
@@ -112,6 +112,7 @@ const Infographics = observer(() => {
         <Grid key={'item' + el.id} item xs={12} sm={6} md={3} p={2}>
           <Card sx={{
             maxWidth: 345,
+            minHeight: 290,
             height: '100%',
             mx: 'auto',
           backgroundImage: `url(${bgCard})`,

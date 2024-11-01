@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
-import card1 from "../assets/images/card1-bg.png";
-import card2 from "../assets/images/card2-bg.png";
-import card3 from "../assets/images/card3-bg.png";
+import card1 from "../assets/images/card1-bg.webp";
+import card2 from "../assets/images/card2-bg.webp";
+import card3 from "../assets/images/card3-bg.webp";
 import PlayArrow from '@mui/icons-material/PlayArrow';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
