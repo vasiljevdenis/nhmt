@@ -7,6 +7,7 @@ body {
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+
   @media (max-width: 1800px) {
     background-image: url(../bg-xxl.webp);
   }
@@ -39,6 +40,7 @@ body {
   height: 1rem;
   position: absolute;
 }
+
 .item-random {
   animation-name: b;
   animation-duration: .5s;
@@ -60,12 +62,12 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.00);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.00);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #293896;
-  outline: 1px solid #293896;
+  background-color: var(--primary-main);
+  outline: 1px solid var(--primary-main);
 }
 
 .fade-enter {
@@ -105,6 +107,7 @@ img:focus-visible {
     display: none;
   }
 }
+
 .br-lg {
   display: block;
 
@@ -113,6 +116,41 @@ img:focus-visible {
   }
 }
 
-ol, ul {
+ol,
+ul {
   font-weight: 400;
+}
+
+.slick-prev {
+  left: 1px;
+}
+
+.slick-next {
+  right: 1px;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: rgb(0 0 0 / 70%);
+}
+
+.slick-dots li.slick-active button:before,
+.slick-dots li button:hover::before {
+  color: var(--primary-main);
+  opacity: 1;
+}
+
+.image-gallery-icon:hover {
+  color: var(--primary-main);
+}
+
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:focus,
+.image-gallery-thumbnail:hover {
+  border-color: var(--primary-main);
 }

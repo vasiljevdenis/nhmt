@@ -82,19 +82,24 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={newTheme}>
+        <style>{`
+            :root {
+                --primary-main: ${newTheme.palette.primary.main};
+            }
+        `}</style>
         <CssBaseline />
-            <Header />
-            <Grid container sx={{ my: 'auto' }}>
-              <Grid item xs={12} minHeight={300}>
-                <Routes>
-                  {loaded && (
-                  <Route path='/' element={<Main />} />
-                  )}
-                  <Route path='/eom' element={<Eom />} />
-                </Routes>
-              </Grid>
-            </Grid>
-            <Footer />
+        <Header />
+        <Grid container sx={{ my: 'auto' }}>
+          <Grid item xs={12} minHeight={300}>
+            <Routes>
+              {loaded && (
+                <Route path='/' element={<Main />} />
+              )}
+              <Route path='/eom' element={<Eom />} />
+            </Routes>
+          </Grid>
+        </Grid>
+        <Footer />
       </ThemeProvider>
     </BrowserRouter>
   )

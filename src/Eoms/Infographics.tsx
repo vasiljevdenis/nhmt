@@ -11,6 +11,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ImageModal from '../components/ImageModal';
 import { useNavigate } from 'react-router-dom';
 import bgCard from "../assets/images/bg-card.webp";
+import Carousel from '../components/Carousel';
 
 const Infographics = observer(() => {
 
@@ -129,7 +130,7 @@ const Infographics = observer(() => {
               <CardMedia
                 component="img"
                 height="150"
-                image={el.image}
+                image={el.previewImage}
                 alt={'img' + el.id + 1}
                 sx={{
                   objectFit: 'contain'
@@ -177,14 +178,8 @@ const Infographics = observer(() => {
         </DialogTitle>
         <DialogContent ref={refContent} sx={{ px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
-            <Grid item xs={12} md={4} p={2} textAlign={'center'}>
-              <img onClick={() => handleOpenImage(InfographicsData[store.currentSl].imageContent || InfographicsData[store.currentSl].image)} src={InfographicsData[store.currentSl].imageContent || InfographicsData[store.currentSl].image} alt={'image' + store.currentSl} style={{
-                width: '100%',
-                maxWidth: '500px',
-                position: window.innerWidth < 600 ? 'static' : 'sticky',
-                top: 0,
-                cursor: 'zoom-in'
-              }} />
+            <Grid item xs={12} md={4} p={2} textAlign={'center'} sx={{position: 'relative'}}>
+              <Carousel items={InfographicsData[store.currentSl].imageContent} dots={true} arrows={false} />
             </Grid>
             <Grid item xs={12} md={8} p={2}>
               {InfographicsData[store.currentSl].content()}
