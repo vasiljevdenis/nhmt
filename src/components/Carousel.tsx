@@ -37,7 +37,7 @@ const Carousel = (props: SliderProps) => {
     autoplay: props.autoplay,
     autoplaySpeed: 5000,
     adaptiveHeight: true,
-    className: "innerSlider",
+    className: "sticky",
     afterChange: (index: number) => { setCurrentIndex(index) }
   };
 
@@ -61,7 +61,7 @@ const Carousel = (props: SliderProps) => {
     <>
       <Slider {...settings}>
         {slider.map((item, i) => (
-          <Box key={'slider-item' + i}>
+          <Box key={'slider-item' + i} sx={{ position: 'relative' }}>
             <img
               src={`${item.src}`}
               alt={'Slider item ' + i}
@@ -71,21 +71,21 @@ const Carousel = (props: SliderProps) => {
             <Typography variant="body1" component="div" fontWeight={600} textAlign={'center'}>
               {item.description}
             </Typography>
+            <IconButton aria-label="fullscreen" onClick={toggleFullscreen} sx={{
+              backgroundColor: 'primary.main',
+              "&:hover": {
+                backgroundColor: 'primary.main',
+                opacity: '.9'
+              },
+              position: 'absolute',
+              top: 5,
+              right: 5
+            }}>
+              <FullscreenIcon sx={{ color: 'white' }} />
+            </IconButton>
           </Box>
         ))}
       </Slider>
-      <IconButton aria-label="fullscreen" onClick={toggleFullscreen} sx={{
-        backgroundColor: 'primary.main',
-        "&:hover": {
-          backgroundColor: 'primary.main',
-          opacity: '.9'
-        },
-        position: 'absolute',
-        top: 21,
-        right: 21
-      }}>
-        <FullscreenIcon sx={{ color: 'white' }} />
-      </IconButton>
       {fullscreen && (
         <ImageGallery
           ref={galleryRef}

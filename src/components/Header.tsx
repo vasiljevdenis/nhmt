@@ -162,7 +162,7 @@ const Header = observer(() => {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600' }}>
-          <span>Информация о контенте</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleClose} />
+          <span>Информация о контенте</span><CloseIcon sx={{ float: 'right', cursor: 'pointer', "&:hover": { opacity: '.7' } }} onClick={handleClose} />
         </DialogTitle>
         <DialogContent>
           {MainData.info()}
@@ -176,7 +176,7 @@ const Header = observer(() => {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600' }}>
-          <span>Ключевые слова</span><CloseIcon sx={{ float: 'right', cursor: 'pointer' }} onClick={handleCloseKeywords} />
+          <span>Ключевые слова</span><CloseIcon sx={{ float: 'right', cursor: 'pointer', "&:hover": { opacity: '.7' } }} onClick={handleCloseKeywords} />
         </DialogTitle>
         <DialogContent>
           {MainData.keywords()}

@@ -8,6 +8,7 @@ import prev from '../assets/images/left-arrow.svg';
 import next from '../assets/images/right-arrow.svg';
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ImageModal from '../components/ImageModal';
 import { useNavigate } from 'react-router-dom';
 import bgCard from "../assets/images/bg-card.webp";
@@ -178,7 +179,7 @@ const Infographics = observer(() => {
         </DialogTitle>
         <DialogContent ref={refContent} sx={{ px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
-            <Grid item xs={12} md={4} p={2} textAlign={'center'} sx={{position: 'relative'}}>
+            <Grid item xs={12} md={4} p={2} textAlign={'center'}>
               <Carousel items={InfographicsData[store.currentSl].imageContent} dots={true} arrows={false} />
             </Grid>
             <Grid item xs={12} md={8} p={2}>
@@ -189,7 +190,7 @@ const Infographics = observer(() => {
         <DialogActions sx={{ justifyContent: { xs: 'center', sm: 'flex-end' } }}>
           <IconButton aria-label="back" sx={{ visibility: store.currentSl === 0 ? 'hidden' : 'visible' }}
             onClick={() => setSlide(store.currentSl - 1)}>
-            <img src={prev} alt="Назад" width={20} />
+            <ArrowBackIosIcon />
           </IconButton>
           <IconButton aria-label="next"
             sx={{
@@ -197,7 +198,7 @@ const Infographics = observer(() => {
               visibility: store.currentSl === InfographicsData.length - 1 ? 'hidden' : 'visible'
             }}
             onClick={() => setSlide(store.currentSl + 1)}>
-            <img src={next} alt="Далее" width={20} />
+            <ArrowForwardIosIcon />
           </IconButton>
         </DialogActions>
       </Dialog>

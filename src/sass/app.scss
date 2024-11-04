@@ -121,6 +121,11 @@ ul {
   font-weight: 400;
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
 .slick-prev {
   left: 1px;
 }
@@ -153,4 +158,9 @@ ul {
 .image-gallery-thumbnail:focus,
 .image-gallery-thumbnail:hover {
   border-color: var(--primary-main);
+}
+
+.hint {
+  cursor: help;
+  border-bottom: 1px dotted;
 }
