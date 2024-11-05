@@ -4,8 +4,6 @@ import { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';
 import EomState from '../store/EomState';
-import prev from '../assets/images/left-arrow.svg';
-import next from '../assets/images/right-arrow.svg';
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -180,7 +178,7 @@ const Infographics = observer(() => {
         <DialogContent ref={refContent} sx={{ px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
             <Grid item xs={12} md={4} p={2} textAlign={'center'}>
-              <Carousel items={InfographicsData[store.currentSl].imageContent} dots={true} arrows={false} />
+              <Carousel key={store.currentSl} items={InfographicsData[store.currentSl].imageContent} dots={true} arrows={false} />
             </Grid>
             <Grid item xs={12} md={8} p={2}>
               {InfographicsData[store.currentSl].content()}

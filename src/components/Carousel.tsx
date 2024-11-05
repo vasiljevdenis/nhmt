@@ -24,6 +24,16 @@ interface SliderProps {
 
 const Carousel = (props: SliderProps) => {
 
+  const [slider, setSlider] = useState<SliderImages[]>(props.items);
+  const [fullscreen, setFullscreen] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const galleryRef = useRef(null);
+  const slickRef = useRef(null);
+
+  const handleSlideChange = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -38,13 +48,8 @@ const Carousel = (props: SliderProps) => {
     autoplaySpeed: 5000,
     adaptiveHeight: true,
     className: "sticky",
-    afterChange: (index: number) => { setCurrentIndex(index) }
+    beforeChange: (current: number, next: number) => handleSlideChange(next)
   };
-
-  const [slider, setSlider] = useState<SliderImages[]>(props.items);
-  const [fullscreen, setFullscreen] = useState<boolean>(false);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const galleryRef = useRef(null);
 
   const toggleFullscreen = () => {
     setFullscreen(!fullscreen);
@@ -57,9 +62,18 @@ const Carousel = (props: SliderProps) => {
     }
   }, [fullscreen])
 
+  useEffect(() => {
+    if (slickRef.current) {
+      slickRef.current.slickGoTo(currentIndex);
+    }
+    if (galleryRef.current) {
+      galleryRef.current.slideToIndex(currentIndex);
+    }
+  }, [currentIndex]);
+
   return (
     <>
-      <Slider {...settings}>
+      <Slider ref={slickRef} {...settings}>
         {slider.map((item, i) => (
           <Box key={'slider-item' + i} sx={{ position: 'relative' }}>
             <img
@@ -68,7 +82,7 @@ const Carousel = (props: SliderProps) => {
               style={{ width: '100%' }}
               loading={props.loading}
             />
-            <Typography variant="body1" component="div" fontWeight={600} textAlign={'center'}>
+            <Typography variant="caption" component="div" fontWeight={600} textAlign={'center'}>
               {item.description}
             </Typography>
             <IconButton aria-label="fullscreen" onClick={toggleFullscreen} sx={{
@@ -99,6 +113,8 @@ const Carousel = (props: SliderProps) => {
             }
           })}
           showPlayButton={false}
+          showIndex
+          onSlide={handleSlideChange}
           autoPlay={false}
           onScreenChange={(f) => !f && toggleFullscreen()}
         />

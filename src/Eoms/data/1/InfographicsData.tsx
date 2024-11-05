@@ -8,8 +8,26 @@ import img6 from '@images/infographics6.webp';
 import img7 from '@images/infographics7.webp';
 import img8 from '@images/infographics8.webp';
 import img9 from '@images/infographics9.webp';
+import img11Content from '@images/infographicsContent1_1.webp';
+import img12Content from '@images/infographicsContent1_2.webp';
+import img13Content from '@images/infographicsContent1_3.webp';
+import img14Content from '@images/infographicsContent1_4.webp';
+import img21Content from '@images/infographicsContent2_1.webp';
+import img22Content from '@images/infographicsContent2_2.webp';
 import img31Content from '@images/infographicsContent3_1.webp';
 import img32Content from '@images/infographicsContent3_2.webp';
+import img41Content from '@images/infographicsContent4_1.webp';
+import img42Content from '@images/infographicsContent4_2.webp';
+import img51Content from '@images/infographicsContent5_1.webp';
+import img52Content from '@images/infographicsContent5_2.webp';
+import img61Content from '@images/infographicsContent6_1.webp';
+import img62Content from '@images/infographicsContent6_2.webp';
+import img71Content from '@images/infographicsContent7_1.webp';
+import img72Content from '@images/infographicsContent7_2.webp';
+import img81Content from '@images/infographicsContent8_1.webp';
+import img82Content from '@images/infographicsContent8_2.webp';
+import img91Content from '@images/infographicsContent9_1.webp';
+import img92Content from '@images/infographicsContent9_2.webp';
 import { ReactNode } from 'react';
 
 interface Images {
@@ -35,28 +53,36 @@ const InfographicsData: Slide[] = [
     previewImage: img1,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img13Content,
+        alt: 'Мастер делает замер в распределительной системе',
+        description: 'Анализ качества электроэнергии в распределительной системе'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img12Content,
+        alt: 'Способы соединения проводов в распределительной корробке',
+        description: 'Способы соединения проводов в распределительной корробке'
+      },
+      {
+        src: img11Content,
+        alt: 'Мастер делает замер в распределительной системе',
+        description: 'Анализ качества электроэнергии в распределительной системе'
+      },
+      {
+        src: img14Content,
+        alt: 'Мастер делает замер в контуре заземления',
+        description: 'Замер контура заземления заземляющего устройства'
       }
     ],
     content: () => {
       return (
         <>
           <Typography variant='body1' component="p" gutterBottom>Технология ремонта <b>внутрицеховых электросетей</b> и <b>осветительных электроустановок</b> включает следующие этапы:</Typography>
-          <Typography variant='body1' component="p" gutterBottom>
-            <ul>
-              <li>проверка наличия пыли в коробках шинопроводов, состояния контактных соединений, фактических нагрузок и степени нагрева шин, окраски и прочности крепления короба и состояния фарфоровых изоляторов (трещины, сколы);</li>
-              <li>проверка качества окраски труб, их оконцевания, соединения с протяжными и ответвительными коробками, фактических нагрузок, состояния мест присоединения, наконечников и контактных соединений;</li>
-              <li>проверка надёжности крепления тросов, состояния изоляционных деталей натяжных устройств, качества крепления проводов и присоединения светильников;</li>
-              <li>проверка состояния заземляющих устройств, целостности заземляющих линий.</li>
-            </ul>
-          </Typography>
+          <ul>
+            <li>проверка наличия пыли в коробках шинопроводов, состояния контактных соединений, фактических нагрузок и степени нагрева шин, окраски и прочности крепления короба и состояния фарфоровых изоляторов (трещины, сколы);</li>
+            <li>проверка качества окраски труб, их оконцевания, соединения с протяжными и ответвительными коробками, фактических нагрузок, состояния мест присоединения, наконечников и контактных соединений;</li>
+            <li>проверка надёжности крепления тросов, состояния изоляционных деталей натяжных устройств, качества крепления проводов и присоединения светильников;</li>
+            <li>проверка состояния заземляющих устройств, целостности заземляющих линий.</li>
+          </ul>
         </>
       )
     }
@@ -68,14 +94,14 @@ const InfographicsData: Slide[] = [
     previewImage: img2,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img21Content,
+        alt: 'Выявленеие неисправностей в распределительных устройствах',
+        description: 'Выявленеие неисправностей в распределительных устройствах'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img22Content,
+        alt: 'Измерение освещенности люксметром',
+        description: 'Измерение освещенности люксметром'
       }
     ],
     content: () => {
@@ -88,7 +114,7 @@ const InfographicsData: Slide[] = [
           <Typography variant='body1' component="p" gutterBottom>К ремонтным работам в действующих цехах относится монтаж новых линий для подключения новых токоприемников, а также замена старых проводок на более современные решения. При использовании стальных тросов с оцинковкой или покрытием за провесом (100-250 мм) необходимо регулярно следить. При ослаблении натяжения крепления подтягивают в пределах допустимой стрелы провеса, а изношенные изоляционные элементы заменяют. В случае появления коррозии на тросах восстанавливают антикоррозийное покрытие и смазку.</Typography>
           <Typography variant='body1' component="p" gutterBottom>Основные повреждения в сетях включают обгорание наконечников и повреждения муфт, часто возникающие из-за неправильного монтажа, дефектов изоляции кабеля или проникновения влаги. Повреждённый наконечник жилы удаляют, а новый монтируют методами пайки, термитной или газовой сварки.</Typography>
           <Typography variant='body1' component="p" gutterBottom>Электроосветительные установки после ремонта проходят испытания: проверка сопротивления изоляции сети рабочего и аварийного освещения проводится ежеквартально, а автомат аварийного переключения тестируется еженедельно. Один раз в год проверяется изоляция у трансформаторов стационарного и переносного типа, исправность кожуха, а также заземление корпуса и обмотки.</Typography>
-          <Typography variant='body1' component="p" gutterBottom>Раз в год проводится фотометрия уровня освещённости с использованием люксметра на основных рабочих местах и в производственных помещениях для проверки соответствия мощности ламп проекту. Итоги проверок оформляются актами и утверждаются главным энергетиком.</Typography>
+          <Typography variant='body1' component="p" gutterBottom>Раз в год проводится фотометрия уровня освещённости с использованием <Tooltip title="Люксметр – это прибор, предназначенный для измерения освещённости, яркости излучения." arrow placement="top" enterTouchDelay={0} leaveTouchDelay={5000}><span className='hint'>люксметра</span></Tooltip> на основных рабочих местах и в производственных помещениях для проверки соответствия мощности ламп проекту. Итоги проверок оформляются актами и утверждаются главным энергетиком.</Typography>
           <Typography variant='body1' component="p" gutterBottom>В межремонтный период и после <b>капитального ремонта</b>, согласно <Tooltip title="Правила технической эксплуатации" arrow placement="top" enterTouchDelay={0} leaveTouchDelay={5000}><span className='hint'>ПТЭ</span></Tooltip> и <Tooltip title="Правила техники безопасности" arrow placement="top" enterTouchDelay={0} leaveTouchDelay={5000}><span className='hint'>ПТБ</span></Tooltip>, проводят испытания изоляции проводки и освещения на напряжение 1000 В и для кабелей — на 2500 В. Проверяют сопротивление заземляющих устройств, сопротивление петли фаза-нуль, положение трасс и глубину кабелей. Специальными устройствами также выявляются места повреждений кабеля, а термоматериалы используются для контроля температуры в местах контактов.</Typography>
         </>
       )
@@ -127,14 +153,14 @@ const InfographicsData: Slide[] = [
     previewImage: img4,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img41Content,
+        alt: 'Раскопки кабельных траншей',
+        description: 'Раскопки кабельных траншей'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img42Content,
+        alt: 'Кабель со свинцовой оболочкой',
+        description: 'Кабель со свинцовой оболочкой'
       }
     ],
     content: () => {
@@ -154,14 +180,14 @@ const InfographicsData: Slide[] = [
     previewImage: img5,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img51Content,
+        alt: 'Манжета из ПВХ ленты',
+        description: 'Манжета из ПВХ ленты'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img52Content,
+        alt: 'Кабель с поливинилхлоридной оболочкой',
+        description: 'Кабель с поливинилхлоридной оболочкой'
       }
     ],
     content: () => {
@@ -181,14 +207,14 @@ const InfographicsData: Slide[] = [
     previewImage: img6,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img61Content,
+        alt: 'Соединительная муфта',
+        description: 'Соединительная муфта'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img62Content,
+        alt: 'Концевая муфта',
+        description: 'Концевая муфта'
       }
     ],
     content: () => {
@@ -196,11 +222,11 @@ const InfographicsData: Slide[] = [
         <>
           <Typography variant='body1' component="p" gutterBottom><b>Концевые заделки</b> напряжением 1-10 кВ чаще всего применяются в <b>стальных воронках</b>, эпоксидные и сухие. Если в заделке есть незначительные повреждения, её можно отремонтировать, проверив <b>влажность изоляции</b>. Эпоксидные заделки, например типа <Tooltip title="Компаунд высокопрочный эпоксидный" arrow placement="top" enterTouchDelay={0} leaveTouchDelay={5000}><span className='hint'>КВЭ</span></Tooltip>, используются в помещениях и на улице при условии защиты от дождя, пыли и солнца, так как они обладают высокой герметичностью и химической стойкостью.</Typography>
           <Typography variant='body1' component="p" gutterBottom>Эпоксидные заделки выпускаются в нескольких вариантах: с нейритовой трубкой для сухих помещений, с двухслойными трубками (поливинилхлорид и полиэтилен) для влажных помещений и районов с тропическим климатом. <b>Методы восстановления герметичности</b> различаются по месту утечки.</Typography>
-          <Typography variant='body1' component="p" gutterBottom>
+          <ul>
             <li>В случае утечки пропитывающего состава на окончании корпуса заделки: очищают участок длиной 40-50 мм, наносят двухслойную подмотку с <Tooltip title="Эпоксидный компаунд – это полимерный материал, широко применяемый при производстве различной электро- и радиоаппаратуры, а также в быту." arrow placement="top" enterTouchDelay={0} leaveTouchDelay={5000}><span className='hint'>эпоксидным компаундом</span></Tooltip>, устанавливают форму для заливки компаундом.</li>
             <li>Если герметичность нарушена у выхода жил: очищают участок трубок на длине 30 мм, устанавливают форму для заливки компаундом.</li>
             <li>При нарушении герметичности в месте соединения трубки и наконечника: очищают участок, делают двухслойную подмотку с бандажом и обмазывают компаундом.</li>
-          </Typography>
+          </ul>
           <Typography variant='body1' component="p" gutterBottom><b>Ремонт соединительных и концевых муфт</b>. Повреждения в соединительных муфтах происходят из-за электрических пробоев или проникновения влаги. В этих случаях обычно заменяют муфту на новую, если кабель имеет запас длины. При незначительных повреждениях, если изоляция не увлажнена, муфта остаётся на месте: снимают повреждённую массу, разводят жилы и восстанавливают изоляцию.</Typography>
           <Typography variant='body1' component="p" gutterBottom>При ремонте соединительных муфт можно избежать установки вставок, если использовать <b>удлиненные муфты</b>, увеличивающие длину разделки кабеля. При повреждении концевой муфты её вырезают и заменяют, проверяя изоляцию на влажность. Если изоляция сухая, заменяют муфту или производят её ремонт. Если влага проникла внутрь, повреждённый участок кабеля удаляют и устанавливают новую концевую муфту. После ремонта кабельные линии проходят испытания.</Typography>
         </>
@@ -213,14 +239,14 @@ const InfographicsData: Slide[] = [
     previewImage: img7,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img71Content,
+        alt: 'Заземляющая проводка',
+        description: 'Заземляющая проводка'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img72Content,
+        alt: 'Устройство заземляющего контура',
+        description: 'Устройство заземляющего контура'
       }
     ],
     content: () => {
@@ -238,14 +264,14 @@ const InfographicsData: Slide[] = [
     previewImage: img8,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img81Content,
+        alt: 'Правила устройства электроустановок',
+        description: 'Правила устройства электроустановок, актуально на 2024'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img82Content,
+        alt: 'Измерение сопротивления изоляции мегаомметром',
+        description: 'Измерение сопротивления изоляции мегаомметром'
       }
     ],
     content: () => {
@@ -266,14 +292,14 @@ const InfographicsData: Slide[] = [
     previewImage: img9,
     imageContent: [
       {
-        src: img31Content,
-        alt: '',
-        description: ''
+        src: img91Content,
+        alt: 'Осветительные электроустановки',
+        description: 'Осветительные электроустановки'
       },
       {
-        src: img32Content,
-        alt: '',
-        description: ''
+        src: img92Content,
+        alt: 'Ремонт осветительных электроустановок',
+        description: 'Ремонт осветительных электроустановок'
       }
     ],
     content: () => {
