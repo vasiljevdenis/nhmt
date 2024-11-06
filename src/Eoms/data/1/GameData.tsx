@@ -1,16 +1,27 @@
 import { Typography } from '@mui/material';
 import { ReactNode } from 'react';
+import { shuffleArray } from '../../../helpers/shuffleArray';
 
-interface Answer {
+interface AnswerTest {
   value: string;
   isCorrect: boolean;
+}
+interface AnswerOrder {
+  order: number;
+  title: string;
 }
 interface Test {
   id?: number;
   title?: string;
-  type: 'single' | 'multiple' | 'input' | 'multipleInput' | 'inputAnswer' | 'matchIamges' | 'order';
+  type: 'single' 
+  | 'multiple' 
+  | 'input' 
+  | 'multipleInput' 
+  | 'inputAnswer' 
+  | 'matchImages' 
+  | 'order';
   score?: number;
-  answers: Answer[];
+  answers: AnswerTest[] | AnswerOrder[] | string[];
   content: () => ReactNode
 }
 
@@ -26,7 +37,7 @@ const getTaskLabel = (type: string) => {
     label = 'Введите пропущенное слово';
   } else if (type === "inputAnswer") {
     label = 'Введите пропущенные слова';
-  } else if (type === "matchIamges") {
+  } else if (type === "matchImages") {
     label = 'Соотнесите картинки с их названием';
   } else {
     label = 'Установите правильную последовательность';
@@ -39,19 +50,15 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'рабочее',
+        isCorrect: false
+      },
+      {
+        value: 'аварийное',
         isCorrect: true
       },
       {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
+        value: 'ремонтное',
         isCorrect: false
       }
     ],
@@ -67,19 +74,15 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'лампами накаливания',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'газоразрядными лампами',
         isCorrect: false
       },
       {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
+        value: 'полупроводниковыми лампами',
         isCorrect: false
       }
     ],
@@ -95,19 +98,19 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'цоколь',
+        isCorrect: false
+      },
+      {
+        value: 'кварцевая горелка',
+        isCorrect: false
+      },
+      {
+        value: 'основной вольфрамовый электрод',
         isCorrect: true
       },
       {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
+        value: 'колба, покрытая люминофором',
         isCorrect: false
       }
     ],
@@ -123,20 +126,16 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'стартер',
+        isCorrect: false
+      },
+      {
+        value: 'конденсатор',
+        isCorrect: false
+      },
+      {
+        value: 'дроссель',
         isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
       }
     ],
     content: () => {
@@ -151,19 +150,15 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'плафон-рассеиватель',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'отражатель',
         isCorrect: false
       },
       {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
+        value: 'корпус',
         isCorrect: false
       }
     ],
@@ -177,24 +172,7 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['накаливания', 'лампа накаливания', 'накаливания лампа'],
     content: () => {
       return (
         <>
@@ -205,24 +183,7 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['конденсатор'],
     content: () => {
       return (
         <>
@@ -233,24 +194,7 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['галогенная', 'галогенная лампа', 'лампа галогенная'],
     content: () => {
       return (
         <>
@@ -261,24 +205,7 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['синий', 'синим'],
     content: () => {
       return (
         <>
@@ -289,24 +216,7 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['компактная люминесцентная', 'люминесцентная компактная', 'люминесцентная', 'люминесцентная лампа'],
     content: () => {
       return (
         <>
@@ -319,19 +229,43 @@ const GameData: Test[] = [
     type: 'multiple',
     answers: [
       {
-        value: '',
+        value: 'царапины на поверхности контактных колец',
+        isCorrect: false
+      },
+      {
+        value: 'износ пазовой изоляции двигателя',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'межвитковое замыкание катушки',
+        isCorrect: true
+      },
+      {
+        value: 'истирание щеток',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'снижение сопротивления изоляции',
+        isCorrect: true
+      },
+      {
+        value: 'деформация витков обмотки силового трансформатора',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'изменение формы контакта',
+        isCorrect: false
+      },
+      {
+        value: 'растрескивание изоляции обмотки',
+        isCorrect: true
+      },
+      {
+        value: 'выгорание контактов',
+        isCorrect: true
+      },
+      {
+        value: 'срыв резьбы в крепежных деталях',
         isCorrect: false
       }
     ],
@@ -347,20 +281,44 @@ const GameData: Test[] = [
     type: 'multiple',
     answers: [
       {
-        value: '',
+        value: 'царапины на поверхности контактных колец',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'износ пазовой изоляции двигателя',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'межвитковое замыкание катушки',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'истирание щеток',
+        isCorrect: true
+      },
+      {
+        value: 'снижение сопротивления изоляции',
         isCorrect: false
+      },
+      {
+        value: 'деформация витков обмотки силового трансформатора',
+        isCorrect: true
+      },
+      {
+        value: 'изменение формы контакта',
+        isCorrect: true
+      },
+      {
+        value: 'растрескивание изоляции обмотки',
+        isCorrect: false
+      },
+      {
+        value: 'выгорание контактов',
+        isCorrect: false
+      },
+      {
+        value: 'срыв резьбы в крепежных деталях',
+        isCorrect: true
       }
     ],
     content: () => {
@@ -373,24 +331,7 @@ const GameData: Test[] = [
   },
   {
     type: 'multipleInput',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['При техническом обслуживании осветительной электроустановки проверяют надежность имеющихся в установке контактов: ослабленные контакты необходимо {}, а обгоревшие — {} или {}.', 'затянуть', 'зачистить', 'заменить'],
     content: () => {
       return (
         <>
@@ -401,24 +342,7 @@ const GameData: Test[] = [
   },
   {
     type: 'multipleInput',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
+    answers: ['В результате осмотра контактора выявлено подгорание силовых контактов, поэтому контакты необходимо {} с помощью {}.', 'зачистить', 'надфиля'],
     content: () => {
       return (
         <>
@@ -431,20 +355,28 @@ const GameData: Test[] = [
     type: 'order',
     answers: [
       {
-        value: '',
-        isCorrect: true
+        order: 1,
+        title: 'осмотреть корпус, крышку теплового реле'
       },
       {
-        value: '',
-        isCorrect: false
+        order: 2,
+        title: 'удалить пыль, копоть и грязь со всех доступных частей'
       },
       {
-        value: '',
-        isCorrect: false
+        order: 3,
+        title: 'снять крышку реле'
       },
       {
-        value: '',
-        isCorrect: false
+        order: 4,
+        title: 'проверить работу рычага возврата реле'
+      },
+      {
+        order: 5,
+        title: 'осмотреть нагревательный элемент'
+      },
+      {
+        order: 6,
+        title: 'проверить правильность установки теплового реле'
       }
     ],
     content: () => {
@@ -467,6 +399,12 @@ GameData.forEach((item, index) => {
   } else if (index < 15) {
     item.score = 30;
   }
+  if (item.type === "single" || item.type === "multiple" || item.type === "order") {
+    item.answers = shuffleArray(item.answers);
+  }
 });
+
+console.log(GameData);
+
 
 export default GameData;

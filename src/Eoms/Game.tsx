@@ -1,5 +1,5 @@
 
-import { Box, Button, Card, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, Grid, IconButton, LinearProgress, LinearProgressProps, Tooltip, Typography, useTheme } from '@mui/material';
+import { Box, Button, Card, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, Grid, IconButton, LinearProgress, LinearProgressProps, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import GameData from '@data/GameData';
 import React, { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,9 +8,14 @@ import prev from '../assets/images/left-arrow.svg';
 import next from '../assets/images/right-arrow.svg';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import CancelIcon from '@mui/icons-material/Cancel';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import GameState from '../store/GameState';
+import { useNavigate } from 'react-router-dom';
 
 function getColorByPercentage(percentage: number): string {
   const startColor = [211, 47, 47];
@@ -43,8 +48,15 @@ const Game = observer(() => {
   const [store] = useState(GameState);
 
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = useState(false);
   const refContent = useRef<HTMLDivElement>(null);
+
+  const navigator = useNavigate();
+
+  const toMain = () => {
+    navigator('/');
+  }
 
   const setSlide = (id: number) => {
     refContent.current?.scrollTo(0, 0);
@@ -210,9 +222,21 @@ const Game = observer(() => {
         background: theme.palette.primary.main,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
+        position: 'relative',
         py: 1
       }}>
         <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Интерактивная мини-игра</Typography>
+        <Button variant="text" startIcon={<ArrowBackIosIcon />}
+          sx={{
+            textTransform: 'none',
+            color: 'white',
+            position: 'absolute',
+            top: '12%',
+            left: 20
+          }}
+          onClick={toMain}>
+          {isMobile ? '' : 'На главную'}
+        </Button>
       </Grid>
       <Grid item xs={12} p={2}>
         <Typography variant='body1' component="p" gutterBottom>{import.meta.env.VITE_PREAMBLE}</Typography>
@@ -322,7 +346,12 @@ const Game = observer(() => {
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600', position: 'relative' }}>
           <p style={{ textAlign: 'center' }}><span>{GameData[store.currentSlG].title}</span></p>
           <p style={{ textAlign: 'center', fontSize: 14 }}>{GameData[store.currentSlG].id < 5 ? '1' : GameData[store.currentSlG].id > 9 ? '3' : '2'} уровень сложности ({GameData[store.currentSlG].score} баллов)</p>
-          <p style={{ textAlign: 'center' }}>{(store.currentSlG + 1) + '/' + GameData.length}</p>
+          <p style={{ textAlign: 'center' }}><span style={{
+            backgroundColor: theme.palette.primary.main,
+            color: 'white',
+            padding: '0.5rem 2rem',
+            borderRadius: '30px'
+          }}>{(store.currentSlG + 1) + '/' + GameData.length}</span></p>
           <p style={{ textAlign: 'center' }}>{formatTime(time)}</p>
           <CloseIcon sx={{
             position: 'absolute',
@@ -360,16 +389,16 @@ const Game = observer(() => {
                                   },
                                 }}
                                   color={item.isCorrect ? "success" : "error"}
-                                  icon={<RadioButtonUncheckedIcon />}
-                                  checkedIcon={item.isCorrect ? <CheckCircleIcon /> : <CancelIcon />} />}
+                                  icon={<CheckBoxOutlineBlankIcon />}
+                                  checkedIcon={item.isCorrect ? <CheckBoxIcon /> : <DisabledByDefaultIcon />} />}
                                   label={item.value}
                                   onChange={() => checkItem(store.currentSlG, i)}
                                   disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
                                   checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
                               ) : (
                                 <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox
-                                  icon={<RadioButtonUncheckedIcon />}
-                                  checkedIcon={<RadioButtonCheckedIcon />} />}
+                                  icon={<CheckBoxOutlineBlankIcon />}
+                                  checkedIcon={<IndeterminateCheckBoxIcon />} />}
                                   label={item.value}
                                   onChange={() => checkItem(store.currentSlG, i)}
                                   checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
