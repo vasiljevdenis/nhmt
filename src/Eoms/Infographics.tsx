@@ -115,10 +115,10 @@ const Infographics = observer(() => {
             minHeight: 290,
             height: '100%',
             mx: 'auto',
-          backgroundImage: `url(${bgCard})`,
-          backgroundPosition: 'top center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
+            backgroundImage: `url(${bgCard})`,
+            backgroundPosition: 'top center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
             '& .MuiButtonBase-root': {
               height: '100%'
             },
@@ -164,7 +164,12 @@ const Infographics = observer(() => {
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600', position: 'relative' }}>
           <p style={{ textAlign: 'center' }}><span>{InfographicsData[store.currentSl].title}</span></p>
-          <p style={{ textAlign: 'center' }}>{(store.currentSl + 1) + '/' + InfographicsData.length}</p>
+          <p style={{ textAlign: 'center' }}><span style={{
+            backgroundColor: theme.palette.primary.main,
+            color: 'white',
+            padding: '0.5rem 2rem',
+            borderRadius: '30px'
+          }}>{(store.currentSl + 1) + '/' + InfographicsData.length}</span></p>
           <CloseIcon sx={{
             position: 'absolute',
             top: 4,
@@ -188,7 +193,11 @@ const Infographics = observer(() => {
         <DialogActions sx={{ justifyContent: { xs: 'center', sm: 'flex-end' } }}>
           <IconButton aria-label="back" sx={{ visibility: store.currentSl === 0 ? 'hidden' : 'visible' }}
             onClick={() => setSlide(store.currentSl - 1)}>
-            <ArrowBackIosIcon />
+            <ArrowBackIosIcon sx={{
+              "&:hover": {
+                color: theme.palette.primary.main
+              }
+            }} />
           </IconButton>
           <IconButton aria-label="next"
             sx={{
@@ -196,7 +205,11 @@ const Infographics = observer(() => {
               visibility: store.currentSl === InfographicsData.length - 1 ? 'hidden' : 'visible'
             }}
             onClick={() => setSlide(store.currentSl + 1)}>
-            <ArrowForwardIosIcon />
+            <ArrowForwardIosIcon sx={{
+              "&:hover": {
+                color: theme.palette.primary.main
+              }
+            }} />
           </IconButton>
         </DialogActions>
       </Dialog>

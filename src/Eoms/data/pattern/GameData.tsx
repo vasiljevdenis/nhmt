@@ -58,7 +58,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как называется освещение для временной возможности продолжения работы или обеспечения условий безопасного выхода из помещений?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -86,7 +86,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>По принципу действия галогенные лампы являются …</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -114,7 +114,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какой элемент дуговой ртутной лампы указан под цифрой 4?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -142,7 +142,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>На какой элемент на схеме включения люминесцентной лампы указывает стрелка?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -170,13 +170,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какая часть светильника служит для более равномерного распределения света?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'input',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -198,13 +198,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'input',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -226,13 +226,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>На какой элемент на схеме включения люминесцентной лампы указывает стрелка?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'input',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -254,13 +254,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'input',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -282,13 +282,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Каким цветом принято обозначать нулевой рабочий провод?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'input',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -310,13 +310,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'multiple',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -338,13 +338,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите повреждения электрооборудования, относящиеся к электрическому износу:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'multiple',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -366,13 +366,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите повреждения электрооборудования, относящиеся к механическому износу:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'multipleInput',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -394,13 +394,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вставьте пропущенные слова:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'multipleInput',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -422,13 +422,13 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вставьте пропущенные слова:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
   },
   {
-    type: 'order',
+    type: 'single',
     answers: [
       {
         value: '',
@@ -450,7 +450,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Установить правильную последовательность при техническом обслуживании теплового реле:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
