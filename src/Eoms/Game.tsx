@@ -404,7 +404,7 @@ const Game = observer(() => {
                                   checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
                               )}
                             </>
-                          ) : (
+                          ) : GameData[store.currentSlG].type === "single" ? (
                             <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox sx={{
                               "&.Mui-checked": {
                                 "&, & + .MuiFormControlLabel-label": {
@@ -419,6 +419,10 @@ const Game = observer(() => {
                               onChange={() => checkItem(store.currentSlG, i)}
                               disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
                               checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
+                          ) : GameData[store.currentSlG].type === "input" ? (
+                            <></>
+                          ) : (
+                            <></>
                           )}
                         </React.Fragment>
                       )
