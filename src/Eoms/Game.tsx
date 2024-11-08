@@ -16,17 +16,7 @@ import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import GameState from '../store/GameState';
 import { useNavigate } from 'react-router-dom';
-
-function getColorByPercentage(percentage: number): string {
-  const startColor = [211, 47, 47];
-  const endColor = [46, 125, 50];
-
-  const red = Math.round(startColor[0] + (endColor[0] - startColor[0]) * percentage / 100);
-  const green = Math.round(startColor[1] + (endColor[1] - startColor[1]) * percentage / 100);
-  const blue = Math.round(startColor[2] + (endColor[2] - startColor[2]) * percentage / 100);
-
-  return "#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1);
-}
+import { getColorByPercentage } from '../helpers/getColorByPercentage';
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
@@ -202,7 +192,7 @@ const Game = observer(() => {
       if (el.type === 'single') {
         const filtered = store.answG.filter(elem => elem.slideId === el.id && elem.isCorrect && elem.checked);
         if (filtered.length > 0) res += el.score;
-      } else {
+      } else if (el.type === 'multiple') {
         const filtered = store.answG.filter(elem => elem.slideId === el.id && elem.isCorrect);
         const mult = filtered.filter(el => el.checked);
         if (mult.length === filtered.length) {
@@ -210,6 +200,15 @@ const Game = observer(() => {
         } else if (mult.length > 0) {
           res += el.score / 2;
         }
+      } else if (el.type === "input") {
+        
+      } else if (el.type === "multipleInput") {
+        
+      } else if (el.type === "inputAnswer") {
+        
+      } else if (el.type === "matchImages") {
+        
+      } else {
       }
     });
 
