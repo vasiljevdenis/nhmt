@@ -421,8 +421,28 @@ const Game = observer(() => {
                               checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
                           ) : GameData[store.currentSlG].type === "input" ? (
                             <></>
-                          ) : (
+                          )
+                          : GameData[store.currentSlG].type === "multipleInput" ? (
                             <></>
+                          ) : GameData[store.currentSlG].type === "inputAnswer" ? (
+                            <></>
+                          ) : GameData[store.currentSlG].type === "matchImages" ? (
+                            <></>
+                          ) : (
+                            <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox sx={{
+                              "&.Mui-checked": {
+                                "&, & + .MuiFormControlLabel-label": {
+                                  color: item.isCorrect ? "success.main" : "error.main"
+                                }
+                              }
+                            }}
+                              color={item.isCorrect ? "success" : "error"}
+                              icon={<RadioButtonUncheckedIcon />}
+                              checkedIcon={item.isCorrect ? <CheckCircleIcon /> : <CancelIcon />} />}
+                              label={item.value}
+                              onChange={() => checkItem(store.currentSlG, i)}
+                              disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
+                              checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
                           )}
                         </React.Fragment>
                       )

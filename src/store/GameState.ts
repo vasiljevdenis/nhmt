@@ -29,7 +29,6 @@ class GameState {
   countedG: number[] = [];
   answersG: Answer[] = initialAnswers;
 
-
   constructor() {
     makeAutoObservable(this);
   }
