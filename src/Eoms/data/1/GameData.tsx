@@ -3,7 +3,8 @@ import { ReactNode } from 'react';
 import { shuffleArray } from '../../../helpers/shuffleArray';
 
 interface AnswerTest {
-  value: string;
+  pattern?: string;
+  value: string | string[];
   isCorrect: boolean;
 }
 interface AnswerOrder {
@@ -172,7 +173,13 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: ['накаливания', 'лампа накаливания', 'накаливания лампа'],
+    answers: [
+      {
+        value: ['накаливания', 'лампа накаливания', 'накаливания лампа'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>
@@ -183,7 +190,13 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: ['конденсатор'],
+    answers: [
+      {
+        value: ['конденсатор'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>
@@ -194,7 +207,13 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: ['галогенная', 'галогенная лампа', 'лампа галогенная'],
+    answers: [
+      {
+        value: ['галогенная', 'галогенная лампа', 'лампа галогенная'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>
@@ -205,7 +224,13 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: ['синий', 'синим'],
+    answers: [
+      {
+        value: ['синий', 'синим'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>
@@ -216,7 +241,13 @@ const GameData: Test[] = [
   },
   {
     type: 'input',
-    answers: ['компактная люминесцентная', 'люминесцентная компактная', 'люминесцентная', 'люминесцентная лампа'],
+    answers: [
+      {
+        value: ['компактная люминесцентная', 'люминесцентная компактная', 'люминесцентная', 'люминесцентная лампа'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>
@@ -331,7 +362,14 @@ const GameData: Test[] = [
   },
   {
     type: 'multipleInput',
-    answers: ['При техническом обслуживании осветительной электроустановки проверяют надежность имеющихся в установке контактов: ослабленные контакты необходимо {}, а обгоревшие — {} или {}.', 'затянуть', 'зачистить', 'заменить'],
+    answers: [
+      {
+        pattern: 'При техническом обслуживании осветительной электроустановки проверяют надежность имеющихся в установке контактов: ослабленные контакты необходимо {}, а обгоревшие — {} или {}.',
+        value: ['затянуть', 'зачистить', 'заменить'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>
@@ -342,7 +380,14 @@ const GameData: Test[] = [
   },
   {
     type: 'multipleInput',
-    answers: ['В результате осмотра контактора выявлено подгорание силовых контактов, поэтому контакты необходимо {} с помощью {}.', 'зачистить', 'надфиля'],
+    answers: [
+      {
+        pattern: 'В результате осмотра контактора выявлено подгорание силовых контактов, поэтому контакты необходимо {} с помощью {}.',
+        value: ['зачистить', 'надфиля'],
+        isCorrect: true
+      }
+
+    ],
     content: () => {
       return (
         <>

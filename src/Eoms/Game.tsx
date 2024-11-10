@@ -17,6 +17,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import GameState from '../store/GameState';
 import { useNavigate } from 'react-router-dom';
 import { getColorByPercentage } from '../helpers/getColorByPercentage';
+import Multiple from './Game/Multiple';
+import Single from './Game/Single';
+import Input from './Game/Input';
+import Order from './Game/Order';
+import MultipleInput from './Game/MultipleInput';
+import InputAnswer from './Game/InputAnswer';
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
@@ -373,75 +379,19 @@ const Game = observer(() => {
                       return (
                         <React.Fragment key={'checkbox' + i}>
                           {GameData[store.currentSlG].type === "multiple" ? (
-                            <>
-                              {store.allCountedG.includes(store.currentSlG) ? (
-                                <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox sx={{
-                                  "&.Mui-checked": {
-                                    "&, & + .MuiFormControlLabel-label": {
-                                      color: item.isCorrect ? "success.main" : "error.main"
-                                    }
-                                  },
-                                  "&.Mui-disabled": {
-                                    "&, & + .MuiFormControlLabel-label": {
-                                      color: item.isCorrect ? "success.main" : "error.main"
-                                    }
-                                  },
-                                }}
-                                  color={item.isCorrect ? "success" : "error"}
-                                  icon={<CheckBoxOutlineBlankIcon />}
-                                  checkedIcon={item.isCorrect ? <CheckBoxIcon /> : <DisabledByDefaultIcon />} />}
-                                  label={item.value}
-                                  onChange={() => checkItem(store.currentSlG, i)}
-                                  disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
-                                  checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
-                              ) : (
-                                <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox
-                                  icon={<CheckBoxOutlineBlankIcon />}
-                                  checkedIcon={<IndeterminateCheckBoxIcon />} />}
-                                  label={item.value}
-                                  onChange={() => checkItem(store.currentSlG, i)}
-                                  checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
-                              )}
-                            </>
+                            <Multiple item={item} i={i} />
                           ) : GameData[store.currentSlG].type === "single" ? (
-                            <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox sx={{
-                              "&.Mui-checked": {
-                                "&, & + .MuiFormControlLabel-label": {
-                                  color: item.isCorrect ? "success.main" : "error.main"
-                                }
-                              }
-                            }}
-                              color={item.isCorrect ? "success" : "error"}
-                              icon={<RadioButtonUncheckedIcon />}
-                              checkedIcon={item.isCorrect ? <CheckCircleIcon /> : <CancelIcon />} />}
-                              label={item.value}
-                              onChange={() => checkItem(store.currentSlG, i)}
-                              disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
-                              checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
+                            <Single item={item} i={i} />
                           ) : GameData[store.currentSlG].type === "input" ? (
-                            <></>
-                          )
-                          : GameData[store.currentSlG].type === "multipleInput" ? (
-                            <></>
+                            <Input item={item} i={i} />
+                          ) : GameData[store.currentSlG].type === "multipleInput" ? (
+                            <MultipleInput item={item} i={i} />
                           ) : GameData[store.currentSlG].type === "inputAnswer" ? (
-                            <></>
+                            <InputAnswer item={item} i={i} />
                           ) : GameData[store.currentSlG].type === "matchImages" ? (
                             <></>
                           ) : (
-                            <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox sx={{
-                              "&.Mui-checked": {
-                                "&, & + .MuiFormControlLabel-label": {
-                                  color: item.isCorrect ? "success.main" : "error.main"
-                                }
-                              }
-                            }}
-                              color={item.isCorrect ? "success" : "error"}
-                              icon={<RadioButtonUncheckedIcon />}
-                              checkedIcon={item.isCorrect ? <CheckCircleIcon /> : <CancelIcon />} />}
-                              label={item.value}
-                              onChange={() => checkItem(store.currentSlG, i)}
-                              disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
-                              checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
+                            <Order item={item} i={i} />
                           )}
                         </React.Fragment>
                       )
@@ -453,7 +403,7 @@ const Game = observer(() => {
                   {GameData[store.currentSlG].content()}
                 </>
               )}
-              {GameData[store.currentSlG].type === "multiple" && (
+              {GameData[store.currentSlG].type !== "single" && (
                 <Button disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? false : true} onClick={() => changeMultiRes(store.currentSlG)} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.allCountedG.includes(store.currentSlG) ? 'none' : 'inline-flex' }}>Ответить</Button>
               )}
               {getAnsweredSlides() === GameData.length && (

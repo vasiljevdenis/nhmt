@@ -26,9 +26,9 @@ const Single = observer(({item, i}) => {
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={item.isCorrect ? <CheckCircleIcon /> : <CancelIcon />} />}
       label={item.value}
-      onChange={() => checkItem(store.currentSlideId, i)}
-      disabled={store.allAnswers.find(el => { return el.slideId === store.currentSlideId && el.checked }) ? true : false}
-      checked={store.allAnswers.find(el => { return el.slideId === store.currentSlideId && el.index === i })?.checked || false} />
+      onChange={() => checkItem(store.currentSlG, i)}
+      disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
+      checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
   )
 });
 
