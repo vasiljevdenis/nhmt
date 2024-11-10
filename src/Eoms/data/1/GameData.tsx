@@ -212,7 +212,6 @@ const GameData: Test[] = [
         value: ['галогенная', 'галогенная лампа', 'лампа галогенная'],
         isCorrect: true
       }
-
     ],
     content: () => {
       return (

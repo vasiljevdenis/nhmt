@@ -6,6 +6,7 @@ interface Answer {
   index: number;
   checked: boolean;
   isCorrect: boolean;
+  inputValue?: string;
 }
 
 const initialAnswers: Answer[] = GameData.filter(el => el.answers).map(el => {
@@ -68,6 +69,17 @@ class GameState {
       indexesArr.forEach(el => {
         this.answersG[el].checked = false;
       });
+    }
+    this.addOpenedG(slideId);
+  }
+
+  setInputVal(slideId: number, index: number, value: string) {
+    const i: number = this.answersG.findIndex(el => { return el.slideId === slideId && el.index === index });
+    this.answersG[i].inputValue = value;
+    if (value.length > 0) {
+      this.answersG[i].checked = true;
+    } else {
+      this.answersG[i].checked = false;
     }
     this.addOpenedG(slideId);
   }

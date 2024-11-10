@@ -177,7 +177,7 @@ const Game = observer(() => {
     if (!isFirst && lastTime !== 0) {
       if (type === 'single') {
         filtered[0].checked ? res = '100' : res = '0';
-      } else {
+      } else if (type === 'multiple') {
         const mult = filtered.filter(el => el.checked);
         if (mult.length === filtered.length) {
           res = '100';
@@ -186,6 +186,10 @@ const Game = observer(() => {
         } else {
           res = '0';
         }
+      } else if (type === 'input') {
+        GameData[id].answers[0].value?.includes(filtered[0].inputValue || '') ? res = '100' : res = '0';
+      } else {
+
       }
     }
 
@@ -207,7 +211,10 @@ const Game = observer(() => {
           res += el.score / 2;
         }
       } else if (el.type === "input") {
-        
+        const inputValue = store.answG.find(elem => { return elem.slideId === el.id && elem.isCorrect })?.inputValue || '';
+        if (store.allCountedG.includes(el.id) && el.answers[0].value.includes(inputValue)) {
+          res += el.score;
+        }
       } else if (el.type === "multipleInput") {
         
       } else if (el.type === "inputAnswer") {
