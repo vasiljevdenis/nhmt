@@ -18,7 +18,6 @@ interface Test {
   | 'multiple' 
   | 'input' 
   | 'multipleInput' 
-  | 'inputAnswer' 
   | 'matchImages' 
   | 'order';
   score?: number;
@@ -29,19 +28,17 @@ interface Test {
 const getTaskLabel = (type: string) => {
   let label = '';
   if (type === "single") {
-    label = 'Выберите один правильный ответ';
+    label = 'Задание с одним правильным ответом';
   } else if (type === "multiple") {
-    label = 'Выберите несколько правильных ответов';
+    label = 'Задание с несколькими вариантами ответа';
   } else if (type === "input") {
-    label = 'Введите ответ';
+    label = 'Задание с вводом ответа';
   } else if (type === "multipleInput") {
-    label = 'Введите пропущенное слово';
-  } else if (type === "inputAnswer") {
-    label = 'Введите пропущенные слова';
+    label = 'Задание с вводом ответа';
   } else if (type === "matchImages") {
-    label = 'Соотнесите картинки с их названием';
+    label = 'Задание на соотнесение';
   } else {
-    label = 'Установите правильную последовательность';
+    label = 'Задание на установление верной последовательности';
   }
   return label;
 }
@@ -372,7 +369,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вставьте пропущенные слова:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Введите пропущенные слова:</Typography>
         </>
       )
     }
@@ -390,7 +387,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вставьте пропущенные слова:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Введите пропущенные слова:</Typography>
         </>
       )
     }

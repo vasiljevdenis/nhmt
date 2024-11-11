@@ -21,7 +21,7 @@ const Order = observer(({ item, i }) => {
 
   return (
     <>
-      {item.answered ? (
+      {store.allCountedG.includes(store.currentSlG) ? (
         <FormControlLabel sx={{ "& .MuiFormControlLabel-label": { fontSize: '18px' } }} control={<Checkbox sx={{
           "&.Mui-checked": {
             "&, & + .MuiFormControlLabel-label": {
@@ -36,18 +36,18 @@ const Order = observer(({ item, i }) => {
         }}
           color={item.isCorrect ? "success" : "error"}
           icon={<CheckBoxOutlineBlankIcon />}
-          checkedIcon={item.isCorrect ? <CheckBoxIcon /> : <Avatar sx={{ width: 24, height: 24, bgcolor: 'primary.main' }}>{getCheckNumber(store.currentSlideId, i)}</Avatar>} />}
+          checkedIcon={item.isCorrect ? <CheckBoxIcon /> : <DisabledByDefaultIcon />} />}
           label={item.value}
-          onChange={() => checkItem(store.currentSlideId, i)}
-          disabled={store.allAnswers.find(el => { return el.slideId === store.currentSlideId && el.checked }) ? true : false}
-          checked={store.allAnswers.find(el => { return el.slideId === store.currentSlideId && el.index === i })?.checked || false} />
+          onChange={() => checkItem(store.currentSlG, i)}
+          disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
+          checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
       ) : (
         <FormControlLabel sx={{ "& .MuiFormControlLabel-label": { fontSize: '18px' } }} control={<Checkbox
           icon={<CheckBoxOutlineBlankIcon />}
-          checkedIcon={<IndeterminateCheckBoxIcon />} />}
+          checkedIcon={<>1</>} />}
           label={item.value}
-          onChange={() => checkItem(store.currentSlideId, i)}
-          checked={store.allAnswers.find(el => { return el.slideId === store.currentSlideId && el.index === i })?.checked || false} />
+          onChange={() => checkItem(store.currentSlG, i)}
+          checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
       )}
     </>
   )

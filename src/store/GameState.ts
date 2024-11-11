@@ -6,18 +6,24 @@ interface Answer {
   index: number;
   checked: boolean;
   isCorrect: boolean;
-  inputValue?: string;
+  inputValue?: any;
 }
 
 const initialAnswers: Answer[] = GameData.filter(el => el.answers).map(el => {
   if (el.answers) {
     return el.answers.map((elem, i) => {
-      return {
+      const obj: Answer = {
         slideId: el.id,
         index: i,
         checked: false,
         isCorrect: elem.isCorrect
+      };
+      if (el.type === 'multipleInput') {
+        obj.inputValue = el.answers[0].value.map((item: any, i: number) => {return {id: i, value: ''}});
+      } else if (el.type === 'input') {
+        obj.inputValue = '';
       }
+      return obj;
     });
   }
 }).flat() as Answer[];
@@ -73,9 +79,13 @@ class GameState {
     this.addOpenedG(slideId);
   }
 
-  setInputVal(slideId: number, index: number, value: string) {
+  setInputVal(slideId: number, index: number, value: string, inputIndex?: number) {
     const i: number = this.answersG.findIndex(el => { return el.slideId === slideId && el.index === index });
-    this.answersG[i].inputValue = value;
+    if (inputIndex && Array.isArray(this.answersG[i].inputValue)) {
+      this.answersG[i].inputValue[inputIndex] = value;
+    } else {
+      this.answersG[i].inputValue = value;
+    }
     if (value.length > 0) {
       this.answersG[i].checked = true;
     } else {
