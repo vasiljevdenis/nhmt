@@ -44,7 +44,7 @@ const Order = observer(({ item, i }) => {
       ) : (
         <FormControlLabel sx={{ "& .MuiFormControlLabel-label": { fontSize: '18px' } }} control={<Checkbox
           icon={<CheckBoxOutlineBlankIcon />}
-          checkedIcon={<>1</>} />}
+          checkedIcon={<Avatar sx={{ bgcolor: 'primary.main', width: 24, height: 24, fontSize: 'small' }}>1</Avatar>} />}
           label={item.value}
           onChange={() => checkItem(store.currentSlG, i)}
           checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
