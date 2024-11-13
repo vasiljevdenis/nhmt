@@ -47,9 +47,6 @@ const initialAnswers: Answer[] = GameData.filter(el => el.answers).map(el => {
   }
 }).flat() as Answer[];
 
-console.log(initialAnswers);
-
-
 const initialScored: Scored[] = GameData.map((el: any) => ({ slideId: el.id, scored: 0, ready: false, answered: false }));
 
 class GameState {
@@ -95,14 +92,16 @@ class GameState {
           .filter(answer => answer.selected)
           .sort((a, b) => (a.selectedNumber ?? 0) - (b.selectedNumber ?? 0))
           .forEach(answer => {
-            answer.selectedNumber = currentNumber++;
+            answer.selectedNumber = currentNumber++;            
           });
+          console.log(this.answers);
+          
       }
     }
   }
 
-  setSelectedAnswer(uid: string, value?: string | string[]) {
-    const answer = this.answers.find(answer => answer.uid === uid);
+  setSelectedAnswer(uid: string, value?: string | string[]) {    
+    const answer = this.answers.find(answer => answer.uid === uid);    
     if (answer) {
       switch (answer.type) {
         case 'single':
@@ -123,6 +122,7 @@ class GameState {
           break;
         case 'order':
           answer.selected = !answer.selected;
+          this.checkOrderSequence(uid, answer.slideId);
           break;
         default:
           console.log('Invalid type');
@@ -133,7 +133,7 @@ class GameState {
 
   setReadySlide(slideId: number) {
     const slide = this.scored.find(slide => slide.slideId === slideId);
-    if (!slide?.ready && !slide.answered) {
+    if (!slide.answered) {
       const answers = this.answers.filter(answer => answer.slideId === slideId);
       if (answers.length > 0) {
         const slideType = answers[0].type;

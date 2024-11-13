@@ -25,7 +25,7 @@ const Input = observer(({ item }: InputProps) => {
         sx={{
           maxWidth: 500,
           "& .Mui-disabled": {
-            WebkitTextFillColor: 'black'
+            WebkitTextFillColor: 'black !important'
           }
         }}
         disabled={store.getScored[store.getCurrentSlide].answered}

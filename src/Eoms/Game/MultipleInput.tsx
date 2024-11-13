@@ -18,8 +18,6 @@ const MultipleInput = observer(({ item }: MultipleInputProps) => {
     const newValue = e.target.value;
     const value = store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.multipleInputValue;
     const copy = [...value];
-    console.log(inputIndex);
-    console.log(copy);
     
     copy[inputIndex] = newValue.trim();
     store.setSelectedAnswer(uid, copy);

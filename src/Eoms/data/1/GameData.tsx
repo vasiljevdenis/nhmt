@@ -420,8 +420,5 @@ GameData.forEach((item, index) => {
     item.answers = shuffleArray(item.answers);
   }
 });
-console.log(GameData);
-
-
 
 export default GameData;

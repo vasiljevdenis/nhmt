@@ -69,16 +69,16 @@ function App() {
   });
 
   useEffect(() => {
-    if (import.meta.env.VITE_DEBUG_MODE !== "true") {
     setTimeout(() => {
       setLoaded(true);
-      console.clear();
-      console.log("%cДизайн и архитектурная сборка:", "color: black; font-size: 16px; font-weight: bold");
-      console.log("%cDenPiligrim", "color: #207BB2; font-size: 20px; font-weight: bold");
-      console.log("%cПо всем вопросам в Телеграм:", "color: black; font-size: 16px; font-weight: bold");
-      console.log("%c@denpiligrim", "color: #207BB2; font-size: 16px; font-weight: bold");
+      if (import.meta.env.VITE_DEBUG_MODE !== "true") {
+        console.clear();
+        console.log("%cДизайн и архитектурная сборка:", "color: black; font-size: 16px; font-weight: bold");
+        console.log("%cDenPiligrim", "color: #207BB2; font-size: 20px; font-weight: bold");
+        console.log("%cПо всем вопросам в Телеграм:", "color: black; font-size: 16px; font-weight: bold");
+        console.log("%c@denpiligrim", "color: #207BB2; font-size: 16px; font-weight: bold");
+      }
     }, 1000);
-  }
   }, []);
 
   return (
