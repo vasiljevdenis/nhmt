@@ -3,21 +3,26 @@ import React, { useState } from "react";
 import GameState from "../../store/GameState";
 import { FormControl, Input, InputAdornment, Typography } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel'
+import CancelIcon from '@mui/icons-material/Cancel';
+import { MultipleInput as MultipleInputTask } from "../../types/gameTypes";
 
-const MultipleInput = observer(({ item, i }) => {
+interface MultipleInputProps {
+  item: MultipleInputTask;
+}
+
+const MultipleInput = observer(({ item }: MultipleInputProps) => {
 
   const [store] = useState(GameState);
 
-  const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, slideId: number, index: number, inputIndex: number) => {
-    const value = e.target.value;
-    store.setInputVal(slideId, index, value, inputIndex);
-  }
-
-  let inputIndex = 0;
-
-  const incrementIndex = () => {
-    inputIndex++;
+  const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, uid: string, inputIndex: number) => {
+    const newValue = e.target.value;
+    const value = store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.multipleInputValue;
+    const copy = [...value];
+    console.log(inputIndex);
+    console.log(copy);
+    
+    copy[inputIndex] = newValue.trim();
+    store.setSelectedAnswer(uid, copy);
   }
 
   return (
@@ -29,18 +34,21 @@ const MultipleInput = observer(({ item, i }) => {
             <FormControl variant="standard">
               <Input
                 sx={{
-                  maxWidth: 500
+                  width: 150,
+                  "& .Mui-disabled": {
+            WebkitTextFillColor: 'black !important'
+          }
                 }}
                 size="small"
-                disabled={store.allCountedG.includes(store.currentSlG) ? true : false}
-                onChange={(e) => changeInput(e, store.currentSlG, i, inputIndex)}
-                value={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.inputValue[inputIndex].value || ''}
+                disabled={store.getScored[store.getCurrentSlide].answered}
+                onChange={(e) => changeInput(e, item.uid, index)}
+                value={store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.multipleInputValue[index]}
                 endAdornment={
                   <InputAdornment position="end">
-                    {store.allCountedG.includes(store.currentSlG) ? (
+                    {store.getScored[store.getCurrentSlide].answered ? (
                       <>
                         {
-                          item.value.includes(store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.inputValue[inputIndex].value)
+                          item.value[index] === store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.multipleInputValue[index]
                             ? <CheckCircleIcon color="success" />
                             : <CancelIcon color="error" />
                         }
@@ -54,7 +62,6 @@ const MultipleInput = observer(({ item, i }) => {
               />
             </FormControl>
           )}
-          {index < item.value.length && incrementIndex()}
         </React.Fragment>
       ))}
     </Typography>

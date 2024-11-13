@@ -5,13 +5,18 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { Single as SingleTask } from "../../types/gameTypes";
 
-const Single = observer(({item, i}) => {
+interface SingleProps {
+  item: SingleTask;
+}
+
+const Single = observer(({ item }: SingleProps) => {
 
   const [store] = useState(GameState);
 
-  const checkItem = (slideId: number, index: number) => {
-    store.setCheckG(slideId, index);
+  const checkItem = (uid: string) => {
+    store.setSelectedAnswer(uid);
   };
 
   return (
@@ -26,9 +31,9 @@ const Single = observer(({item, i}) => {
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={item.isCorrect ? <CheckCircleIcon /> : <CancelIcon />} />}
       label={item.value}
-      onChange={() => checkItem(store.currentSlG, i)}
-      disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
-      checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
+      onChange={() => checkItem(item.uid)}
+      disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered}
+      checked={store.getAnswers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.selected} />
   )
 });
 

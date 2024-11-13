@@ -6,18 +6,23 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import { Single as MultipleTask } from "../../types/gameTypes";
 
-const Multiple = observer(({ item, i }) => {
+interface MultipleProps {
+  item: MultipleTask;
+}
+
+const Multiple = observer(({ item }: MultipleProps) => {
 
   const [store] = useState(GameState);
 
-  const checkItem = (slideId: number, index: number) => {
-    store.setCheckG(slideId, index);
+  const checkItem = (uid: string) => {
+    store.setSelectedAnswer(uid);
   };
 
   return (
     <>
-      {store.allCountedG.includes(store.currentSlG) ? (
+      {store.getScored[store.getCurrentSlide].answered ? (
         <FormControlLabel sx={{ "& .MuiFormControlLabel-label": { fontSize: '18px' } }} control={<Checkbox sx={{
           "&.Mui-checked": {
             "&, & + .MuiFormControlLabel-label": {
@@ -34,16 +39,16 @@ const Multiple = observer(({ item, i }) => {
           icon={<CheckBoxOutlineBlankIcon />}
           checkedIcon={item.isCorrect ? <CheckBoxIcon /> : <DisabledByDefaultIcon />} />}
           label={item.value}
-          onChange={() => checkItem(store.currentSlG, i)}
-          disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? true : false}
-          checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
+          onChange={() => checkItem(item.uid)}
+          disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered}
+          checked={store.getAnswers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.selected} />
       ) : (
         <FormControlLabel sx={{ "& .MuiFormControlLabel-label": { fontSize: '18px' } }} control={<Checkbox
           icon={<CheckBoxOutlineBlankIcon />}
           checkedIcon={<IndeterminateCheckBoxIcon />} />}
           label={item.value}
-          onChange={() => checkItem(store.currentSlG, i)}
-          checked={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.checked || false} />
+          onChange={() => checkItem(item.uid)}
+          checked={store.getAnswers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.selected} />
       )}
     </>
   )

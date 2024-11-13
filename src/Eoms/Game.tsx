@@ -14,6 +14,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import GameState from '../store/GameState';
 import { useNavigate } from 'react-router-dom';
 import { getColorByPercentage } from '../helpers/getColorByPercentage';
@@ -23,6 +24,7 @@ import Input from './Game/Input';
 import Order from './Game/Order';
 import MultipleInput from './Game/MultipleInput';
 import InputAnswer from './Game/InputAnswer';
+import { Answer, Test } from '../types/gameTypes';
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
@@ -56,24 +58,17 @@ const Game = observer(() => {
 
   const setSlide = (id: number) => {
     refContent.current?.scrollTo(0, 0);
-    store.setSlideG(id);
-    setTimeout(() => {
-      store.addOpenedG(id);
-    }, 1000);
+    store.setCurrentSlide(id);
   }
-
-  const checkItem = (slideId: number, index: number) => {
-    store.setCheckG(slideId, index);
-  };
 
   const keyListener = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
     const { key } = event;
     if (key === 'ArrowLeft') {
-      if (store.currentSlG > 0) setSlide(store.currentSlG - 1);
+      if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (key === 'ArrowRight') {
-      if (store.currentSlG < GameData.length - 1) setSlide(store.currentSlG + 1);
+      if (store.getCurrentSlide < GameData.length - 1) setSlide(store.getCurrentSlide + 1);
     }
-  }, [store.currentSlG])
+  }, [store.getCurrentSlide])
 
   const [time, setTime] = useState<number>(0);
   const [lastTime, setLastTime] = useState<number>(0);
@@ -112,9 +107,10 @@ const Game = observer(() => {
     setOpen(true);
     resetTimer();
     startTimer();
-    store.resetCountedG();
+    store.resetScore();
   };
   const handleClose = () => {
+    store.checkTotalScore();
     setOpen(false);
     pauseTimer();
     setLastTime(time);
@@ -134,20 +130,6 @@ const Game = observer(() => {
     }
   }
 
-  const changeMultiRes = (id: number) => {
-    store.addCountedG(id);
-  }
-
-  const getAnsweredSlides = (): number => {
-    const amount = store.answG.reduce((count: Set<number>, answer) => {
-      if (answer.checked) {
-        return new Set([...count, answer.slideId]);
-      }
-      return count;
-    }, new Set<number>())
-    return amount.size;
-  }
-
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
@@ -165,67 +147,10 @@ const Game = observer(() => {
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
     if (isRightSwipe) {
-      if (store.currentSlG > 0) setSlide(store.currentSlG - 1);
+      if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (isLeftSwipe) {
-      if (store.currentSlG < GameData.length - 1) setSlide(store.currentSlG + 1);
+      if (store.getCurrentSlide < GameData.length - 1) setSlide(store.getCurrentSlide + 1);
     }
-  }
-
-  const slideStatus = (id: number, type: string) => {
-    const filtered = store.answG.filter(el => el.slideId === id && el.isCorrect);
-    let res: string = '-1';
-    if (!isFirst && lastTime !== 0) {
-      if (type === 'single') {
-        filtered[0].checked ? res = '100' : res = '0';
-      } else if (type === 'multiple') {
-        const mult = filtered.filter(el => el.checked);
-        if (mult.length === filtered.length) {
-          res = '100';
-        } else if (mult.length > 0) {
-          res = '50';
-        } else {
-          res = '0';
-        }
-      } else if (type === 'input') {
-        GameData[id].answers[0].value?.includes(filtered[0].inputValue || '') ? res = '100' : res = '0';
-      } else {
-
-      }
-    }
-
-    return res;
-  }
-
-  const getTotalScore = () => {
-    let res: number = 0;
-    GameData.forEach(el => {
-      if (el.type === 'single') {
-        const filtered = store.answG.filter(elem => elem.slideId === el.id && elem.isCorrect && elem.checked);
-        if (filtered.length > 0) res += el.score;
-      } else if (el.type === 'multiple') {
-        const filtered = store.answG.filter(elem => elem.slideId === el.id && elem.isCorrect);
-        const mult = filtered.filter(el => el.checked);
-        if (mult.length === filtered.length) {
-          res += el.score;
-        } else if (mult.length > 0) {
-          res += el.score / 2;
-        }
-      } else if (el.type === "input") {
-        const inputValue = store.answG.find(elem => { return elem.slideId === el.id && elem.isCorrect })?.inputValue || '';
-        if (store.allCountedG.includes(el.id) && el.answers[0].value.includes(inputValue)) {
-          res += el.score;
-        }
-      } else if (el.type === "multipleInput") {
-        
-      } else if (el.type === "inputAnswer") {
-        
-      } else if (el.type === "matchImages") {
-        
-      } else {
-      }
-    });
-
-    return res;
   }
 
   return (
@@ -262,8 +187,7 @@ const Game = observer(() => {
         },
         mx: 'auto'
       }}>
-        {GameData.map(el => {
-          const status = slideStatus(el.id, el.type);
+        {GameData.map((el: Test) => {
           return (
             <React.Fragment key={'item' + el.id}>
               {(el.id === 0 || el.id === 5 || el.id === 10) && (
@@ -283,10 +207,10 @@ const Game = observer(() => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px ' + (status === '100' ? '#2e7d32' : status === '50' ? '#ed6c02' : status === '0' ? '#d32f2f' : 'rgba(0,0,0,0.12)')
+                  boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px ' + (store.getSlideScore(el.id) === 100 ? '#2e7d32' : store.getSlideScore(el.id) === 50 ? '#ed6c02' : store.getSlideScore(el.id) === 0 ? '#d32f2f' : 'rgba(0,0,0,0.12)')
                 }}>
-                  <Tooltip title={status === '100' ? el.score + ' из ' + el.score : status === '50' ? el.score / 2 + ' из ' + el.score : status === '0' ? '0 из ' + el.score : ''} arrow placement="top">
-                    {status === '100' ? (
+                  <Tooltip title={store.getSlideScore(el.id) === 100 ? el.score + ' из ' + el.score : store.getSlideScore(el.id) === 50 ? el.score / 2 + ' из ' + el.score : store.getSlideScore(el.id) === 0 ? '0 из ' + el.score : ''} arrow placement="top">
+                    {store.getSlideScore(el.id) === 100 ? (
                       <CheckCircleIcon color='success' sx={{
                         fontSize: 16,
                         position: 'absolute',
@@ -294,7 +218,7 @@ const Game = observer(() => {
                         right: 1,
                         display: 'block'
                       }} />
-                    ) : status === '50' ? (
+                    ) : store.getSlideScore(el.id) === 50 ? (
                       <CheckCircleIcon color='warning' sx={{
                         fontSize: 16,
                         position: 'absolute',
@@ -302,7 +226,7 @@ const Game = observer(() => {
                         right: 1,
                         display: 'block'
                       }} />
-                    ) : status === '0' ? (
+                    ) : store.getSlideScore(el.id) === 0 ? (
                       <CancelIcon color='error' sx={{
                         fontSize: 16,
                         position: 'absolute',
@@ -314,7 +238,7 @@ const Game = observer(() => {
                       <></>
                     )}
                   </Tooltip>
-                  <Typography variant='body1' component="p" gutterBottom>{!isFirst && lastTime !== 0 ? (status === '100' ? el.score : status === '50' ? el.score / 2 : status === '0' ? '0' : '') : el.score}</Typography>
+                  <Typography variant='body1' component="p" gutterBottom>{!isFirst && lastTime !== 0 ? (store.getSlideScore(el.id) === 100 ? el.score : store.getSlideScore(el.id) === 50 ? el.score / 2 : store.getSlideScore(el.id) === 0 ? '0' : '') : el.score}</Typography>
                 </Card>
               </Grid>
             </React.Fragment>
@@ -335,16 +259,16 @@ const Game = observer(() => {
           </Grid>
           <Grid item xs={12} md={3} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Баллов набрано</Typography>
-            <Typography variant='body2' component="p" gutterBottom>{getTotalScore() + '/' + GameData.reduce((sum, el) => sum + el.score, 0)}</Typography>
+            <Typography variant='body2' component="p" gutterBottom>{store.getTotalScore + '/' + GameData.reduce((sum, el) => sum + el.score, 0)}</Typography>
           </Grid>
           <Grid item xs={12} md={3} p={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', px: 2 }}>
             <Box sx={{ width: '100%' }}>
-              <LinearProgressWithLabel value={Math.round((store.answG.filter(el => el.isCorrect && el.checked).length / store.answG.filter(el => el.isCorrect).length) * 100)} />
+              
             </Box>
           </Grid>
           <Grid item xs={12} md={3} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Оценка</Typography>
-            <Typography variant='body2' component="p" gutterBottom>{getScore(Math.round((store.answG.filter(el => el.isCorrect && el.checked).length / store.answG.filter(el => el.isCorrect).length) * 100))}</Typography>
+            <Typography variant='body2' component="p" gutterBottom>{getScore(Math.round((store.getTotalScore / 300) * 100))}</Typography>
           </Grid>
         </>
       )}
@@ -356,14 +280,14 @@ const Game = observer(() => {
         onKeyDown={keyListener}
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600', position: 'relative' }}>
-          <p style={{ textAlign: 'center' }}><span>{GameData[store.currentSlG].title}</span></p>
-          <p style={{ textAlign: 'center', fontSize: 14 }}>{GameData[store.currentSlG].id < 5 ? '1' : GameData[store.currentSlG].id > 9 ? '3' : '2'} уровень сложности ({GameData[store.currentSlG].score} баллов)</p>
+          <p style={{ textAlign: 'center' }}><span>{GameData[store.getCurrentSlide].title}</span></p>
+          <p style={{ textAlign: 'center', fontSize: 14 }}>{GameData[store.getCurrentSlide].id < 5 ? '1' : GameData[store.getCurrentSlide].id > 9 ? '3' : '2'} уровень сложности ({GameData[store.getCurrentSlide].score} баллов)</p>
           <p style={{ textAlign: 'center' }}><span style={{
             backgroundColor: theme.palette.primary.main,
             color: 'white',
             padding: '0.5rem 2rem',
             borderRadius: '30px'
-          }}>{(store.currentSlG + 1) + '/' + GameData.length}</span></p>
+          }}>{(store.getCurrentSlide + 1) + '/' + GameData.length}</span></p>
           <p style={{ textAlign: 'center' }}>{formatTime(time)}</p>
           <CloseIcon sx={{
             position: 'absolute',
@@ -378,27 +302,27 @@ const Game = observer(() => {
         <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
             <Grid item xs={12} p={2}>
-              {GameData[store.currentSlG].answers ? (
+              {GameData[store.getCurrentSlide].answers ? (
                 <>
-                  {GameData[store.currentSlG].content()}
+                  {GameData[store.getCurrentSlide].content()}
                   <FormGroup>
-                    {GameData[store.currentSlG].answers?.map((item, i) => {
+                    {GameData[store.getCurrentSlide].answers?.map((item: any, i: number) => {
                       return (
                         <React.Fragment key={'checkbox' + i}>
-                          {GameData[store.currentSlG].type === "multiple" ? (
-                            <Multiple item={item} i={i} />
-                          ) : GameData[store.currentSlG].type === "single" ? (
-                            <Single item={item} i={i} />
-                          ) : GameData[store.currentSlG].type === "input" ? (
-                            <Input item={item} i={i} />
-                          ) : GameData[store.currentSlG].type === "multipleInput" ? (
-                            <MultipleInput item={item} i={i} />
-                          ) : GameData[store.currentSlG].type === "inputAnswer" ? (
-                            <InputAnswer item={item} i={i} />
-                          ) : GameData[store.currentSlG].type === "matchImages" ? (
+                          {GameData[store.getCurrentSlide].type === "multiple" ? (
+                            <Multiple item={item} />
+                          ) : GameData[store.getCurrentSlide].type === "single" ? (
+                            <Single item={item} />
+                          ) : GameData[store.getCurrentSlide].type === "input" ? (
+                            <Input item={item} />
+                          ) : GameData[store.getCurrentSlide].type === "multipleInput" ? (
+                            <MultipleInput item={item} />
+                          ) : GameData[store.getCurrentSlide].type === "inputAnswer" ? (
+                            <InputAnswer item={item} />
+                          ) : GameData[store.getCurrentSlide].type === "matchImages" ? (
                             <></>
                           ) : (
-                            <Order item={item} i={i} />
+                            <Order item={item} />
                           )}
                         </React.Fragment>
                       )
@@ -407,13 +331,13 @@ const Game = observer(() => {
                 </>
               ) : (
                 <>
-                  {GameData[store.currentSlG].content()}
+                  {GameData[store.getCurrentSlide].content()}
                 </>
               )}
-              {GameData[store.currentSlG].type !== "single" && (
-                <Button disabled={store.answG.find(el => { return el.slideId === store.currentSlG && el.checked }) ? false : true} onClick={() => changeMultiRes(store.currentSlG)} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.allCountedG.includes(store.currentSlG) ? 'none' : 'inline-flex' }}>Ответить</Button>
+              {GameData[store.getCurrentSlide].type !== "single" && (
+                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => {store.setAnsweredSlide(store.getCurrentSlide)}} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready ? 'inline-flex' : 'none' }}>Ответить</Button>
               )}
-              {getAnsweredSlides() === GameData.length && (
+              {store.getScored.every(item => item.answered) && (
                 <Box sx={{ width: '100%', textAlign: 'center' }}>
                   <Button onClick={handleClose} variant="contained" sx={{ color: 'common.white', mt: 2 }}>Завершить</Button>
                 </Box>
@@ -422,18 +346,27 @@ const Game = observer(() => {
           </Grid>
         </DialogContent>
         <DialogActions sx={{ justifyContent: { xs: 'center', sm: 'flex-end' } }}>
-          <IconButton aria-label="back" sx={{ visibility: store.currentSlG === 0 ? 'hidden' : 'visible' }}
-            onClick={() => setSlide(store.currentSlG - 1)}>
-            <img src={prev} alt="Назад" width={20} />
+          <IconButton aria-label="back" sx={{ visibility: store.getCurrentSlide === 0 ? 'hidden' : 'visible' }}
+            onClick={() => setSlide(store.getCurrentSlide - 1)}>
+            <ArrowBackIosIcon sx={{
+              "&:hover": {
+                color: theme.palette.primary.main
+              }
+            }} />
           </IconButton>
           <IconButton aria-label="next"
+          disabled={!store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered}
             sx={{
               mr: { xs: 0, sm: 4 },
-              visibility: store.currentSlG === GameData.length - 1 ? 'hidden' : 'visible'
+              visibility: store.getCurrentSlide === GameData.length - 1 ? 'hidden' : 'visible'
             }}
-            onClick={() => setSlide(store.currentSlG + 1)}>
-            <img src={next} alt="Далее" width={20} />
-          </IconButton>
+            onClick={() => setSlide(store.getCurrentSlide + 1)}>
+            <ArrowForwardIosIcon sx={{
+              "&:hover": {
+                color: theme.palette.primary.main
+              }
+            }} />
+          </IconButton>          
         </DialogActions>
       </Dialog>
     </Grid>

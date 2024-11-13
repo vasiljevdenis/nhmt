@@ -1,29 +1,6 @@
 import { Typography } from '@mui/material';
-import { ReactNode } from 'react';
 import { shuffleArray } from '../../../helpers/shuffleArray';
-
-interface AnswerTest {
-  pattern?: string;
-  value: string | string[];
-  isCorrect: boolean;
-}
-interface AnswerOrder {
-  order: number;
-  title: string;
-}
-interface Test {
-  id?: number;
-  title?: string;
-  type: 'single' 
-  | 'multiple' 
-  | 'input' 
-  | 'multipleInput' 
-  | 'matchImages' 
-  | 'order';
-  score?: number;
-  answers: AnswerTest[] | AnswerOrder[] | string[];
-  content: () => ReactNode
-}
+import { Answer, Test } from '../../../types/gameTypes';
 
 const getTaskLabel = (type: string) => {
   let label = '';
@@ -172,8 +149,7 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['накаливания', 'лампа накаливания', 'накаливания лампа'],
-        isCorrect: true
+        value: ['накаливания', 'лампа накаливания', 'накаливания лампа']
       }
 
     ],
@@ -189,8 +165,7 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['конденсатор'],
-        isCorrect: true
+        value: ['конденсатор']
       }
 
     ],
@@ -206,8 +181,7 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['галогенная', 'галогенная лампа', 'лампа галогенная'],
-        isCorrect: true
+        value: ['галогенная', 'галогенная лампа', 'лампа галогенная']
       }
     ],
     content: () => {
@@ -222,8 +196,7 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['синий', 'синим'],
-        isCorrect: true
+        value: ['синий', 'синим']
       }
 
     ],
@@ -239,8 +212,7 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['компактная люминесцентная', 'люминесцентная компактная', 'люминесцентная', 'люминесцентная лампа'],
-        isCorrect: true
+        value: ['компактная люминесцентная', 'люминесцентная компактная', 'люминесцентная', 'люминесцентная лампа']
       }
 
     ],
@@ -361,8 +333,7 @@ const GameData: Test[] = [
     answers: [
       {
         pattern: 'При техническом обслуживании осветительной электроустановки проверяют надежность имеющихся в установке контактов: ослабленные контакты необходимо {}, а обгоревшие — {} или {}.',
-        value: ['затянуть', 'зачистить', 'заменить'],
-        isCorrect: true
+        value: ['затянуть', 'зачистить', 'заменить']
       }
 
     ],
@@ -379,8 +350,7 @@ const GameData: Test[] = [
     answers: [
       {
         pattern: 'В результате осмотра контактора выявлено подгорание силовых контактов, поэтому контакты необходимо {} с помощью {}.',
-        value: ['зачистить', 'надфиля'],
-        isCorrect: true
+        value: ['зачистить', 'надфиля']
       }
 
     ],
@@ -397,33 +367,27 @@ const GameData: Test[] = [
     answers: [
       {
         order: 1,
-        title: 'осмотреть корпус, крышку теплового реле',
-        isCorrect: true
+        title: 'осмотреть корпус, крышку теплового реле'
       },
       {
         order: 2,
-        title: 'удалить пыль, копоть и грязь со всех доступных частей',
-        isCorrect: true
+        title: 'удалить пыль, копоть и грязь со всех доступных частей'
       },
       {
         order: 3,
-        title: 'снять крышку реле',
-        isCorrect: true
+        title: 'снять крышку реле'
       },
       {
         order: 4,
-        title: 'проверить работу рычага возврата реле',
-        isCorrect: true
+        title: 'проверить работу рычага возврата реле'
       },
       {
         order: 5,
-        title: 'осмотреть нагревательный элемент',
-        isCorrect: true
+        title: 'осмотреть нагревательный элемент'
       },
       {
         order: 6,
-        title: 'проверить правильность установки теплового реле',
-        isCorrect: true
+        title: 'проверить правильность установки теплового реле'
       }
     ],
     content: () => {
@@ -446,12 +410,18 @@ GameData.forEach((item, index) => {
   } else if (index < 15) {
     item.score = 30;
   }
+  const answers = item.answers;
+  const answersWithUid: Answer = [];
+  answers.forEach(el => {
+    answersWithUid.push({...el, uid: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`});
+  });
+  item.answers = answersWithUid;
   if (item.type === "single" || item.type === "multiple" || item.type === "order") {
     item.answers = shuffleArray(item.answers);
   }
 });
-
 console.log(GameData);
+
 
 
 export default GameData;

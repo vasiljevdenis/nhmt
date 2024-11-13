@@ -4,34 +4,39 @@ import GameState from "../../store/GameState";
 import { FormControl, InputAdornment, Input as InputField } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { Input as InputTask } from "../../types/gameTypes";
 
-const Input = observer(({ item, i }) => {
+interface InputProps {
+  item: InputTask;
+}
 
-  console.log(item);
-
+const Input = observer(({ item }: InputProps) => {
 
   const [store] = useState(GameState);
 
-  const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, slideId: number, index: number) => {
+  const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, uid: string) => {
     const value = e.target.value;
-    store.setInputVal(slideId, index, value);
+    store.setSelectedAnswer(uid, value);
   }
 
   return (
     <FormControl variant="standard">
       <InputField
         sx={{
-          maxWidth: 500
+          maxWidth: 500,
+          "& .Mui-disabled": {
+            WebkitTextFillColor: 'black'
+          }
         }}
-        disabled={store.allCountedG.includes(store.currentSlG) ? true : false}
-        onChange={(e) => changeInput(e, store.currentSlG, i)}
-        value={store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.inputValue || ''}
+        disabled={store.getScored[store.getCurrentSlide].answered}
+        onChange={(e) => changeInput(e, item.uid)}
+        value={store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.inputValue}
         endAdornment={
           <InputAdornment position="end">
-            {store.allCountedG.includes(store.currentSlG) ? (
+            {store.getScored[store.getCurrentSlide].answered ? (
               <>
                 {
-                  item.value.includes(store.answG.find(el => { return el.slideId === store.currentSlG && el.index === i })?.inputValue)
+                  item.value.includes(store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.inputValue)
                     ? <CheckCircleIcon color="success" />
                     : <CancelIcon color="error" />
                 }

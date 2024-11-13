@@ -69,6 +69,7 @@ function App() {
   });
 
   useEffect(() => {
+    if (import.meta.env.VITE_DEBUG_MODE !== "true") {
     setTimeout(() => {
       setLoaded(true);
       console.clear();
@@ -77,6 +78,7 @@ function App() {
       console.log("%cПо всем вопросам в Телеграм:", "color: black; font-size: 16px; font-weight: bold");
       console.log("%c@denpiligrim", "color: #207BB2; font-size: 16px; font-weight: bold");
     }, 1000);
+  }
   }, []);
 
   return (
