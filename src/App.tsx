@@ -8,6 +8,12 @@ import Eom from './components/Eom';
 import { useEffect, useState } from 'react';
 
 declare module '@mui/material/styles' {
+  interface PaletteColor {
+    primaryLight?: string;
+  }
+  interface SimplePaletteColorOptions {
+    primaryLight?: string;
+  }
   interface BreakpointOverrides {
     xxl: true;
   }
@@ -21,6 +27,8 @@ function App() {
     palette: {
       primary: {
         main: '#293896',
+        light: '#8a93ca',
+        primaryLight: '#535fab'
       }
     },
     typography: {

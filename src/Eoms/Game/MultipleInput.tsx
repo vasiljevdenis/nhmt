@@ -18,7 +18,7 @@ const MultipleInput = observer(({ item }: MultipleInputProps) => {
     const newValue = e.target.value;
     const value = store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.multipleInputValue;
     const copy = [...value];
-    
+
     copy[inputIndex] = newValue.trim();
     store.setSelectedAnswer(uid, copy);
   }
@@ -34,8 +34,8 @@ const MultipleInput = observer(({ item }: MultipleInputProps) => {
                 sx={{
                   width: 150,
                   "& .Mui-disabled": {
-            WebkitTextFillColor: 'black !important'
-          }
+                    WebkitTextFillColor: 'black !important'
+                  }
                 }}
                 size="small"
                 disabled={store.getScored[store.getCurrentSlide].answered}

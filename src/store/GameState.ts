@@ -7,6 +7,7 @@ interface Answer {
   slideId: number;
   uid: string;
   selected: boolean;
+  isCorrect?: boolean;
   inputValue?: string;
   multipleInputValue?: string[];
   selectedNumber?: number | null;
@@ -14,7 +15,7 @@ interface Answer {
 
 interface Scored {
   slideId: number;
-  score: number;
+  scored: number;
   ready: boolean;
   answered: boolean;
 }
@@ -175,13 +176,89 @@ class GameState {
   setSlideScore(slideId: number, newScore: number) {
     const slide = this.scored.find(slide => slide.slideId === slideId);
     if (slide) {
-      slide.score = newScore;
+      slide.scored = newScore;
     }
   }
 
   checkTotalScore() {
-
-  }
+  //   // Максимальные баллы для каждого уровня
+  //   const maxScoresPerLevel = [10, 20, 30];
+  //   let totalScore = 0; // общий результат за все уровни
+  //   const levelScores: number[] = [];
+  
+  //   // Перебираем каждый слайд в scored
+  //   this.scored.forEach((slide, index) => {
+  //     const slideAnswers = this.answers.filter(answer => answer.slideId === slide.slideId);
+  //     let slideScore = 0;
+  
+  //     if (slideAnswers.length > 0) {
+  //       const slideType = slideAnswers[0].type;
+  
+  //       switch (slideType) {
+  //         case 'single':
+  //           // Для single - один правильный ответ даёт 100% баллов
+  //           slideScore = slideAnswers.some(answer => answer.selected && answer.isCorrect) ? 1 : 0;
+  //           break;
+  
+  //         case 'multiple':
+  //           // Для multiple - проверка полного или частичного выполнения
+  //           const correctAnswers = slideAnswers.filter(answer => answer.isCorrect).length;
+  //           const selectedCorrectAnswers = slideAnswers.filter(
+  //             answer => answer.selected && answer.isCorrect
+  //           ).length;
+  //           const incorrectSelections = slideAnswers.some(answer => answer.selected && !answer.isCorrect);
+            
+  //           // Полное совпадение (100%) или частичное (50%), если выбрано не все, но не больше 50%
+  //           if (selectedCorrectAnswers === correctAnswers && !incorrectSelections) {
+  //             slideScore = 1;
+  //           } else if (selectedCorrectAnswers > 0 && !incorrectSelections) {
+  //             slideScore = 0.5;
+  //           }
+  //           break;
+  
+  //         case 'input':
+  //           // Для input - проверка на полное совпадение
+  //           slideScore = slideAnswers[0].inputValue === slideAnswers[0].correctValue ? 1 : 0;
+  //           break;
+  
+  //         case 'multipleInput':
+  //           // Для multipleInput - частичный или полный балл
+  //           const totalInputFields = slideAnswers[0].multipleInputValue.length;
+  //           const correctInputs = slideAnswers[0].multipleInputValue.filter(
+  //             (val, idx) => val === slideAnswers[0].correctValues[idx]
+  //           ).length;
+  //           slideScore = correctInputs === totalInputFields ? 1 : correctInputs > 0 ? 0.5 : 0;
+  //           break;
+  
+  //         case 'order':
+  //           // Для order - полное или частичное совпадение
+  //           const correctOrderItems = slideAnswers.filter(
+  //             answer => answer.selectedNumber === answer.correctOrder
+  //           ).length;
+  //           slideScore = correctOrderItems === slideAnswers.length ? 1 : correctOrderItems > 0 ? 0.5 : 0;
+  //           break;
+  
+  //         default:
+  //           console.log('Unknown slide type');
+  //       }
+  //     }
+  
+  //     // Сохраняем результат по слайду в scored и обновляем общий счёт по уровням
+  //     slide.scored = slideScore;
+  //     const levelIndex = Math.floor(index / 5);
+  
+  //     // Инициализация баллов по уровням, если это первый слайд уровня
+  //     if (!levelScores[levelIndex]) levelScores[levelIndex] = 0;
+  //     levelScores[levelIndex] += slideScore * maxScoresPerLevel[levelIndex] / 5; // нормализация по 5 слайдам
+  //   });
+  
+  //   // Подсчёт общего результата
+  //   totalScore = levelScores.reduce((sum, score) => sum + score, 0);
+  
+  //   // Сохранение общих результатов
+  //   this.totalScore = totalScore;
+  //   this.levelScores = levelScores;
+  }  
 
   getSlideScore(slideId: number) {
     const score = this.scored.find(el => el.slideId === slideId);
@@ -205,7 +282,7 @@ class GameState {
     return this.scored;
   }
   get getTotalScore() {
-    return this.scored.reduce((total, current) => total + current.score, 0);
+    return this.scored.reduce((total, current) => total + current.scored, 0);
   }
 }
 

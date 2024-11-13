@@ -25,6 +25,7 @@ import Order from './Game/Order';
 import MultipleInput from './Game/MultipleInput';
 import InputAnswer from './Game/InputAnswer';
 import { Answer, Test } from '../types/gameTypes';
+import PieChartWithCenterLabel from '../components/PieChartWithCenterLabel';
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
@@ -177,7 +178,7 @@ const Game = observer(() => {
       </Grid>
       <Grid item xs={12} p={2}>
         <Typography variant='body1' component="p" gutterBottom>{import.meta.env.VITE_PREAMBLE}</Typography>
-        <Typography variant='body1' component="p">Чтобы перейти к выполнению заданий, кликните на кнопку Начать.</Typography>
+        <Typography variant='body1' component="p">Чтобы перейти к выполнению заданий, кликните на кнопку Начать. Обратите внимание, что на выполнение заданий дается 1 попытка.</Typography>
       </Grid>
       <Grid container sx={{
         width: {
@@ -252,6 +253,9 @@ const Game = observer(() => {
         <>
           <Grid item xs={12} p={2} textAlign={'center'}>
             <Typography variant='body1' component="p" gutterBottom fontWeight={700}>Ваш результат</Typography>
+          </Grid>
+          <Grid item xs={12} p={2} textAlign={'center'}>
+            <PieChartWithCenterLabel />
           </Grid>
           <Grid item xs={12} md={3} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Потрачено времени</Typography>
@@ -335,7 +339,7 @@ const Game = observer(() => {
                 </>
               )}
               {GameData[store.getCurrentSlide].type !== "single" && (
-                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => {store.setAnsweredSlide(store.getCurrentSlide)}} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready ? 'inline-flex' : 'none' }}>Ответить</Button>
+                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => {store.setAnsweredSlide(store.getCurrentSlide)}} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
               )}
               {store.getScored.every(item => item.answered) && (
                 <Box sx={{ width: '100%', textAlign: 'center' }}>

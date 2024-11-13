@@ -20,12 +20,17 @@ const Single = observer(({ item }: SingleProps) => {
   };
 
   return (
-    <FormControlLabel sx={{"& .MuiFormControlLabel-label": {fontSize: '18px'}}} control={<Checkbox sx={{
+    <FormControlLabel sx={{ "& .MuiFormControlLabel-label": { fontSize: '18px' } }} control={<Checkbox sx={{
       "&.Mui-checked": {
         "&, & + .MuiFormControlLabel-label": {
           color: item.isCorrect ? "success.main" : "error.main"
         }
-      }
+      },
+      "&.Mui-disabled": {
+        "&, & + .MuiFormControlLabel-label": {
+          color: item.isCorrect ? "success.main" : "error.main"
+        }
+      },
     }}
       color={item.isCorrect ? "success" : "error"}
       icon={<RadioButtonUncheckedIcon />}
