@@ -19,18 +19,19 @@ const MultipleInput = observer(({ item }: MultipleInputProps) => {
     const value = store.answers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid })?.multipleInputValue;
     const copy = [...value];
 
-    copy[inputIndex] = newValue.trim();
+    copy[inputIndex] = newValue.toLowerCase();
     store.setSelectedAnswer(uid, copy);
   }
 
   return (
-    <Typography variant="body1">
+    <Typography variant="body1" component="div">
       {item.pattern.split('{}').map((part, index) => (
         <React.Fragment key={index}>
           {part}
           {index < item.value.length && (
             <FormControl variant="standard">
               <Input
+              autoFocus={index === 0}
                 sx={{
                   width: 150,
                   "& .Mui-disabled": {

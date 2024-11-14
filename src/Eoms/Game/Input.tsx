@@ -16,12 +16,13 @@ const Input = observer(({ item }: InputProps) => {
 
   const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, uid: string) => {
     const value = e.target.value;
-    store.setSelectedAnswer(uid, value);
+    store.setSelectedAnswer(uid, value.toLowerCase());
   }
 
   return (
     <FormControl variant="standard">
       <InputField
+      autoFocus
         sx={{
           maxWidth: 500,
           "& .Mui-disabled": {

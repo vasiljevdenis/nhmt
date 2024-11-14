@@ -8,8 +8,10 @@ interface Answer {
   uid: string;
   selected: boolean;
   isCorrect?: boolean;
+  value?: string | string[];
   inputValue?: string;
   multipleInputValue?: string[];
+  order?: number;
   selectedNumber?: number | null;
 }
 
@@ -111,13 +113,13 @@ class GameState {
           break;
         case 'input':
           if (typeof value === 'string') {
-            answer.selected = value.trim() !== '';
-            answer.inputValue = value.trim();
+            answer.selected = value !== '';
+            answer.inputValue = value;
           }
           break;
         case 'multipleInput':
           if (Array.isArray(value)) {
-            answer.selected = value.every(v => v.trim() !== '');
+            answer.selected = value.every(v => v !== '');
             answer.multipleInputValue = value;
           }
           break;
@@ -162,9 +164,9 @@ class GameState {
       case 'multiple':
         return answers.filter(answer => answer.selected).length >= 2;
       case 'input':
-        return answers[0].inputValue.trim().length > 0;
+        return answers[0].inputValue.length > 0;
       case 'multipleInput':
-        return answers[0].multipleInputValue.every(item => item.trim() !== "");
+        return answers[0].multipleInputValue.every(item => item !== "");
       case 'order':
         return answers.every(item => item.selectedNumber != null);
       default:
@@ -181,88 +183,78 @@ class GameState {
   }
 
   checkTotalScore() {
-  //   // Максимальные баллы для каждого уровня
-  //   const maxScoresPerLevel = [10, 20, 30];
-  //   let totalScore = 0; // общий результат за все уровни
-  //   const levelScores: number[] = [];
+    const levelsScore = [10, 20, 30];
+    // Перебираем каждый слайд в scored
+    this.scored.forEach((slide, index) => {
+      const slideAnswers = this.answers.filter(answer => answer.slideId === slide.slideId);
+      let slideScore = 0;
   
-  //   // Перебираем каждый слайд в scored
-  //   this.scored.forEach((slide, index) => {
-  //     const slideAnswers = this.answers.filter(answer => answer.slideId === slide.slideId);
-  //     let slideScore = 0;
+      if (slideAnswers.length > 0) {
+        const slideType = slideAnswers[0].type;
   
-  //     if (slideAnswers.length > 0) {
-  //       const slideType = slideAnswers[0].type;
+        switch (slideType) {
+          case 'single':
+            // Для single - один правильный ответ даёт 100% баллов
+            slideScore = slideAnswers.some(answer => answer.selected && answer.isCorrect) ? 1 : 0;
+            break;
   
-  //       switch (slideType) {
-  //         case 'single':
-  //           // Для single - один правильный ответ даёт 100% баллов
-  //           slideScore = slideAnswers.some(answer => answer.selected && answer.isCorrect) ? 1 : 0;
-  //           break;
-  
-  //         case 'multiple':
-  //           // Для multiple - проверка полного или частичного выполнения
-  //           const correctAnswers = slideAnswers.filter(answer => answer.isCorrect).length;
-  //           const selectedCorrectAnswers = slideAnswers.filter(
-  //             answer => answer.selected && answer.isCorrect
-  //           ).length;
-  //           const incorrectSelections = slideAnswers.some(answer => answer.selected && !answer.isCorrect);
+          case 'multiple':
+            // Для multiple - проверка полного или частичного выполнения
+            const correctAnswers = slideAnswers.filter(answer => answer.isCorrect).length;
+            const selectedCorrectAnswers = slideAnswers.filter(
+              answer => answer.selected && answer.isCorrect
+            ).length;
+            const incorrectSelections = slideAnswers.some(answer => answer.selected && !answer.isCorrect);
             
-  //           // Полное совпадение (100%) или частичное (50%), если выбрано не все, но не больше 50%
-  //           if (selectedCorrectAnswers === correctAnswers && !incorrectSelections) {
-  //             slideScore = 1;
-  //           } else if (selectedCorrectAnswers > 0 && !incorrectSelections) {
-  //             slideScore = 0.5;
-  //           }
-  //           break;
+            // Полное совпадение (100%) или частичное (50%), если выбрано не все, но не больше 50%
+            if (selectedCorrectAnswers === correctAnswers && !incorrectSelections) {
+              slideScore = 1;
+            } else if (selectedCorrectAnswers > 0 && !incorrectSelections) {
+              slideScore = 0.5;
+            }
+            break;
   
-  //         case 'input':
-  //           // Для input - проверка на полное совпадение
-  //           slideScore = slideAnswers[0].inputValue === slideAnswers[0].correctValue ? 1 : 0;
-  //           break;
+          case 'input':
+            // Для input - проверка на полное совпадение
+            slideScore = slideAnswers[0].value.includes(slideAnswers[0].inputValue) ? 1 : 0;
+            break;
   
-  //         case 'multipleInput':
-  //           // Для multipleInput - частичный или полный балл
-  //           const totalInputFields = slideAnswers[0].multipleInputValue.length;
-  //           const correctInputs = slideAnswers[0].multipleInputValue.filter(
-  //             (val, idx) => val === slideAnswers[0].correctValues[idx]
-  //           ).length;
-  //           slideScore = correctInputs === totalInputFields ? 1 : correctInputs > 0 ? 0.5 : 0;
-  //           break;
+          case 'multipleInput':
+            // Для multipleInput - частичный или полный балл
+            const totalInputFields = slideAnswers[0].multipleInputValue.length;
+            const correctInputs = slideAnswers[0].multipleInputValue.filter(
+              (val, idx) => val === slideAnswers[0].value[idx]
+            ).length;
+            slideScore = correctInputs === totalInputFields ? 1 : correctInputs > 0 ? 0.5 : 0;
+            break;
   
-  //         case 'order':
-  //           // Для order - полное или частичное совпадение
-  //           const correctOrderItems = slideAnswers.filter(
-  //             answer => answer.selectedNumber === answer.correctOrder
-  //           ).length;
-  //           slideScore = correctOrderItems === slideAnswers.length ? 1 : correctOrderItems > 0 ? 0.5 : 0;
-  //           break;
+          case 'order':
+            // Для order - полное или частичное совпадение
+            const correctOrderItems = slideAnswers.filter(
+              answer => answer.selectedNumber === answer.order
+            ).length;
+            slideScore = correctOrderItems === slideAnswers.length ? 1 : correctOrderItems > 0 ? 0.5 : 0;
+            break;
   
-  //         default:
-  //           console.log('Unknown slide type');
-  //       }
-  //     }
+          default:
+            console.log('Unknown slide type');
+        }
+      }
   
-  //     // Сохраняем результат по слайду в scored и обновляем общий счёт по уровням
-  //     slide.scored = slideScore;
-  //     const levelIndex = Math.floor(index / 5);
-  
-  //     // Инициализация баллов по уровням, если это первый слайд уровня
-  //     if (!levelScores[levelIndex]) levelScores[levelIndex] = 0;
-  //     levelScores[levelIndex] += slideScore * maxScoresPerLevel[levelIndex] / 5; // нормализация по 5 слайдам
-  //   });
-  
-  //   // Подсчёт общего результата
-  //   totalScore = levelScores.reduce((sum, score) => sum + score, 0);
-  
-  //   // Сохранение общих результатов
-  //   this.totalScore = totalScore;
-  //   this.levelScores = levelScores;
+      // Сохраняем результат по слайду в scored и обновляем общий счёт по уровням
+      if (index < 5) {
+        slide.scored = slideScore * 10;
+      } else if (index < 10) {
+        slide.scored = slideScore * 20;
+      } else if (index < 15) {
+        slide.scored = slideScore * 30;
+      }
+    });
   }  
 
   getSlideScore(slideId: number) {
     const score = this.scored.find(el => el.slideId === slideId);
-    return score.score;
+    return score.scored;
   }
 
   resetAnswers() {

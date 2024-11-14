@@ -1,6 +1,12 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { shuffleArray } from '../../../helpers/shuffleArray';
 import { Answer, Test } from '../../../types/gameTypes';
+import img3 from '@images/game3.webp';
+import img4 from '@images/game4.webp';
+import img6 from '@images/game6.webp';
+import img7 from '@images/game7.webp';
+import img8 from '@images/game8.webp';
+import img10 from '@images/game10.webp';
 
 const getTaskLabel = (type: string) => {
   let label = '';
@@ -93,6 +99,7 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какой элемент дуговой ртутной лампы указан под цифрой 4?</Typography>
+          <Box><img src={img3} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -117,6 +124,7 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>На какой элемент на схеме включения люминесцентной лампы указывает стрелка?</Typography>
+          <Box><img src={img4} alt="Схема" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -157,6 +165,7 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
+          <Box><img src={img6} alt="Лампа" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -173,6 +182,7 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>На какой элемент на схеме включения люминесцентной лампы указывает стрелка?</Typography>
+          <Box><img src={img7} alt="image" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -188,6 +198,7 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
+          <Box><img src={img8} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -220,6 +231,7 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
+          <Box><img src={img10} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }

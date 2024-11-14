@@ -95,7 +95,7 @@ const Training = observer(() => {
   }
 
   const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, [store.currentSlT]: event.target.value.toLowerCase().trim() });
+    setInput({ ...input, [store.currentSlT]: event.target.value.toLowerCase() });
   }
   const blurInput = () => {
     if (TrainingData[store.currentSlT].answers?.slice()[0].value === input[store.currentSlT]) {

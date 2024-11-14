@@ -1,46 +1,23 @@
 
-import { Box, Button, Card, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, FormGroup, Grid, IconButton, LinearProgress, LinearProgressProps, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Card, Dialog, DialogActions, DialogContent, DialogTitle, FormGroup, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import GameData from '@data/GameData';
 import React, { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';
-import prev from '../assets/images/left-arrow.svg';
-import next from '../assets/images/right-arrow.svg';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
-import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import GameState from '../store/GameState';
 import { useNavigate } from 'react-router-dom';
-import { getColorByPercentage } from '../helpers/getColorByPercentage';
 import Multiple from './Game/Multiple';
 import Single from './Game/Single';
 import Input from './Game/Input';
 import Order from './Game/Order';
 import MultipleInput from './Game/MultipleInput';
 import InputAnswer from './Game/InputAnswer';
-import { Answer, Test } from '../types/gameTypes';
+import { Test } from '../types/gameTypes';
 import PieChartWithCenterLabel from '../components/PieChartWithCenterLabel';
-
-function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress sx={{ backgroundColor: 'rgb(158 225 234 / 30%)', "& .MuiLinearProgress-bar": { backgroundColor: getColorByPercentage(props.value) } }} variant="determinate" {...props} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.value,
-        )}%`}</Typography>
-      </Box>
-    </Box>
-  );
-}
 
 const Game = observer(() => {
 
@@ -184,16 +161,28 @@ const Game = observer(() => {
         width: {
           xs: '100%',
           sm: 300,
-          md: 320
+          md: 400
         },
         mx: 'auto'
       }}>
         {GameData.map((el: Test) => {
+          let level = 0;
+          let maxScore = 0;
+          if (el.id < 5) {
+            level = 1;
+            maxScore = 10;
+          } else if (el.id < 10) {
+            level = 2;
+            maxScore = 20;
+          } else if (el.id < 15) {
+            level = 3;
+            maxScore = 30;
+          }
           return (
             <React.Fragment key={'item' + el.id}>
               {(el.id === 0 || el.id === 5 || el.id === 10) && (
                 <Grid item xs={12}>
-                  <Typography variant='body1' component="p" gutterBottom textAlign={'center'}>Уровень {el.id === 0 ? '1' : el.id === 5 ? '2' : '3'}</Typography>
+                  <Typography variant='body1' component="p" gutterBottom textAlign={'center'}>Уровень {level}</Typography>
                 </Grid>
               )}
               <Grid key={'item' + el.id} item xs={2.4} p={2}>
@@ -208,38 +197,50 @@ const Game = observer(() => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px ' + (store.getSlideScore(el.id) === 100 ? '#2e7d32' : store.getSlideScore(el.id) === 50 ? '#ed6c02' : store.getSlideScore(el.id) === 0 ? '#d32f2f' : 'rgba(0,0,0,0.12)')
+                  boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px ' + (
+                    !isFirst && lastTime !== 0 ? (
+                      store.getSlideScore(el.id) === maxScore
+                        ? '#2e7d32'
+                        : store.getSlideScore(el.id) === maxScore / 2
+                        ? '#ed6c02'
+                        : '#d32f2f'
+                    )
+                      : theme.palette.primary.main
+                  )
                 }}>
-                  <Tooltip title={store.getSlideScore(el.id) === 100 ? el.score + ' из ' + el.score : store.getSlideScore(el.id) === 50 ? el.score / 2 + ' из ' + el.score : store.getSlideScore(el.id) === 0 ? '0 из ' + el.score : ''} arrow placement="top">
-                    {store.getSlideScore(el.id) === 100 ? (
-                      <CheckCircleIcon color='success' sx={{
-                        fontSize: 16,
-                        position: 'absolute',
-                        top: 1,
-                        right: 1,
-                        display: 'block'
-                      }} />
-                    ) : store.getSlideScore(el.id) === 50 ? (
-                      <CheckCircleIcon color='warning' sx={{
-                        fontSize: 16,
-                        position: 'absolute',
-                        top: 1,
-                        right: 1,
-                        display: 'block'
-                      }} />
-                    ) : store.getSlideScore(el.id) === 0 ? (
-                      <CancelIcon color='error' sx={{
-                        fontSize: 16,
-                        position: 'absolute',
-                        top: 1,
-                        right: 1,
-                        display: 'block'
-                      }} />
-                    ) : (
-                      <></>
-                    )}
-                  </Tooltip>
-                  <Typography variant='body1' component="p" gutterBottom>{!isFirst && lastTime !== 0 ? (store.getSlideScore(el.id) === 100 ? el.score : store.getSlideScore(el.id) === 50 ? el.score / 2 : store.getSlideScore(el.id) === 0 ? '0' : '') : el.score}</Typography>
+                  {!isFirst && lastTime !== 0 && (
+                    <Tooltip title={!isFirst && lastTime !== 0 && store.getSlideScore(el.id) + ' из ' + el.score} arrow placement="top">
+                      {store.getSlideScore(el.id) === maxScore ? (
+                        <CheckCircleIcon color='success' sx={{
+                          fontSize: 16,
+                          position: 'absolute',
+                          top: 1,
+                          right: 1,
+                          display: 'block'
+                        }} />
+                      ) : store.getSlideScore(el.id) === maxScore / 2 ? (
+                        <CheckCircleIcon color='warning' sx={{
+                          fontSize: 16,
+                          position: 'absolute',
+                          top: 1,
+                          right: 1,
+                          display: 'block'
+                        }} />
+                      ) : store.getSlideScore(el.id) === 0 ? (
+                        <CancelIcon color='error' sx={{
+                          fontSize: 16,
+                          position: 'absolute',
+                          top: 1,
+                          right: 1,
+                          display: 'block'
+                        }} />
+                      ) : (
+                        <></>
+                      )}
+                    </Tooltip>
+                  )
+                  }
+                  <Typography variant='body1' component="p" gutterBottom>{!isFirst && lastTime !== 0 ? store.getSlideScore(el.id) : el.score}</Typography>
                 </Card>
               </Grid>
             </React.Fragment>
@@ -247,30 +248,25 @@ const Game = observer(() => {
         })}
       </Grid>
       <Grid item xs={12} p={2} textAlign={'center'}>
-        <Button onClick={() => handleClickOpen(0)} variant="contained" sx={{ color: 'common.white' }}>{isFirst ? 'Начать' : 'Повторить'}</Button>
+        <Button onClick={() => handleClickOpen(0)} variant="contained" sx={{ color: 'common.white', display: isFirst ? 'inline-flex' : 'none' }}>{isFirst ? 'Начать' : 'Повторить'}</Button>
       </Grid>
       {!isFirst && lastTime !== 0 && (
         <>
           <Grid item xs={12} p={2} textAlign={'center'}>
             <Typography variant='body1' component="p" gutterBottom fontWeight={700}>Ваш результат</Typography>
           </Grid>
-          <Grid item xs={12} p={2} textAlign={'center'}>
+          <Grid item xs={12} p={2} textAlign={'center'} sx={{ display: 'flex' }}>
             <PieChartWithCenterLabel />
           </Grid>
-          <Grid item xs={12} md={3} p={2} textAlign={"center"}>
+          <Grid item xs={12} md={4} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Потрачено времени</Typography>
             <Typography variant='body2' component="p" gutterBottom>{formatTime(lastTime)}</Typography>
           </Grid>
-          <Grid item xs={12} md={3} p={2} textAlign={"center"}>
+          <Grid item xs={12} md={4} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Баллов набрано</Typography>
             <Typography variant='body2' component="p" gutterBottom>{store.getTotalScore + '/' + GameData.reduce((sum, el) => sum + el.score, 0)}</Typography>
           </Grid>
-          <Grid item xs={12} md={3} p={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', px: 2 }}>
-            <Box sx={{ width: '100%' }}>
-              
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={3} p={2} textAlign={"center"}>
+          <Grid item xs={12} md={4} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Оценка</Typography>
             <Typography variant='body2' component="p" gutterBottom>{getScore(Math.round((store.getTotalScore / 300) * 100))}</Typography>
           </Grid>
@@ -339,7 +335,7 @@ const Game = observer(() => {
                 </>
               )}
               {GameData[store.getCurrentSlide].type !== "single" && (
-                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => {store.setAnsweredSlide(store.getCurrentSlide)}} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
+                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => { store.setAnsweredSlide(store.getCurrentSlide) }} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
               )}
               {store.getScored.every(item => item.answered) && (
                 <Box sx={{ width: '100%', textAlign: 'center' }}>
@@ -359,7 +355,7 @@ const Game = observer(() => {
             }} />
           </IconButton>
           <IconButton aria-label="next"
-          disabled={!store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered}
+            disabled={!store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered}
             sx={{
               mr: { xs: 0, sm: 4 },
               visibility: store.getCurrentSlide === GameData.length - 1 ? 'hidden' : 'visible'
@@ -370,7 +366,7 @@ const Game = observer(() => {
                 color: theme.palette.primary.main
               }
             }} />
-          </IconButton>          
+          </IconButton>
         </DialogActions>
       </Dialog>
     </Grid>
