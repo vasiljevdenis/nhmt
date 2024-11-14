@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { shuffleArray } from '../../../helpers/shuffleArray';
 import { Answer, Test } from '../../../types/gameTypes';
-import img1 from '@images/game1.webp';
+import img1 from '@images/training1.webp';
 
 const getTaskLabel = (type: string) => {
   let label = '';
@@ -21,17 +21,17 @@ const getTaskLabel = (type: string) => {
   return label;
 }
 
-const GameData: Test[] = [
+const TrainingData: Test[] = [
   {
     type: 'single',
     answers: [
       {
         value: 'рабочее',
-        isCorrect: false
+        isCorrect: true
       },
       {
         value: 'аварийное',
-        isCorrect: true
+        isCorrect: false
       },
       {
         value: 'ремонтное',
@@ -41,7 +41,24 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как называется освещение для временной возможности продолжения работы или обеспечения условий безопасного выхода из помещений?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как называется освещение для обеспечения нормальной деятельности предприятия?</Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'input',
+    answers: [
+      {
+        value: ['накаливания', 'лампа накаливания', 'накаливания лампа']
+      }
+
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>К какому типу источников света относятся лампы накаливания?</Typography>
+          <Box><img src={img6} alt="Лампа" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -407,7 +424,7 @@ const GameData: Test[] = [
   }
 ];
 
-GameData.forEach((item, index) => {
+TrainingData.forEach((item, index) => {
   item.id = index;
   item.title = getTaskLabel(item.type);
   if (index < 5) {
@@ -428,4 +445,4 @@ GameData.forEach((item, index) => {
   }
 });
 
-export default GameData;
+export default TrainingData;
