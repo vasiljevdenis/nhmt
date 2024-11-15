@@ -65,12 +65,20 @@ const Infographics = observer(() => {
   const minSwipeDistance = 75
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest(".slick-slider") || target.closest(".image-gallery")) return
     setTouchStart(e.targetTouches[0].clientX)
   }
 
-  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => setTouchEnd(e.targetTouches[0].clientX)
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest(".slick-slider") || target.closest(".image-gallery")) return
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
 
-  const onTouchEnd = () => {
+  const onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest(".slick-slider") || target.closest(".image-gallery")) return
     if (!touchStart || !touchEnd) return
     const distance = touchStart - touchEnd
     const isLeftSwipe = distance > minSwipeDistance

@@ -1,20 +1,30 @@
-import { Card, CardActionArea, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useTheme } from '@mui/material';
+import { Button, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import InfographicsData from '@data/InfographicsData';
 import { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';
 import EomState from '../store/EomState';
-import prev from '../assets/images/left-arrow.svg';
-import next from '../assets/images/right-arrow.svg';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ImageModal from '../components/ImageModal';
+import { useNavigate } from 'react-router-dom';
+import bgCard from "../assets/images/bg-card.webp";
+import Carousel from '../components/Carousel';
 
 const Animation = observer(() => {
 
   const [store] = useState(EomState);
 
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = useState(false);
+
+  const navigator = useNavigate();
+
+  const toMain = () => {
+    navigator('/');
+  }
 
   const refContent = useRef<HTMLDivElement>(null);
 
@@ -69,7 +79,7 @@ const Animation = observer(() => {
       if (store.currentSl > 0) setSlide(store.currentSl - 1);
     } else if (isLeftSwipe) {
       if (store.currentSl < InfographicsData.length - 1) setSlide(store.currentSl + 1);
-    } 
+    }
   }
 
   return (
@@ -78,38 +88,67 @@ const Animation = observer(() => {
         background: theme.palette.primary.main,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
-        py: 1
+        py: 1,
+        position: 'relative'
       }}>
-        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Анимация</Typography>
+        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Динамическая инфографика</Typography>
+        <Button variant="text" startIcon={<ArrowBackIosIcon />}
+          sx={{
+            textTransform: 'none',
+            color: 'white',
+            position: 'absolute',
+            top: '12%',
+            left: 20
+          }}
+          onClick={toMain}>
+          {isMobile ? '' : 'На главную'}
+        </Button>
       </Grid>
       <Grid item xs={12} p={2}>
         <Typography variant='body1' component="p" gutterBottom>{import.meta.env.VITE_PREAMBLE}</Typography>
-        <Typography variant='body1' component="p">Чтобы перейти к учебному материалу, кликните на каждую из иконок.</Typography>
+        <Typography variant='body1' component="p">Чтобы перейти к учебному материалу, нажмите на слайд.</Typography>
       </Grid>
       {InfographicsData.map(el => (
         <Grid key={'item' + el.id} item xs={12} sm={6} md={3} p={2}>
-          <Card sx={{ maxWidth: 345, height: '100%', mx: 'auto', '& .MuiButtonBase-root': { height: '100%' }, position: 'relative' }}>
+          <Card sx={{
+            maxWidth: 345,
+            minHeight: 290,
+            height: '100%',
+            mx: 'auto',
+            backgroundImage: `url(${bgCard})`,
+            backgroundPosition: 'top center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            '& .MuiButtonBase-root': {
+              height: '100%'
+            },
+            position: 'relative',
+            boxShadow: `0px 2px 1px -1px ${store.openedSlides.includes(el.id) ? 'rgba(46,125,50,0.2)' : 'rgba(0,0,0,0.2)'},0px 1px 1px 0px ${store.openedSlides.includes(el.id) ? 'rgba(46,125,50,0.2)' : 'rgba(0,0,0,0.14)'},0px 1px 3px 0px ${store.openedSlides.includes(el.id) ? 'rgba(46,125,50,0.2)' : 'rgba(0,0,0,0.12)'}`
+          }}>
             <CardActionArea onClick={() => handleClickOpen(el.id)}>
               <CardMedia
                 component="img"
                 height="150"
-                image={el.image}
+                image={el.previewImage}
                 alt={'img' + el.id + 1}
                 sx={{
                   objectFit: 'contain'
                 }}
               />
               <CardContent sx={{ height: '100%' }}>
+                <Typography gutterBottom variant="body1" component="div" fontWeight={700} textAlign={'center'}>
+                  Слайд {el.id + 1}
+                </Typography>
                 <Typography gutterBottom variant="body1" component="div" fontWeight={600} textAlign={'center'}>
                   {el.title}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <Tooltip title="Просмотрено" arrow placement="top">
-              <CheckCircleIcon color='success' sx={{
+              <DoneOutlineIcon color='success' sx={{
                 position: 'absolute',
-                top: 1,
-                right: 1,
+                top: 5,
+                right: 5,
                 display: store.openedSlides.includes(el.id) ? 'block' : 'none'
               }} />
             </Tooltip>
@@ -125,7 +164,12 @@ const Animation = observer(() => {
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600', position: 'relative' }}>
           <p style={{ textAlign: 'center' }}><span>{InfographicsData[store.currentSl].title}</span></p>
-          <p style={{ textAlign: 'center' }}>{(store.currentSl + 1) + '/' + InfographicsData.length}</p>
+          <p style={{ textAlign: 'center' }}><span style={{
+            backgroundColor: theme.palette.primary.main,
+            color: 'white',
+            padding: '0.5rem 2rem',
+            borderRadius: '30px'
+          }}>{(store.currentSl + 1) + '/' + InfographicsData.length}</span></p>
           <CloseIcon sx={{
             position: 'absolute',
             top: 4,
@@ -139,13 +183,7 @@ const Animation = observer(() => {
         <DialogContent ref={refContent} sx={{ px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
             <Grid item xs={12} md={4} p={2} textAlign={'center'}>
-              <img onClick={() => handleOpenImage(InfographicsData[store.currentSl].imageContent || InfographicsData[store.currentSl].image)} src={InfographicsData[store.currentSl].imageContent || InfographicsData[store.currentSl].image} alt={'image' + store.currentSl} style={{
-                width: '100%',
-                maxWidth: '500px',
-                position: window.innerWidth < 600 ? 'static' : 'sticky',
-                top: 0,
-                cursor: 'zoom-in'
-              }} />
+              <Carousel key={store.currentSl} items={InfographicsData[store.currentSl].imageContent} dots={true} arrows={false} />
             </Grid>
             <Grid item xs={12} md={8} p={2}>
               {InfographicsData[store.currentSl].content()}
@@ -155,7 +193,11 @@ const Animation = observer(() => {
         <DialogActions sx={{ justifyContent: { xs: 'center', sm: 'flex-end' } }}>
           <IconButton aria-label="back" sx={{ visibility: store.currentSl === 0 ? 'hidden' : 'visible' }}
             onClick={() => setSlide(store.currentSl - 1)}>
-            <img src={prev} alt="Назад" width={20} />
+            <ArrowBackIosIcon sx={{
+              "&:hover": {
+                color: theme.palette.primary.main
+              }
+            }} />
           </IconButton>
           <IconButton aria-label="next"
             sx={{
@@ -163,7 +205,11 @@ const Animation = observer(() => {
               visibility: store.currentSl === InfographicsData.length - 1 ? 'hidden' : 'visible'
             }}
             onClick={() => setSlide(store.currentSl + 1)}>
-            <img src={next} alt="Далее" width={20} />
+            <ArrowForwardIosIcon sx={{
+              "&:hover": {
+                color: theme.palette.primary.main
+              }
+            }} />
           </IconButton>
         </DialogActions>
       </Dialog>
@@ -172,4 +218,4 @@ const Animation = observer(() => {
   )
 });
 
-export default Animation
+export default Animation;

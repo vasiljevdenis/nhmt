@@ -1,7 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import { shuffleArray } from '../../../helpers/shuffleArray';
-import { Answer, Test } from '../../../types/gameTypes';
+import { Answer, Test } from '../../../types/trainingTypes';
 import img3 from '@images/training3.webp';
+import img5 from '@images/training5.webp';
+import img8 from '@images/training8.webp';
+import img9 from '@images/training9.webp';
 
 const getTaskLabel = (type: string) => {
   let label = '';
@@ -275,13 +278,7 @@ const TrainingData: Test[] = [
 TrainingData.forEach((item, index) => {
   item.id = index;
   item.title = getTaskLabel(item.type);
-  if (index < 5) {
-    item.score = 10;
-  } else if (index < 10) {
-    item.score = 20;
-  } else if (index < 15) {
-    item.score = 30;
-  }
+  item.score = 10;
   const answers = item.answers;
   const answersWithUid: Answer = [];
   answers.forEach(el => {

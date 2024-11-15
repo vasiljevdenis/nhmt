@@ -15,7 +15,6 @@ import Single from './Game/Single';
 import Input from './Game/Input';
 import Order from './Game/Order';
 import MultipleInput from './Game/MultipleInput';
-import InputAnswer from './Game/InputAnswer';
 import { Test } from '../types/gameTypes';
 import PieChartWithCenterLabel from '../components/PieChartWithCenterLabel';
 
@@ -44,14 +43,14 @@ const Game = observer(() => {
     if (key === 'ArrowLeft') {
       if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (key === 'ArrowRight') {
-      if (store.getCurrentSlide < GameData.length - 1) setSlide(store.getCurrentSlide + 1);
+      if (store.getCurrentSlide < GameData.length - 1 && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide + 1);
     }
   }, [store.getCurrentSlide])
 
   const [time, setTime] = useState<number>(0);
   const [lastTime, setLastTime] = useState<number>(0);
   const [isFirst, setIsFirst] = useState<boolean>(true);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null | NodeJS.Timeout>(null);
 
   const startTimer = () => {
     setTimeout(() => {
@@ -127,7 +126,15 @@ const Game = observer(() => {
     if (isRightSwipe) {
       if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (isLeftSwipe) {
-      if (store.getCurrentSlide < GameData.length - 1) setSlide(store.getCurrentSlide + 1);
+      if (store.getCurrentSlide < GameData.length - 1  && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide + 1);
+    }
+  }
+
+  const onEnter = (e: any) => {
+    if (e.key === "Enter") {
+      if (store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready) {
+        store.setAnsweredSlide(store.getCurrentSlide);
+      }
     }
   }
 
@@ -299,7 +306,7 @@ const Game = observer(() => {
             }
           }} onClick={handleClose} />
         </DialogTitle>
-        <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onKeyDown={onEnter} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
             <Grid item xs={12} p={2}>
               {GameData[store.getCurrentSlide].answers ? (
@@ -317,8 +324,6 @@ const Game = observer(() => {
                             <Input item={item} />
                           ) : GameData[store.getCurrentSlide].type === "multipleInput" ? (
                             <MultipleInput item={item} />
-                          ) : GameData[store.getCurrentSlide].type === "inputAnswer" ? (
-                            <InputAnswer item={item} />
                           ) : GameData[store.getCurrentSlide].type === "matchImages" ? (
                             <></>
                           ) : (
@@ -335,7 +340,7 @@ const Game = observer(() => {
                 </>
               )}
               {GameData[store.getCurrentSlide].type !== "single" && (
-                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => { store.setAnsweredSlide(store.getCurrentSlide) }} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
+                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => store.setAnsweredSlide(store.getCurrentSlide)} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
               )}
               {store.getScored.every(item => item.answered) && (
                 <Box sx={{ width: '100%', textAlign: 'center' }}>

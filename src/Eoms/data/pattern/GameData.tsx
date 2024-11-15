@@ -26,22 +26,23 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'рабочее',
+        value: '',
         isCorrect: false
       },
       {
-        value: 'аварийное',
+        value: '',
         isCorrect: true
       },
       {
-        value: 'ремонтное',
+        value: '',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как называется освещение для временной возможности продолжения работы или обеспечения условий безопасного выхода из помещений?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Box><img src={img1} alt="Лампа" style={{ width: '100%', maxWidth: 300 }} /></Box>
         </>
       )
     }
@@ -50,22 +51,22 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'лампами накаливания',
-        isCorrect: true
-      },
-      {
-        value: 'газоразрядными лампами',
+        value: '',
         isCorrect: false
       },
       {
-        value: 'полупроводниковыми лампами',
+        value: '',
+        isCorrect: true
+      },
+      {
+        value: '',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>По принципу действия галогенные лампы являются …</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -74,27 +75,22 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'цоколь',
+        value: '',
         isCorrect: false
       },
       {
-        value: 'кварцевая горелка',
-        isCorrect: false
-      },
-      {
-        value: 'основной вольфрамовый электрод',
+        value: '',
         isCorrect: true
       },
       {
-        value: 'колба, покрытая люминофором',
+        value: '',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какой элемент дуговой ртутной лампы указан под цифрой 4?</Typography>
-          <Box><img src={img3} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -103,23 +99,22 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'стартер',
+        value: '',
         isCorrect: false
       },
       {
-        value: 'конденсатор',
-        isCorrect: false
-      },
-      {
-        value: 'дроссель',
+        value: '',
         isCorrect: true
+      },
+      {
+        value: '',
+        isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>На какой элемент на схеме включения люминесцентной лампы указывает стрелка?</Typography>
-          <Box><img src={img4} alt="Схема" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -128,22 +123,22 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'плафон-рассеиватель',
+        value: '',
+        isCorrect: false
+      },
+      {
+        value: '',
         isCorrect: true
       },
       {
-        value: 'отражатель',
-        isCorrect: false
-      },
-      {
-        value: 'корпус',
+        value: '',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какая часть светильника служит для более равномерного распределения света?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -152,15 +147,14 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['накаливания', 'лампа накаливания', 'накаливания лампа']
+        value: ['', '']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
-          <Box><img src={img6} alt="Лампа" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>          
         </>
       )
     }
@@ -169,15 +163,14 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['конденсатор']
+        value: ['', '']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>На какой элемент на схеме включения люминесцентной лампы указывает стрелка?</Typography>
-          <Box><img src={img7} alt="image" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -186,30 +179,14 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['галогенная', 'галогенная лампа', 'лампа галогенная']
-      }
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
-          <Box><img src={img8} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
-        </>
-      )
-    }
-  },
-  {
-    type: 'input',
-    answers: [
-      {
-        value: ['синий', 'синим']
+        value: ['', '']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Каким цветом принято обозначать нулевой рабочий провод?</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -218,15 +195,30 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['компактная люминесцентная', 'люминесцентная компактная', 'люминесцентная', 'люминесцентная лампа']
+        value: ['', '']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите название лампы, изображенной на рисунке.</Typography>
-          <Box><img src={img10} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'input',
+    answers: [
+      {
+        value: ['', '']
+      }
+
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -235,50 +227,26 @@ const GameData: Test[] = [
     type: 'multiple',
     answers: [
       {
-        value: 'царапины на поверхности контактных колец',
+        value: '',
         isCorrect: false
       },
       {
-        value: 'износ пазовой изоляции двигателя',
+        value: '',
         isCorrect: true
       },
       {
-        value: 'межвитковое замыкание катушки',
+        value: '',
         isCorrect: true
       },
       {
-        value: 'истирание щеток',
-        isCorrect: false
-      },
-      {
-        value: 'снижение сопротивления изоляции',
-        isCorrect: true
-      },
-      {
-        value: 'деформация витков обмотки силового трансформатора',
-        isCorrect: false
-      },
-      {
-        value: 'изменение формы контакта',
-        isCorrect: false
-      },
-      {
-        value: 'растрескивание изоляции обмотки',
-        isCorrect: true
-      },
-      {
-        value: 'выгорание контактов',
-        isCorrect: true
-      },
-      {
-        value: 'срыв резьбы в крепежных деталях',
+        value: '',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите повреждения электрооборудования, относящиеся к электрическому износу:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -287,50 +255,26 @@ const GameData: Test[] = [
     type: 'multiple',
     answers: [
       {
-        value: 'царапины на поверхности контактных колец',
-        isCorrect: true
-      },
-      {
-        value: 'износ пазовой изоляции двигателя',
+        value: '',
         isCorrect: false
       },
       {
-        value: 'межвитковое замыкание катушки',
-        isCorrect: false
-      },
-      {
-        value: 'истирание щеток',
+        value: '',
         isCorrect: true
       },
       {
-        value: 'снижение сопротивления изоляции',
-        isCorrect: false
-      },
-      {
-        value: 'деформация витков обмотки силового трансформатора',
+        value: '',
         isCorrect: true
       },
       {
-        value: 'изменение формы контакта',
-        isCorrect: true
-      },
-      {
-        value: 'растрескивание изоляции обмотки',
+        value: '',
         isCorrect: false
-      },
-      {
-        value: 'выгорание контактов',
-        isCorrect: false
-      },
-      {
-        value: 'срыв резьбы в крепежных деталях',
-        isCorrect: true
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Укажите повреждения электрооборудования, относящиеся к механическому износу:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -339,15 +283,15 @@ const GameData: Test[] = [
     type: 'multipleInput',
     answers: [
       {
-        pattern: 'При техническом обслуживании осветительной электроустановки проверяют надежность имеющихся в установке контактов: ослабленные контакты необходимо {}, а обгоревшие — {} или {}.',
-        value: ['затянуть', 'зачистить', 'заменить']
+        pattern: '',
+        value: ['', '']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Введите пропущенные слова:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -356,15 +300,15 @@ const GameData: Test[] = [
     type: 'multipleInput',
     answers: [
       {
-        pattern: 'В результате осмотра контактора выявлено подгорание силовых контактов, поэтому контакты необходимо {} с помощью {}.',
-        value: ['зачистить', 'надфиля']
+        pattern: '',
+        value: ['', '']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Введите пропущенные слова:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }
@@ -374,33 +318,33 @@ const GameData: Test[] = [
     answers: [
       {
         order: 1,
-        title: 'осмотреть корпус, крышку теплового реле'
+        title: ''
       },
       {
         order: 2,
-        title: 'удалить пыль, копоть и грязь со всех доступных частей'
+        title: ''
       },
       {
         order: 3,
-        title: 'снять крышку реле'
+        title: ''
       },
       {
         order: 4,
-        title: 'проверить работу рычага возврата реле'
+        title: ''
       },
       {
         order: 5,
-        title: 'осмотреть нагревательный элемент'
+        title: ''
       },
       {
         order: 6,
-        title: 'проверить правильность установки теплового реле'
+        title: ''
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Установить правильную последовательность при техническом обслуживании теплового реле:</Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
         </>
       )
     }

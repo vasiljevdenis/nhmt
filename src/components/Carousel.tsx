@@ -30,7 +30,12 @@ const Carousel = (props: SliderProps) => {
   const galleryRef = useRef(null);
   const slickRef = useRef(null);
 
-  const handleSlideChange = (index: number) => {
+  const handleSlideChange = (index: number, initiator: string) => {
+    console.log(index);
+    
+    if (initiator === 'gallery') {
+      slickRef.current.slickGoTo(index);
+    }
     setCurrentIndex(index);
   };
 
@@ -48,7 +53,7 @@ const Carousel = (props: SliderProps) => {
     autoplaySpeed: 5000,
     adaptiveHeight: true,
     className: "sticky",
-    beforeChange: (current: number, next: number) => handleSlideChange(next)
+    beforeChange: (current: number, next: number) => handleSlideChange(next, 'slider')
   };
 
   const toggleFullscreen = () => {
@@ -61,15 +66,6 @@ const Carousel = (props: SliderProps) => {
       galleryRef.current.slideToIndex(currentIndex);
     }
   }, [fullscreen])
-
-  useEffect(() => {
-    if (slickRef.current) {
-      slickRef.current.slickGoTo(currentIndex);
-    }
-    if (galleryRef.current) {
-      galleryRef.current.slideToIndex(currentIndex);
-    }
-  }, [currentIndex]);
 
   return (
     <>
@@ -114,7 +110,7 @@ const Carousel = (props: SliderProps) => {
           })}
           showPlayButton={false}
           showIndex
-          onSlide={handleSlideChange}
+          onSlide={(i) => handleSlideChange(i, 'gallery')}
           autoPlay={false}
           onScreenChange={(f) => !f && toggleFullscreen()}
         />

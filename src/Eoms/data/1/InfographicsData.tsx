@@ -28,27 +28,12 @@ import img81Content from '@images/infographicsContent8_1.webp';
 import img82Content from '@images/infographicsContent8_2.webp';
 import img91Content from '@images/infographicsContent9_1.webp';
 import img92Content from '@images/infographicsContent9_2.webp';
-import { ReactNode } from 'react';
-
-interface Images {
-  src: string;
-  alt: string;
-  description: string;
-}
-
-interface Slide {
-  id: number;
-  title: string;
-  previewImage: string;
-  imageContent: Images[];
-  content: () => ReactNode
-}
+import { Slide } from '../../../types/infographicsTypes';
 
 // <Tooltip title="" arrow placement="top" enterTouchDelay={0} leaveTouchDelay={5000}><span className='hint'></span></Tooltip>
 
 const InfographicsData: Slide[] = [
   {
-    id: 0,
     title: 'Технология ремонта внутрицеховых электросетей и осветительных электроустановок',
     previewImage: img1,
     imageContent: [
@@ -89,7 +74,6 @@ const InfographicsData: Slide[] = [
 
   },
   {
-    id: 1,
     title: 'Возможные повреждения и ремонт электросетей',
     previewImage: img2,
     imageContent: [
@@ -121,7 +105,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 2,
     title: 'Правила ТО и ремонта шинопроводов и распределительных устройств',
     previewImage: img3,
     imageContent: [
@@ -148,7 +131,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 3,
     title: 'Ремонт кабелей со свинцовой оболочкой',
     previewImage: img4,
     imageContent: [
@@ -175,7 +157,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 4,
     title: 'Ремонт кабелей с поливинилхлоридной оболочкой',
     previewImage: img5,
     imageContent: [
@@ -202,7 +183,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 5,
     title: 'Ремонт концевых заделок, соединительных и концевых муфт',
     previewImage: img6,
     imageContent: [
@@ -234,7 +214,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 6,
     title: 'Возможные повреждения заземляющих устройств',
     previewImage: img7,
     imageContent: [
@@ -259,7 +238,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 7,
     title: 'Техника безопасности при ремонте электрических внутрицеховых сетей и освещения',
     previewImage: img8,
     imageContent: [
@@ -287,7 +265,6 @@ const InfographicsData: Slide[] = [
     }
   },
   {
-    id: 8,
     title: 'Ремонт осветительных электроустановок',
     previewImage: img9,
     imageContent: [
@@ -315,5 +292,9 @@ const InfographicsData: Slide[] = [
     }
   }
 ];
+
+InfographicsData.forEach((item, index) => {
+  item.id = index;
+});
 
 export default InfographicsData

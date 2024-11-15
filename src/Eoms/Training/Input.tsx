@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import GameState from "../../store/GameState";
+import TrainingState from "../../store/TrainingState";
 import { FormControl, InputAdornment, Input as InputField } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -12,7 +12,7 @@ interface InputProps {
 
 const Input = observer(({ item }: InputProps) => {
 
-  const [store] = useState(GameState);
+  const [store] = useState(TrainingState);
 
   const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, uid: string) => {
     const value = e.target.value;
@@ -22,7 +22,7 @@ const Input = observer(({ item }: InputProps) => {
   return (
     <FormControl variant="standard">
       <InputField
-      autoFocus={true}
+      autoFocus
         sx={{
           maxWidth: 500,
           "& .Mui-disabled": {
