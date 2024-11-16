@@ -15,7 +15,6 @@ import Single from './Game/Single';
 import Input from './Game/Input';
 import Order from './Game/Order';
 import MultipleInput from './Game/MultipleInput';
-import InputAnswer from './Game/InputAnswer';
 import { Test } from '../types/gameTypes';
 import PieChartWithCenterLabel from '../components/PieChartWithCenterLabel';
 
@@ -51,7 +50,7 @@ const Tasks = observer(() => {
   const [time, setTime] = useState<number>(0);
   const [lastTime, setLastTime] = useState<number>(0);
   const [isFirst, setIsFirst] = useState<boolean>(true);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null | NodeJS.Timeout>(null);
 
   const startTimer = () => {
     setTimeout(() => {
@@ -317,8 +316,6 @@ const Tasks = observer(() => {
                             <Input item={item} />
                           ) : GameData[store.getCurrentSlide].type === "multipleInput" ? (
                             <MultipleInput item={item} />
-                          ) : GameData[store.getCurrentSlide].type === "inputAnswer" ? (
-                            <InputAnswer item={item} />
                           ) : GameData[store.getCurrentSlide].type === "matchImages" ? (
                             <></>
                           ) : (

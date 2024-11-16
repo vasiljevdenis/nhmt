@@ -3,29 +3,29 @@
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  background-image: url(../bg.webp);
+  background-image: url(../assets/images/bg.webp);
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
 
   @media (max-width: 1800px) {
-    background-image: url(../bg-xxl.webp);
+    background-image: url(../assets/images/bg-xxl.webp);
   }
 
   @media (max-width: 1536px) {
-    background-image: url(../bg-xl.webp);
+    background-image: url(../assets/images/bg-xl.webp);
   }
 
   @media (max-width: 1200px) {
-    background-image: url(../bg-lg.webp);
+    background-image: url(../assets/images/bg-lg.webp);
   }
 
   @media (max-width: 900px) {
-    background-image: url(../bg-md.webp);
+    background-image: url(../assets/images/bg-md.webp);
   }
 
   @media (max-width: 600px) {
-    background-image: url(../bg-sm.webp);
+    background-image: url(../assets/images/bg-sm.webp);
   }
 }
 

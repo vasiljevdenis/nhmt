@@ -47,7 +47,7 @@ const Laboratory = observer(() => {
   const [time, setTime] = useState<number>(0);
   const [lastTime, setLastTime] = useState<number>(0);
   const [isFirst, setIsFirst] = useState<boolean>(true);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null | NodeJS.Timeout>(null);
 
   const startTimer = () => {
     setTimeout(() => {

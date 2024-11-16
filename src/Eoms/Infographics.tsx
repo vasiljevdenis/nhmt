@@ -1,10 +1,9 @@
-import { Button, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Button, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, SvgIcon, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import InfographicsData from '@data/InfographicsData';
 import { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';
 import EomState from '../store/EomState';
-import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ImageModal from '../components/ImageModal';
@@ -131,6 +130,7 @@ const Infographics = observer(() => {
               height: '100%'
             },
             position: 'relative',
+            borderRadius: '40px',
             boxShadow: `0px 2px 1px -1px ${store.openedSlides.includes(el.id) ? 'rgba(46,125,50,0.2)' : 'rgba(0,0,0,0.2)'},0px 1px 1px 0px ${store.openedSlides.includes(el.id) ? 'rgba(46,125,50,0.2)' : 'rgba(0,0,0,0.14)'},0px 1px 3px 0px ${store.openedSlides.includes(el.id) ? 'rgba(46,125,50,0.2)' : 'rgba(0,0,0,0.12)'}`
           }}>
             <CardActionArea onClick={() => handleClickOpen(el.id)}>
@@ -153,12 +153,19 @@ const Infographics = observer(() => {
               </CardContent>
             </CardActionArea>
             <Tooltip title="Просмотрено" arrow placement="top">
-              <DoneOutlineIcon color='success' sx={{
+              <SvgIcon sx={{
                 position: 'absolute',
-                top: 5,
-                right: 5,
+                top: 15,
+                right: 15,
                 display: store.openedSlides.includes(el.id) ? 'block' : 'none'
-              }} />
+              }}>
+                <svg height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 512 512" xmlSpace="preserve">
+                  <g>
+                    <polygon fill={theme.palette.success.main} points="440.469,73.413 218.357,295.525 71.531,148.709 0,220.229 146.826,367.055 218.357,438.587 289.878,367.055 512,144.945" />
+                  </g>
+                </svg>
+              </SvgIcon>
             </Tooltip>
           </Card>
         </Grid>

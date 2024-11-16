@@ -47,6 +47,7 @@ const Training = observer(() => {
   const [time, setTime] = useState<number>(0);
   const [lastTime, setLastTime] = useState<number>(0);
   const [isFirst, setIsFirst] = useState<boolean>(true);
+  const [attempts, setAttempts] = useState<number>(0);
   const intervalRef = useRef<number | null | NodeJS.Timeout>(null);
 
   const startTimer = () => {
@@ -85,6 +86,7 @@ const Training = observer(() => {
   };
   const handleClose = () => {
     store.checkTotalScore();
+    setAttempts(prev => prev + 1);
     setOpen(false);
     pauseTimer();
     setLastTime(time);
@@ -124,6 +126,14 @@ const Training = observer(() => {
       if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (isLeftSwipe) {
       if (store.getCurrentSlide < TrainingData.length - 1  && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide + 1);
+    }
+  }
+
+  const onEnter = (e: any) => {
+    if (e.key === "Enter") {
+      if (store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready) {
+        store.setAnsweredSlide(store.getCurrentSlide);
+      }
     }
   }
 
@@ -229,7 +239,7 @@ const Training = observer(() => {
         })}
       </Grid>
       <Grid item xs={12} p={2} textAlign={'center'}>
-        <Button onClick={() => handleClickOpen(0)} variant="contained" sx={{ color: 'common.white', display: isFirst ? 'inline-flex' : 'none' }}>{isFirst ? 'Начать' : 'Повторить'}</Button>
+        <Button onClick={() => handleClickOpen(0)} variant="contained" sx={{ color: 'common.white', display: attempts < 2 ? 'inline-flex' : 'none' }}>{isFirst ? 'Начать' : 'Повторить'}</Button>
       </Grid>
       {!isFirst && lastTime !== 0 && (
         <>
@@ -280,7 +290,7 @@ const Training = observer(() => {
             }
           }} onClick={handleClose} />
         </DialogTitle>
-        <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onKeyDown={onEnter} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
             <Grid item xs={12} p={2}>
               {TrainingData[store.getCurrentSlide].answers ? (

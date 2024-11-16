@@ -7,7 +7,6 @@
   "scripts": {
     "manifest": "ts-node generateManifest.ts",
     "dev": "vite",
-    "prebuild": "node -e \"process.env.VITE_DEBUG_MODE = 'false';\"",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

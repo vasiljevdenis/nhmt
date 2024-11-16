@@ -96,9 +96,7 @@ class TrainingState {
           .sort((a, b) => (a.selectedNumber ?? 0) - (b.selectedNumber ?? 0))
           .forEach(answer => {
             answer.selectedNumber = currentNumber++;            
-          });
-          console.log(this.answers);
-          
+          });          
       }
     }
   }

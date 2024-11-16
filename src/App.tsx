@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import Eom from './components/Eom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 declare module '@mui/material/styles' {
   interface PaletteColor {
@@ -20,8 +20,6 @@ declare module '@mui/material/styles' {
 }
 
 function App() {
-
-  const [loaded, setLoaded] = useState<boolean>(false);
 
   const newTheme = createTheme({
     palette: {
@@ -63,6 +61,14 @@ function App() {
           }
         }
       },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: '40px',
+            padding: '6px 26px'
+          }
+        }
+      },
       MuiDialog: {
         styleOverrides: {
           paperWidthMd: {
@@ -78,14 +84,11 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setLoaded(true);
-      if (import.meta.env.VITE_DEBUG_MODE !== "true") {
-        console.clear();
-        console.log("%cДизайн и архитектурная сборка:", "color: black; font-size: 16px; font-weight: bold");
-        console.log("%cDenPiligrim", "color: #207BB2; font-size: 20px; font-weight: bold");
-        console.log("%cПо всем вопросам в Телеграм:", "color: black; font-size: 16px; font-weight: bold");
-        console.log("%c@denpiligrim", "color: #207BB2; font-size: 16px; font-weight: bold");
-      }
+      console.clear();
+      console.log("%cДизайн и архитектурная сборка:", "color: black; font-size: 16px; font-weight: bold");
+      console.log("%cDenPiligrim", "color: #207BB2; font-size: 20px; font-weight: bold");
+      console.log("%cПо всем вопросам в Телеграм:", "color: black; font-size: 16px; font-weight: bold");
+      console.log("%c@denpiligrim", "color: #207BB2; font-size: 16px; font-weight: bold");
     }, 1000);
   }, []);
 
@@ -102,9 +105,7 @@ function App() {
         <Grid container sx={{ my: 'auto' }}>
           <Grid item xs={12} minHeight={300}>
             <Routes>
-              {loaded && (
-                <Route path='/' element={<Main />} />
-              )}
+              <Route path='/' element={<Main />} />
               <Route path='/eom' element={<Eom />} />
             </Routes>
           </Grid>

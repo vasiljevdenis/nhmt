@@ -30,9 +30,7 @@ const Carousel = (props: SliderProps) => {
   const galleryRef = useRef(null);
   const slickRef = useRef(null);
 
-  const handleSlideChange = (index: number, initiator: string) => {
-    console.log(index);
-    
+  const handleSlideChange = (index: number, initiator: string) => {    
     if (initiator === 'gallery') {
       slickRef.current.slickGoTo(index);
     }
