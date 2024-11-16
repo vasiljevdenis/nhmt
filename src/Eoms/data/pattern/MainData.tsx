@@ -40,6 +40,7 @@ function insertLineBreak(text: string, wordNumber: number): ReactNode {
     );
 }
 
+{/* <br className='br-lg' /> */ }
 const MainData: Data = {
     title: () => { return (<>{theme}</>) },
     fgos: {
@@ -78,62 +79,32 @@ const MainData: Data = {
                             <TableRow
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Провод</TableCell>
-                                <TableCell align="left">Представляет собой электротехническое изделие, состоящее из одной или нескольких скрученных между собой проволок, без изоляции либо заизолированных</TableCell>
+                                <TableCell align="left" sx={{ color: "primary.main" }}></TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                             <TableRow
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Монтажный провод</TableCell>
-                                <TableCell align="left">Это одножильный изолированный кабель, который используется во внутренней проводке электронного и электрического оборудования</TableCell>
+                                <TableCell align="left" sx={{ color: "primary.main" }}></TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                             <TableRow
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Силовой провод</TableCell>
-                                <TableCell align="left">Провод для передачи электроэнергии токами промышленных частот</TableCell>
+                                <TableCell align="left" sx={{ color: "primary.main" }}></TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                             <TableRow
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Установочный провод</TableCell>
-                                <TableCell align="left">Провода, которые используются в электрических распределительных сетях низкого напряжения. Они производятся с резиновой и пластмассовой изоляцией</TableCell>
+                                <TableCell align="left" sx={{ color: "primary.main" }}></TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                             <TableRow
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Кабель</TableCell>
-                                <TableCell align="left">Электрический кабель представляет собой изделие из нескольких проводов, которые находятся под одной изоляционной оболочкой (из ПВХ, резины, пластмассы). Помимо этой оболочки может присутствовать дополнительная защита — бронированная оболочка из проволоки либо стальной ленты, которая обязательно указывается в маркировке</TableCell>
-                            </TableRow>
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Кабель силовой</TableCell>
-                                <TableCell align="left">Используется для передачи электроэнергии в силовых и осветительных электроприборах</TableCell>
-                            </TableRow>
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Кабель контрольный</TableCell>
-                                <TableCell align="left">Используется для работы электротехнических устройств, которые передают информационный сигнал для управления какими-либо устройствами</TableCell>
-                            </TableRow>
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Кабель управления</TableCell>
-                                <TableCell align="left">Представляет собой медный электропроводник с защитным экраном. Применяется в различных системах автоматики</TableCell>
-                            </TableRow>
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Кабель связи</TableCell>
-                                <TableCell align="left">Используется для передачи информации с помощью токов различных частот. Передача местных линий связи осуществляется низкочастотными проводниками, а дальних линий – высокочастотными</TableCell>
-                            </TableRow>
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="left" sx={{ color: "primary.main" }}>Радиочастотный кабель</TableCell>
-                                <TableCell align="left">Применяется в радиотехнических устройствах. Основное предназначение – передача видео- и радиосигналов</TableCell>
+                                <TableCell align="left" sx={{ color: "primary.main" }}></TableCell>
+                                <TableCell align="left"></TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
@@ -147,12 +118,7 @@ const MainData: Data = {
                 <Typography variant='h6' component="p" color={"primary.main"}>Рекомендации для преподавателя:</Typography>
                 <Typography variant='body1' component="div">
                     <ul>
-                        <li>организовать просмотр динамической инфографики и последующую беседу по уточнению и конкретизации первичных знаний;</li>
-                        <li>создать условия для освоения обучающимися знаний в форме интерактивной деятельности;</li>
-                        <li>формировать у обучающихся мотивацию к усвоению нового материала, образованию как основному инструменту достижения личного и профессионального успеха;</li>
-                        <li>познакомить обучающихся с информацией об организации ремонта кабельных линий;</li>
-                        <li>содействовать установлению в сознании обучающихся устойчивых связей между накопленным и новым опытом познавательной деятельности;</li>
-                        <li>фиксировать предложенные обучающимися гипотезы, курировать их обсуждение.</li>
+                        <li></li>
                     </ul>
                 </Typography>
                 <Typography variant='h6' component="p" color={"primary.main"}>{"Рекомендации для студента (самостоятельная работа):"}</Typography>
@@ -161,8 +127,7 @@ const MainData: Data = {
                     <p>Если в процессе изучения материала возникнут вопросы, запишите их для дальнейшего обсуждения с преподавателем и/или с группой обучающихся.</p>
                     <p>Обратите внимание на основные вопросы, подтверждающие взаимосвязь знаний и умений при изучении модуля:</p>
                     <ul>
-                        <li>Организация ремонта кабельных линий;</li>
-                        <li>Виды ремонтных работ.</li>
+                        <li></li>
                     </ul>
                     <p>При необходимости просмотрите материал еще раз.</p>
                     <p>Возвращайтесь к наиболее сложным аспектам темы.</p>
@@ -177,21 +142,14 @@ const MainData: Data = {
                 <Typography variant='h6' component="p" color={"primary.main"}>Рекомендации для преподавателя:</Typography>
                 <Typography variant='body1' component="div">
                     <ul>
-                        <li>организовать практическую, в т.ч. самостоятельную, деятельность обучающихся для отработки навыков решения определенных учебных заданий;</li>
-                        <li>обеспечить усвоение обучающимися знаний и способов действий на уровне применения их в разнообразных ситуациях;</li>
-                        <li>объяснить обучающимся порядок выполнения заданий;</li>
-                        <li>консультировать обучающихся по мере необходимости;</li>
-                        <li>обеспечить в ходе выполнения тренировочных заданий повышение уровня осмысления изученного материала, глубины его понимания;</li>
-                        <li>обеспечить усвоение основ организации ремонта кабельных линий;</li>
-                        <li>выявить недостатки в знаниях и способах действий обучающихся, установить причины выявленных недостатков;</li>
-                        <li>способствовать развитию умения правильно составлять план и пользоваться им, сопоставлять факты и события, сравнивать, анализировать, систематизировать материал и формулировать выводы, находить нужную информацию и использовать ее на практике.</li>
+                        <li></li>
                     </ul>
                 </Typography>
                 <Typography variant='h6' component="p" color={"primary.main"}>{"Рекомендации для студента (самостоятельная работа):"}</Typography>
                 <Typography variant='body1' component="div">
                     <p>Запустите виртуальный тренажер по теме «{theme}».</p>
                     <p>В ходе практической работы выполните тренировочные задания, которые помогут освоить новый материал.</p>
-                    <p>В процессе интерактивного взаимодействия с тренажером познакомьтесь с информацией об организации ремонта кабельных линий.</p>
+                    <p></p>
                     <p>Выполните тренировочные задания на проверку первичного освоения материала.</p>
                     <p>При выполнении заданий обратите внимание на рекомендации преподавателя.</p>
                     <p>При возникновении ошибок возвращайтесь к повторному изучению теоретического материала.</p>
@@ -225,7 +183,6 @@ const MainData: Data = {
                         <li>интерактивное задание с выбором одного правильного ответа;</li>
                         <li>интерактивное задание с выбором нескольких правильных ответов;</li>
                         <li>интерактивное задание с вводом строки;</li>
-                        <li>интерактивное задание на установление соответствия.</li>
                         <li>интерактивное задание на установление верной последовательности.</li>
                     </ul>
                     <p>Осуществите самопроверку и предварительную оценку.</p>

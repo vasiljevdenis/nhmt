@@ -72,7 +72,7 @@ const Carousel = (props: SliderProps) => {
           <Box key={'slider-item' + i} sx={{ position: 'relative' }}>
             <img
               src={`${item.src}`}
-              alt={'Slider item ' + i}
+              alt={item.alt}
               style={{ width: '100%' }}
               loading={props.loading}
             />
