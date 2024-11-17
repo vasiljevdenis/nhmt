@@ -2,6 +2,9 @@ import { Box, Typography } from '@mui/material';
 import { shuffleArray } from '../../../helpers/shuffleArray';
 import { Answer, Test } from '../../../types/gameTypes';
 import img1 from '@images/game1.webp';
+import img2 from '@images/game2.webp';
+import img3 from '@images/game3.webp';
+import img4 from '@images/game4.webp';
 
 const getTaskLabel = (type: string) => {
   let label = '';
@@ -26,23 +29,30 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'Медной и алюминиевой жилой',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'Бронированной',
+        isCorrect: false
+      },
+      {
+        value: 'Силовые и контрольные',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'Гибкие',
+        isCorrect: false
+      },
+      {
+        value: 'Кабель с бумажной изоляцией',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-          <Box><img src={img1} alt="Лампа" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Кабели по назначению делятся на …</Typography>
         </>
       )
     }
@@ -51,22 +61,26 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'круглую',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'прямоугольную',
+        isCorrect: false
+      },
+      {
+        value: 'треугольную',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'квадратную',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какую форму имеют бирки низковольтных кабелей?</Typography>
         </>
       )
     }
@@ -75,22 +89,22 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'для подвода электроэнергии к жилому дому',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'для подвода воды к жилому дому',
+        isCorrect: false
+      },
+      {
+        value: 'для передачи и распределения электрической энергии',
         isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Силовой кабель служит …</Typography>
         </>
       )
     }
@@ -99,22 +113,30 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
+        value: 'Сечение основной токопроводящей жилы в мм²',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'Сечение нулевой жилы',
+        isCorrect: false
+      },
+      {
+        value: 'Количество жил в кабеле, включая нулевую жилу',
+        isCorrect: false
+      },
+      {
+        value: 'Количество основных токопроводящих жил',
+        isCorrect: false
+      },
+      {
+        value: 'Количество проволок в основной токопроводящей жиле',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>В маркировке кабелей второе число обозначает:</Typography>
         </>
       )
     }
@@ -123,102 +145,30 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'АСБ – алюминиевые со свинцовой оболочкой, бронированные плоскими проволоками',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'ААБ – алюминиевые с алюминиевой оболочкой, бронированные стальной лентой',
+        isCorrect: false
+      },
+      {
+        value: 'СБ – медный со свинцовой оболочкой, бронированный',
+        isCorrect: false
+      },
+      {
+        value: 'СП – медный со свинцовой оболочкой, бронированный плоскими проволоками',
+        isCorrect: false
+      },
+      {
+        value: 'СК – медный со свинцовой оболочкой, бронированный круглыми проволоками',
         isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-        </>
-      )
-    }
-  },
-  {
-    type: 'input',
-    answers: [
-      {
-        value: ['', '']
-      }
-
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>          
-        </>
-      )
-    }
-  },
-  {
-    type: 'input',
-    answers: [
-      {
-        value: ['', '']
-      }
-
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-        </>
-      )
-    }
-  },
-  {
-    type: 'input',
-    answers: [
-      {
-        value: ['', '']
-      }
-
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-        </>
-      )
-    }
-  },
-  {
-    type: 'input',
-    answers: [
-      {
-        value: ['', '']
-      }
-
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-        </>
-      )
-    }
-  },
-  {
-    type: 'input',
-    answers: [
-      {
-        value: ['', '']
-      }
-
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>В расшифровке, какой марки силового кабеля допущена ошибка?</Typography>
         </>
       )
     }
@@ -227,26 +177,78 @@ const GameData: Test[] = [
     type: 'multiple',
     answers: [
       {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
+        value: 'установочные',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'силовые',
+        isCorrect: false
+      },
+      {
+        value: 'монтажные',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'контрольные',
         isCorrect: false
+      },
+      {
+        value: 'обмоточные',
+        isCorrect: true
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие бывают классы проводов?</Typography>          
+        </>
+      )
+    }
+  },
+  {
+    type: 'input',
+    answers: [
+      {
+        value: ['пв']
+      }
+
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Как пишется буквенное обозначение провода с поливинилхлоридной изоляцией?</Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'input',
+    answers: [
+      {
+        value: ['схем']
+      }
+
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Пакетный выключатель (ПВ) служит для включения и отключения …?</Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'input',
+    answers: [
+      {
+        value: ['кабель']
+      }
+
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>… – изолированный проводник, который служит для передачи электрического тока в земле, воде и воздухе. </Typography>
         </>
       )
     }
@@ -255,26 +257,90 @@ const GameData: Test[] = [
     type: 'multiple',
     answers: [
       {
-        value: '',
+        value: 'нахлест',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'пайка',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'опрессовка',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'угловая накладка',
         isCorrect: false
+      },
+      {
+        value: 'сварка',
+        isCorrect: true
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие способы соединения кабеля существуют?</Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'matchImages',
+    answers: [
+      {
+        value: 'АВВГ',
+        image: img1
+      },
+      {
+        value: 'АППВ',
+        image: img2
+      },
+      {
+        value: 'ПРКС',
+        image: img3
+      },
+      {
+        value: 'АСБ',
+        image: img4
+      }
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Соотнесите изображения кабелей с их буквенным обозначением.</Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'multiple',
+    answers: [
+      {
+        value: 'провода',
+        isCorrect: false
+      },
+      {
+        value: 'льняные нити',
+        isCorrect: true
+      },
+      {
+        value: 'металлические лотки',
+        isCorrect: true
+      },
+      {
+        value: 'кабели',
+        isCorrect: false
+      },
+      {
+        value: 'кабель-каналы',
+        isCorrect: true
+      }
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие электромонтажные материалы используются при ремонте электроустановок?</Typography>
         </>
       )
     }
@@ -283,15 +349,15 @@ const GameData: Test[] = [
     type: 'multipleInput',
     answers: [
       {
-        pattern: '',
-        value: ['', '']
+        pattern: 'Кабель в отличии от провода кроме изоляции имеет {} и {} оболочку.',
+        value: ['герметичную', 'защитную']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вставить пропущенные слова:</Typography>
         </>
       )
     }
@@ -300,15 +366,15 @@ const GameData: Test[] = [
     type: 'multipleInput',
     answers: [
       {
-        pattern: '',
-        value: ['', '']
+        pattern: 'Трансформатор тока применяется для {} напряжения в сетях напряжением свыше {}В.',
+        value: ['измерения', '1000']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вставить пропущенные слова:</Typography>
         </>
       )
     }
@@ -318,33 +384,33 @@ const GameData: Test[] = [
     answers: [
       {
         order: 1,
-        title: ''
+        title: 'визуальный осмотр'
       },
       {
         order: 2,
-        title: ''
+        title: 'очистка'
       },
       {
         order: 3,
-        title: ''
+        title: 'выправление кабелей'
       },
       {
         order: 4,
-        title: ''
+        title: 'восстановление при необходимости маркировки'
       },
       {
         order: 5,
-        title: ''
+        title: 'определение и измерение температуры нагрева кабеля'
       },
       {
         order: 6,
-        title: ''
+        title: 'ремонт каналов'
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Установить правильную последовательность при ремонте кабельных линий:</Typography>
         </>
       )
     }

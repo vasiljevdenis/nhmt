@@ -16,8 +16,8 @@ export interface MultipleInput {
 }
 export interface MatchImages {
   uid?: string;
-  order: number;
-  title: string;
+  value: string;
+  image: string;
 }
 export interface Order {
   uid?: string;

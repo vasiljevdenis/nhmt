@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { shuffleArray } from '../../../helpers/shuffleArray';
 import { Answer, Test } from '../../../types/trainingTypes';
-import img1 from '@images/training1.webp';
+import img4 from '@images/training4.webp';
 
 const getTaskLabel = (type: string) => {
   let label = '';
@@ -26,23 +26,30 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
+        value: 'Сечение основной токопроводящей жилы в мм2',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'Количество основных токопроводящих жил',
+        isCorrect: false
+      },
+      {
+        value: 'Количество жил в кабеле',
+        isCorrect: true
+      },
+      {
+        value: 'Сечение путевой жили',
+        isCorrect: false
+      },
+      {
+        value: 'Количество проволок в основной токопроводящей жиле',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-          <Box><img src={img1} alt="ДРЛ" style={{ width: '100%', maxWidth: 300 }} /></Box>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>В маркировке кабеля первое число обозначает?</Typography>          
         </>
       )
     }
@@ -51,14 +58,14 @@ const TrainingData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['', '']
+        value: ['треугольная', 'треугольную']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какую форму имеют бирки контрольных кабелей?</Typography>
         </>
       )
     }
@@ -67,22 +74,26 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
+        value: 'обеспечивания необходимой электрической прочности жил',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'для защиты внешних цепей от электромагнитных полей',
+        isCorrect: false
+      },
+      {
+        value: 'для предохранения внутренних элементов кабеля от разрушения',
+        isCorrect: true
+      },
+      {
+        value: 'устранения свободных промежутков между элементами кабеля',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Оболочка кабеля предназначена для?</Typography>
         </>
       )
     }
@@ -91,22 +102,27 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
+        value: 'заполнитель',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'поясная изоляция',
+        isCorrect: false
+      },
+      {
+        value: 'оболочка',
+        isCorrect: true
+      },
+      {
+        value: 'броня',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Что обозначено под цифрой 5 на рисунке?</Typography>
+          <Box><img src={img4} alt="ДРЛ" style={{ width: '100%', maxWidth: 400 }} /></Box>
         </>
       )
     }
@@ -115,14 +131,46 @@ const TrainingData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['', '']
+        value: ['круглая', 'круглую']
       }
 
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какую форму имеют бирки высоковольтных кабелей? </Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'multiple',
+    answers: [
+      {
+        value: 'установочные',
+        isCorrect: true
+      },
+      {
+        value: 'силовые',
+        isCorrect: false
+      },
+      {
+        value: 'монтажные',
+        isCorrect: true
+      },
+      {
+        value: 'контрольные',
+        isCorrect: false
+      },
+      {
+        value: 'обмоточные',
+        isCorrect: true
+      }
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие бывают классы проводов?</Typography>
         </>
       )
     }
@@ -131,22 +179,26 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
+        value: 'в скрутку',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'угловая накладка',
+        isCorrect: false
+      },
+      {
+        value: 'в стык',
+        isCorrect: true
+      },
+      {
+        value: 'в нахлест',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Вид соединения проводов, который применяется при недостаточной длине провода и в труднодоступных местах?</Typography>
         </>
       )
     }
@@ -155,22 +207,22 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'имеют большее электрическое сопротивление',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'имеют равное электрическое сопротивление',
         isCorrect: false
       },
       {
-        value: '',
+        value: 'имеют меньшее электрическое сопротивление',
         isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Чем отличаются диэлектрики от проводников?</Typography>
         </>
       )
     }
@@ -179,70 +231,50 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: '',
+        value: 'для защиты изоляции электрических станций, подстанций и линий электрических передач от коммутационных и атмосферных напряжений',
+        isCorrect: false
+      },
+      {
+        value: 'для понижения напряжения до величины 100В',
+        isCorrect: false
+      },
+      {
+        value: 'служит для защиты цепи от тока короткого замыкания и увеличенных больших перегрузок',
         isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Для чего служит предохранитель?</Typography>
         </>
       )
     }
   },
   {
-    type: 'single',
+    type: 'multiple',
     answers: [
       {
-        value: '',
+        value: 'уголь',
+        isCorrect: false
+      },
+      {
+        value: 'свинец',
         isCorrect: true
       },
       {
-        value: '',
+        value: 'фарфор',
         isCorrect: false
       },
       {
-        value: '',
-        isCorrect: false
+        value: 'медь',
+        isCorrect: true
       }
     ],
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
-        </>
-      )
-    }
-  },
-  {
-    type: 'single',
-    answers: [
-      {
-        value: '',
-        isCorrect: true
-      },
-      {
-        value: '',
-        isCorrect: false
-      },
-      {
-        value: '',
-        isCorrect: false
-      }
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom></Typography>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие материалы не относятся к диэлектрическим?</Typography>
         </>
       )
     }

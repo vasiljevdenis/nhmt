@@ -28,13 +28,13 @@ const InfographicsData: Slide[] = [
     imageContent: [
       {
         src: img11Content,
-        alt: '',
-        description: ''
+        alt: 'Кабельные линии',
+        description: 'Кабельные линии'
       },
       {
         src: img12Content,
-        alt: '',
-        description: ''
+        alt: 'План-график',
+        description: 'План-график'
       }
     ],
     content: () => {
@@ -58,13 +58,13 @@ const InfographicsData: Slide[] = [
     imageContent: [
       {
         src: img21Content,
-        alt: '',
-        description: ''
+        alt: 'Монтаж кабельных муфт',
+        description: 'Монтаж кабельных муфт'
       },
       {
         src: img22Content,
-        alt: '',
-        description: ''
+        alt: 'Монтаж кабельных муфт',
+        description: 'Монтаж кабельных муфт'
       }
     ],
     content: () => {
@@ -84,13 +84,13 @@ const InfographicsData: Slide[] = [
     imageContent: [
       {
         src: img31Content,
-        alt: '',
-        description: ''
+        alt: 'Монтаж соединительных муфт',
+        description: 'Монтаж соединительных муфт'
       },
       {
         src: img32Content,
-        alt: '',
-        description: ''
+        alt: 'Приказ Минэнерго России от 25 октября 2017 г. № 1013',
+        description: 'Приказ Минэнерго России от 25 октября 2017 г. № 1013'
       }
     ],
     content: () => {
@@ -109,13 +109,13 @@ const InfographicsData: Slide[] = [
     imageContent: [
       {
         src: img41Content,
-        alt: '',
-        description: ''
+        alt: 'Текущий ремонт',
+        description: 'Текущий ремонт'
       },
       {
         src: img42Content,
-        alt: '',
-        description: ''
+        alt: 'Капитальный ремонт',
+        description: 'Капитальный ремонт'
       }
     ],
     content: () => {
@@ -137,13 +137,13 @@ const InfographicsData: Slide[] = [
     imageContent: [
       {
         src: img51Content,
-        alt: '',
-        description: ''
+        alt: 'Подготовка зоны работ',
+        description: 'Подготовка зоны работ'
       },
       {
         src: img52Content,
-        alt: '',
-        description: ''
+        alt: 'Основной этап',
+        description: 'Основной этап'
       }
     ],
     content: () => {
@@ -167,13 +167,13 @@ const InfographicsData: Slide[] = [
     imageContent: [
       {
         src: img61Content,
-        alt: '',
-        description: ''
+        alt: 'Ремонт в зимних условиях',
+        description: 'Ремонт в зимних условиях'
       },
       {
         src: img62Content,
-        alt: '',
-        description: ''
+        alt: 'Кабельные вводы',
+        description: 'Кабельные вводы'
       }
     ],
     content: () => {

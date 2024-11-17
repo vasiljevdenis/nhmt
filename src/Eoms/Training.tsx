@@ -14,6 +14,7 @@ import Single from './Training/Single';
 import Input from './Training/Input';
 import { Test } from '../types/trainingTypes';
 import PieChartWithCenterLabelTraining from '../components/PieChartWithCenterLabelTraining';
+import Multiple from './Training/Multiple';
 
 const Training = observer(() => {
 
@@ -172,7 +173,6 @@ const Training = observer(() => {
         mx: 'auto'
       }}>
         {TrainingData.map((el: Test) => {
-          const level = 1;
           const maxScore = 10;
           return (
             <React.Fragment key={'item' + el.id}>
@@ -272,7 +272,6 @@ const Training = observer(() => {
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600', position: 'relative' }}>
           <p style={{ textAlign: 'center' }}><span>{TrainingData[store.getCurrentSlide].title}</span></p>
-          <p style={{ textAlign: 'center', fontSize: 14 }}>{TrainingData[store.getCurrentSlide].id < 5 ? '1' : TrainingData[store.getCurrentSlide].id > 9 ? '3' : '2'} уровень сложности ({TrainingData[store.getCurrentSlide].score} баллов)</p>
           <p style={{ textAlign: 'center' }}><span style={{
             backgroundColor: theme.palette.primary.main,
             color: 'white',
@@ -300,7 +299,9 @@ const Training = observer(() => {
                     {TrainingData[store.getCurrentSlide].answers?.map((item: any, i: number) => {
                       return (
                         <React.Fragment key={'checkbox' + i}>
-                          {TrainingData[store.getCurrentSlide].type === "single" ? (
+                          {TrainingData[store.getCurrentSlide].type === "multiple" ? (
+                            <Multiple item={item} />
+                          ) : TrainingData[store.getCurrentSlide].type === "single" ? (
                             <Single item={item} />
                           ) : TrainingData[store.getCurrentSlide].type === "input" ? (
                             <Input item={item} />
