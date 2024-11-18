@@ -26,6 +26,38 @@ const getTaskLabel = (type: string) => {
 
 const GameData: Test[] = [
   {
+    type: 'matchImages',
+    answers: [
+      {
+        items: [
+          {
+            value: 'АВВГ',
+            image: img1
+          },
+          {
+            value: 'АППВ',
+            image: img2
+          },
+          {
+            value: 'ПРКС',
+            image: img3
+          },
+          {
+            value: 'АСБ',
+            image: img4
+          }
+        ]
+      }
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Соотнесите изображения кабелей с их буквенным обозначением.</Typography>
+        </>
+      )
+    }
+  },
+  {
     type: 'single',
     answers: [
       {
@@ -200,7 +232,7 @@ const GameData: Test[] = [
     content: () => {
       return (
         <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие бывают классы проводов?</Typography>          
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие бывают классы проводов?</Typography>
         </>
       )
     }
@@ -281,34 +313,6 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие способы соединения кабеля существуют?</Typography>
-        </>
-      )
-    }
-  },
-  {
-    type: 'matchImages',
-    answers: [
-      {
-        value: 'АВВГ',
-        image: img1
-      },
-      {
-        value: 'АППВ',
-        image: img2
-      },
-      {
-        value: 'ПРКС',
-        image: img3
-      },
-      {
-        value: 'АСБ',
-        image: img4
-      }
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Соотнесите изображения кабелей с их буквенным обозначением.</Typography>
         </>
       )
     }
@@ -430,7 +434,7 @@ GameData.forEach((item, index) => {
   const answers = item.answers;
   const answersWithUid: Answer = [];
   answers.forEach(el => {
-    answersWithUid.push({...el, uid: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`});
+    answersWithUid.push({ ...el, uid: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}` });
   });
   item.answers = answersWithUid;
   if (item.type === "single" || item.type === "multiple" || item.type === "order") {

@@ -14,10 +14,13 @@ export interface MultipleInput {
   pattern: string;
   value: string[];
 }
-export interface MatchImages {
-  uid?: string;
+export interface MatchImagesItem {
   value: string;
   image: string;
+}
+export interface MatchImages {
+  uid?: string;
+  items: MatchImagesItem[];
 }
 export interface Order {
   uid?: string;

@@ -47,7 +47,7 @@ cwebp -version
 
 ## Конвертация изображений в webp
 ```powershell
-Get-ChildItem -File | Where-Object { $_.Extension -match '\.(webp|jpg|jpeg|JPG|PNG|png)$' } | ForEach-Object { cwebp -q 90 $_.FullName -o "$($_.DirectoryName)\$($_.BaseName).webp" }
+Get-ChildItem -File | Where-Object { $_.Extension -match '\.(webp|jpg|jpeg|JPG|PNG|png|GIF|gif)$' } | ForEach-Object { cwebp -q 90 $_.FullName -o "$($_.DirectoryName)\$($_.BaseName).webp" }
 ```
 
 # React + TypeScript + Vite

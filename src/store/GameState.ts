@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import GameData from "@data/GameData";
-import { TaskType } from "../types/gameTypes";
+import { MatchImagesItem, TaskType } from "../types/gameTypes";
 
 interface Answer {
   type: TaskType;
@@ -13,6 +13,7 @@ interface Answer {
   multipleInputValue?: string[];
   order?: number;
   selectedNumber?: number | null;
+  items?: MatchImagesItem[];
 }
 
 interface Scored {
@@ -50,7 +51,7 @@ const initialAnswers: Answer[] = GameData.filter(el => el.answers).map(el => {
   }
 }).flat() as Answer[];
 
-const initialScored: Scored[] = GameData.map((el: any) => ({ slideId: el.id, scored: 0, ready: false, answered: false }));
+const initialScored: Scored[] = GameData.map((el: any) => ({ slideId: el.id, scored: 0, ready: el.type === "matchImages" ? true : false, answered: false }));
 
 class GameState {
 
@@ -71,15 +72,15 @@ class GameState {
     // Найдём все элементы с типом "order" и указанным slideId
     const orderAnswers = this.answers
       .filter(answer => answer.type === 'order' && answer.slideId === slideId);
-  
+
     // Определим максимальный порядковый номер среди выбранных элементов
     const maxSelectedNumber = Math.max(
-      0, 
+      0,
       ...orderAnswers
         .filter(answer => answer.selected && answer.selectedNumber !== null)
         .map(answer => answer.selectedNumber as number)
     );
-  
+
     const answer = orderAnswers.find(answer => answer.uid === uid);
     if (answer) {
       if (answer.selected) {
@@ -88,21 +89,21 @@ class GameState {
       } else {
         // Если элемент только что был снят, его номер сбрасывается в null
         answer.selectedNumber = null;
-  
+
         // Обновим номера остальных выбранных элементов, чтобы они оставались последовательными
         let currentNumber = 1;
         orderAnswers
           .filter(answer => answer.selected)
           .sort((a, b) => (a.selectedNumber ?? 0) - (b.selectedNumber ?? 0))
           .forEach(answer => {
-            answer.selectedNumber = currentNumber++;            
-          });          
+            answer.selectedNumber = currentNumber++;
+          });
       }
     }
   }
 
-  setSelectedAnswer(uid: string, value?: string | string[]) {    
-    const answer = this.answers.find(answer => answer.uid === uid);    
+  setSelectedAnswer(uid: string, value?: string | string[]) {
+    const answer = this.answers.find(answer => answer.uid === uid);
     if (answer) {
       switch (answer.type) {
         case 'single':
@@ -165,6 +166,8 @@ class GameState {
         return answers[0].inputValue.length > 0;
       case 'multipleInput':
         return answers[0].multipleInputValue.every(item => item !== "");
+      case 'matchImages':
+        return true;
       case 'order':
         return answers.every(item => item.selectedNumber != null);
       default:
@@ -181,21 +184,20 @@ class GameState {
   }
 
   checkTotalScore() {
-    const levelsScore = [10, 20, 30];
     // Перебираем каждый слайд в scored
     this.scored.forEach((slide, index) => {
       const slideAnswers = this.answers.filter(answer => answer.slideId === slide.slideId);
       let slideScore = 0;
-  
+
       if (slideAnswers.length > 0) {
         const slideType = slideAnswers[0].type;
-  
+
         switch (slideType) {
           case 'single':
             // Для single - один правильный ответ даёт 100% баллов
             slideScore = slideAnswers.some(answer => answer.selected && answer.isCorrect) ? 1 : 0;
             break;
-  
+
           case 'multiple':
             // Для multiple - проверка полного или частичного выполнения
             const correctAnswers = slideAnswers.filter(answer => answer.isCorrect).length;
@@ -203,7 +205,7 @@ class GameState {
               answer => answer.selected && answer.isCorrect
             ).length;
             const incorrectSelections = slideAnswers.some(answer => answer.selected && !answer.isCorrect);
-            
+
             // Полное совпадение (100%) или частичное (50%), если выбрано не все, но не больше 50%
             if (selectedCorrectAnswers === correctAnswers && !incorrectSelections) {
               slideScore = 1;
@@ -211,12 +213,12 @@ class GameState {
               slideScore = 0.5;
             }
             break;
-  
+
           case 'input':
             // Для input - проверка на полное совпадение
             slideScore = slideAnswers[0].value.includes(slideAnswers[0].inputValue) ? 1 : 0;
             break;
-  
+
           case 'multipleInput':
             // Для multipleInput - частичный или полный балл
             const totalInputFields = slideAnswers[0].multipleInputValue.length;
@@ -225,7 +227,27 @@ class GameState {
             ).length;
             slideScore = correctInputs === totalInputFields ? 1 : correctInputs > 0 ? 0.5 : 0;
             break;
-  
+
+          case 'matchImages':
+            const userItems = slideAnswers[0].items; // Пользовательские данные
+            const gameDataItems = GameData.find(data => data.slideId === slide.slideId)?.items; // Данные игры
+
+            if (gameDataItems) {
+              const fullMatch = userItems.every((item, index) => item === gameDataItems[index]);
+              const partialMatch = userItems.some((item, index) => item === gameDataItems[index]);
+
+              if (fullMatch) {
+                slideScore = 1;
+              } else if (partialMatch) {
+                slideScore = 0.5;
+              } else {
+                slideScore = 0;
+              }
+            } else {
+              slideScore = 0;
+            }
+            break;
+
           case 'order':
             // Для order - полное или частичное совпадение
             const correctOrderItems = slideAnswers.filter(
@@ -233,12 +255,12 @@ class GameState {
             ).length;
             slideScore = correctOrderItems === slideAnswers.length ? 1 : correctOrderItems > 0 ? 0.5 : 0;
             break;
-  
+
           default:
             console.log('Unknown slide type');
         }
       }
-  
+
       // Сохраняем результат по слайду в scored и обновляем общий счёт по уровням
       if (index < 5) {
         slide.scored = slideScore * 10;
@@ -248,7 +270,7 @@ class GameState {
         slide.scored = slideScore * 30;
       }
     });
-  }  
+  }
 
   getSlideScore(slideId: number) {
     const score = this.scored.find(el => el.slideId === slideId);

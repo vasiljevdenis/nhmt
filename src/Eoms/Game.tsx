@@ -17,6 +17,7 @@ import Order from './Game/Order';
 import MultipleInput from './Game/MultipleInput';
 import { Test } from '../types/gameTypes';
 import PieChartWithCenterLabel from '../components/PieChartWithCenterLabel';
+import MatchImages from './Game/MatchImages';
 
 const Game = observer(() => {
 
@@ -325,7 +326,7 @@ const Game = observer(() => {
                           ) : GameData[store.getCurrentSlide].type === "multipleInput" ? (
                             <MultipleInput item={item} />
                           ) : GameData[store.getCurrentSlide].type === "matchImages" ? (
-                            <></>
+                            <MatchImages item={item} />
                           ) : (
                             <Order item={item} />
                           )}
