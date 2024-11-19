@@ -26,58 +26,26 @@ const getTaskLabel = (type: string) => {
 
 const GameData: Test[] = [
   {
-    type: 'matchImages',
-    answers: [
-      {
-        items: [
-          {
-            value: 'АВВГ',
-            image: img1
-          },
-          {
-            value: 'АППВ',
-            image: img2
-          },
-          {
-            value: 'ПРКС',
-            image: img3
-          },
-          {
-            value: 'АСБ',
-            image: img4
-          }
-        ]
-      }
-    ],
-    content: () => {
-      return (
-        <>
-          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Соотнесите изображения кабелей с их буквенным обозначением.</Typography>
-        </>
-      )
-    }
-  },
-  {
     type: 'single',
     answers: [
       {
-        value: 'Медной и алюминиевой жилой',
+        value: 'медной и алюминиевой жилой',
         isCorrect: false
       },
       {
-        value: 'Бронированной',
+        value: 'бронированной',
         isCorrect: false
       },
       {
-        value: 'Силовые и контрольные',
+        value: 'силовые и контрольные',
         isCorrect: true
       },
       {
-        value: 'Гибкие',
+        value: 'гибкие',
         isCorrect: false
       },
       {
-        value: 'Кабель с бумажной изоляцией',
+        value: 'кабель с бумажной изоляцией',
         isCorrect: false
       }
     ],
@@ -145,23 +113,23 @@ const GameData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'Сечение основной токопроводящей жилы в мм²',
+        value: 'сечение основной токопроводящей жилы в мм²',
         isCorrect: true
       },
       {
-        value: 'Сечение нулевой жилы',
+        value: 'сечение нулевой жилы',
         isCorrect: false
       },
       {
-        value: 'Количество жил в кабеле, включая нулевую жилу',
+        value: 'количество жил в кабеле, включая нулевую жилу',
         isCorrect: false
       },
       {
-        value: 'Количество основных токопроводящих жил',
+        value: 'количество основных токопроводящих жил',
         isCorrect: false
       },
       {
-        value: 'Количество проволок в основной токопроводящей жиле',
+        value: 'количество проволок в основной токопроводящей жиле',
         isCorrect: false
       }
     ],
@@ -257,7 +225,7 @@ const GameData: Test[] = [
     type: 'input',
     answers: [
       {
-        value: ['схем']
+        value: ['схем', 'схемы']
       }
 
     ],
@@ -313,6 +281,38 @@ const GameData: Test[] = [
       return (
         <>
           <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Какие способы соединения кабеля существуют?</Typography>
+        </>
+      )
+    }
+  },
+  {
+    type: 'matchImages',
+    answers: [
+      {
+        items: [
+          {
+            value: 'АВВГ',
+            image: img1
+          },
+          {
+            value: 'АППВ',
+            image: img2
+          },
+          {
+            value: 'ПРКС',
+            image: img3
+          },
+          {
+            value: 'АСБ',
+            image: img4
+          }
+        ]
+      }
+    ],
+    content: () => {
+      return (
+        <>
+          <Typography variant='h6' component="p" fontWeight={700} gutterBottom>Соотнесите изображения кабелей с их буквенным обозначением.</Typography>
         </>
       )
     }

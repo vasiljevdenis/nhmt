@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
 import { Box, Grid, Paper } from "@mui/material";
@@ -6,6 +6,9 @@ import { StrictModeDroppable } from "../../components/StrictModeDroppable";
 import { MatchImagesItem, MatchImages as MatchImagesTask } from "../../types/gameTypes";
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { shuffleArray } from "../../helpers/shuffleArray";
+import GameState from "../../store/GameState";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 interface MatchImagesProps {
   item: MatchImagesTask;
@@ -20,10 +23,14 @@ const reorder = (list: MatchImagesItem[], startIndex: number, endIndex: number) 
 };
 
 const MatchImages = observer(({ item }: MatchImagesProps) => {
+
+  const [store] = useState(GameState);
+  const [, updateState] = useState({});
+  const forceUpdate = useCallback(() => updateState({}), []);
   const [leftItems, setLeftItems] = useState(shuffleArray(item.items));
 
   // Обработчик завершения перетаскивания
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: any, uid: string) => {
     const { source, destination } = result;
 
     // Если элемент сброшен вне списка
@@ -32,14 +39,30 @@ const MatchImages = observer(({ item }: MatchImagesProps) => {
     // Перетаскивание только внутри левого столбца
     if (source.droppableId === "left" && destination.droppableId === "left") {
       const reordered = reorder(leftItems, source.index, destination.index);
-      setLeftItems(reordered);
-      console.log(leftItems);
-
+      store.setSelectedAnswer(uid, reordered);
+      setLeftItems(reordered);      
     }
   };
 
+  const checkEqual = (index: number) => {
+    const answer = store.getAnswers.find(el => { return el.slideId === store.getCurrentSlide && el.uid === item.uid });    
+    const arr1 = answer.items[index];
+    const arr2 = answer.selectedItems[index];
+
+    const areEqual = JSON.stringify(arr1) === JSON.stringify(arr2);
+    return areEqual;
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      forceUpdate();
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={(res) => onDragEnd(res, item.uid)}>
       <Grid container spacing={4}>
         {/* Левый столбец */}
         <Grid item xs={6}>
@@ -57,7 +80,7 @@ const MatchImages = observer(({ item }: MatchImagesProps) => {
                 }}
               >
                 {leftItems.map((el, index) => (
-                  <Draggable key={el.value} draggableId={el.value} index={index}>
+                  <Draggable key={el.value} draggableId={el.value} index={index} isDragDisabled={store.getScored[store.getCurrentSlide].answered}>
                     {(provided, snapshot) => (
                       <Paper
                         ref={provided.innerRef}
@@ -83,6 +106,21 @@ const MatchImages = observer(({ item }: MatchImagesProps) => {
                           top: 'calc(50% - 10px)',
                           left: '10px'
                         }} />
+                            {checkEqual(index) ? (
+                              <CheckCircleIcon color="success" sx={{
+                                position: 'absolute',
+                                top: 'calc(50% - 10px)',
+                                right: '10px',
+                                display: store.getScored[store.getCurrentSlide].answered ? 'inline-block' : 'none'
+                              }} />
+                            ) : (
+                              <CancelIcon color="error" sx={{
+                                position: 'absolute',
+                                top: 'calc(50% - 10px)',
+                                right: '10px',
+                                display: store.getScored[store.getCurrentSlide].answered ? 'inline-block' : 'none'
+                              }} />
+                            )}
                       </Paper>
                     )}
                   </Draggable>

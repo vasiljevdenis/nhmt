@@ -14,6 +14,7 @@ interface Answer {
   order?: number;
   selectedNumber?: number | null;
   items?: MatchImagesItem[];
+  selectedItems?: MatchImagesItem[];
 }
 
 interface Scored {
@@ -39,6 +40,9 @@ const initialAnswers: Answer[] = GameData.filter(el => el.answers).map(el => {
           break;
         case 'multipleInput':
           obj.multipleInputValue = new Array(elem.value.length).fill('');
+          break;
+        case 'matchImages':
+          obj.selectedItems = elem.items;
           break;
         case 'order':
           obj.selectedNumber = null;
@@ -102,7 +106,7 @@ class GameState {
     }
   }
 
-  setSelectedAnswer(uid: string, value?: string | string[]) {
+  setSelectedAnswer(uid: string, value?: string | string[] | MatchImagesItem[]) {
     const answer = this.answers.find(answer => answer.uid === uid);
     if (answer) {
       switch (answer.type) {
@@ -119,8 +123,12 @@ class GameState {
         case 'multipleInput':
           if (Array.isArray(value)) {
             answer.selected = value.every(v => v !== '');
-            answer.multipleInputValue = value;
+            answer.multipleInputValue = value as string[];
           }
+          break;
+        case 'matchImages':
+          answer.selected = true;
+          answer.selectedItems = value as MatchImagesItem[];
           break;
         case 'order':
           answer.selected = !answer.selected;
@@ -229,12 +237,12 @@ class GameState {
             break;
 
           case 'matchImages':
-            const userItems = slideAnswers[0].items; // Пользовательские данные
-            const gameDataItems = GameData.find(data => data.slideId === slide.slideId)?.items; // Данные игры
+            const userItems = slideAnswers[0].selectedItems; // Пользовательские данные
+            const gameDataItems = slideAnswers[0].items; // Данные игры
 
             if (gameDataItems) {
-              const fullMatch = userItems.every((item, index) => item === gameDataItems[index]);
-              const partialMatch = userItems.some((item, index) => item === gameDataItems[index]);
+              const fullMatch = userItems.every((item, index) => JSON.stringify(item) === JSON.stringify(gameDataItems[index]));
+              const partialMatch = userItems.some((item, index) => JSON.stringify(item) === JSON.stringify(gameDataItems[index]));
 
               if (fullMatch) {
                 slideScore = 1;

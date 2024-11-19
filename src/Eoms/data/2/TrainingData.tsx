@@ -26,7 +26,7 @@ const TrainingData: Test[] = [
     type: 'single',
     answers: [
       {
-        value: 'Сечение основной токопроводящей жилы в мм2',
+        value: 'Сечение основной токопроводящей жилы в мм²',
         isCorrect: false
       },
       {
