@@ -4,7 +4,7 @@ import TrainingState from "../../store/TrainingState";
 import { FormControl, InputAdornment, Input as InputField } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { Input as InputTask } from "../../types/gameTypes";
+import { Input as InputTask } from "../../types/trainingTypes";
 
 interface InputProps {
   item: InputTask;

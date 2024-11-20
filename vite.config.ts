@@ -10,7 +10,14 @@ export default defineConfig(({ mode }) => {
       react(),
     ],
     server: {
-      open: true,
+      open: true
+    },
+    optimizeDeps: {
+      include: [
+        '@emotion/react', 
+        '@emotion/styled', 
+        '@mui/material/Tooltip'
+      ],
     },
     resolve: {
       alias: {

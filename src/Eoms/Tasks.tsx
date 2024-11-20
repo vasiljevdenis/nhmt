@@ -1,6 +1,5 @@
-
 import { Box, Button, Card, Dialog, DialogActions, DialogContent, DialogTitle, FormGroup, Grid, IconButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
-import GameData from '@data/GameData';
+import TasksData from '@data/TasksData';
 import React, { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from 'mobx-react-lite';
@@ -8,19 +7,20 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import GameState from '../store/GameState';
+import TasksState from '../store/TasksState';
 import { useNavigate } from 'react-router-dom';
-import Multiple from './Game/Multiple';
-import Single from './Game/Single';
-import Input from './Game/Input';
-import Order from './Game/Order';
-import MultipleInput from './Game/MultipleInput';
-import { Test } from '../types/gameTypes';
-import PieChartWithCenterLabel from '../components/PieChartWithCenterLabel';
+import Multiple from './Tasks/Multiple';
+import Single from './Tasks/Single';
+import Input from './Tasks/Input';
+import Order from './Tasks/Order';
+import MultipleInput from './Tasks/MultipleInput';
+import { Test } from '../types/tasksTypes';
+import MatchImages from './Tasks/MatchImages';
+import PieChartWithCenterLabelTasks from '../components/PieChartWithCenterLabelTasks';
 
 const Tasks = observer(() => {
 
-  const [store] = useState(GameState);
+  const [store] = useState(TasksState);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -43,7 +43,7 @@ const Tasks = observer(() => {
     if (key === 'ArrowLeft') {
       if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (key === 'ArrowRight') {
-      if (store.getCurrentSlide < GameData.length - 1 && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide + 1);
+      if (store.getCurrentSlide < TasksData.length - 1 && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide + 1);
     }
   }, [store.getCurrentSlide])
 
@@ -107,10 +107,10 @@ const Tasks = observer(() => {
     }
   }
 
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  const minSwipeDistance = 75
+  const minSwipeDistance = 75;
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStart(e.targetTouches[0].clientX)
@@ -124,9 +124,17 @@ const Tasks = observer(() => {
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
     if (isRightSwipe) {
-      if (store.getCurrentSlide > 0 && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide - 1);
+      if (store.getCurrentSlide > 0) setSlide(store.getCurrentSlide - 1);
     } else if (isLeftSwipe) {
-      if (store.getCurrentSlide < GameData.length - 1) setSlide(store.getCurrentSlide + 1);
+      if (store.getCurrentSlide < TasksData.length - 1  && store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered) setSlide(store.getCurrentSlide + 1);
+    }
+  }
+
+  const onEnter = (e: any) => {
+    if (e.key === "Enter") {
+      if (store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready) {
+        store.setAnsweredSlide(store.getCurrentSlide);
+      }
     }
   }
 
@@ -139,7 +147,7 @@ const Tasks = observer(() => {
         position: 'relative',
         py: 1
       }}>
-        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Интерактивная мини-игра</Typography>
+        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Интерактивный тренажер по выполнению заданий</Typography>
         <Button variant="text" startIcon={<ArrowBackIosIcon />}
           sx={{
             textTransform: 'none',
@@ -164,7 +172,7 @@ const Tasks = observer(() => {
         },
         mx: 'auto'
       }}>
-        {GameData.map((el: Test) => {
+        {TasksData.map((el: Test) => {
           let level = 0;
           let maxScore = 0;
           if (el.id < 5) {
@@ -255,7 +263,7 @@ const Tasks = observer(() => {
             <Typography variant='body1' component="p" gutterBottom fontWeight={700}>Ваш результат</Typography>
           </Grid>
           <Grid item xs={12} p={2} textAlign={'center'} sx={{ display: 'flex' }}>
-            <PieChartWithCenterLabel />
+            <PieChartWithCenterLabelTasks />
           </Grid>
           <Grid item xs={12} md={4} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Потрачено времени</Typography>
@@ -263,7 +271,7 @@ const Tasks = observer(() => {
           </Grid>
           <Grid item xs={12} md={4} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Баллов набрано</Typography>
-            <Typography variant='body2' component="p" gutterBottom>{store.getTotalScore + '/' + GameData.reduce((sum, el) => sum + el.score, 0)}</Typography>
+            <Typography variant='body2' component="p" gutterBottom>{store.getTotalScore + '/' + TasksData.reduce((sum, el) => sum + el.score, 0)}</Typography>
           </Grid>
           <Grid item xs={12} md={4} p={2} textAlign={"center"}>
             <Typography variant='body1' component="p" gutterBottom color={"primary"}>Оценка</Typography>
@@ -279,14 +287,14 @@ const Tasks = observer(() => {
         onKeyDown={keyListener}
       >
         <DialogTitle id="responsive-dialog-title" sx={{ fontWeight: '600', position: 'relative' }}>
-          <p style={{ textAlign: 'center' }}><span>{GameData[store.getCurrentSlide].title}</span></p>
-          <p style={{ textAlign: 'center', fontSize: 14 }}>{GameData[store.getCurrentSlide].id < 5 ? '1' : GameData[store.getCurrentSlide].id > 9 ? '3' : '2'} уровень сложности ({GameData[store.getCurrentSlide].score} баллов)</p>
+          <p style={{ textAlign: 'center' }}><span>{TasksData[store.getCurrentSlide].title}</span></p>
+          <p style={{ textAlign: 'center', fontSize: 14 }}>{TasksData[store.getCurrentSlide].id < 5 ? '1' : TasksData[store.getCurrentSlide].id > 9 ? '3' : '2'} уровень сложности ({TasksData[store.getCurrentSlide].score} баллов)</p>
           <p style={{ textAlign: 'center' }}><span style={{
             backgroundColor: theme.palette.primary.main,
             color: 'white',
             padding: '0.5rem 2rem',
             borderRadius: '30px'
-          }}>{(store.getCurrentSlide + 1) + '/' + GameData.length}</span></p>
+          }}>{(store.getCurrentSlide + 1) + '/' + TasksData.length}</span></p>
           <p style={{ textAlign: 'center' }}>{formatTime(time)}</p>
           <CloseIcon sx={{
             position: 'absolute',
@@ -298,26 +306,26 @@ const Tasks = observer(() => {
             }
           }} onClick={handleClose} />
         </DialogTitle>
-        <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <DialogContent ref={refContent} sx={{ fontWeight: '600', position: 'relative', px: { xs: 0, sm: 3 } }} onKeyDown={onEnter} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           <Grid container>
             <Grid item xs={12} p={2}>
-              {GameData[store.getCurrentSlide].answers ? (
+              {TasksData[store.getCurrentSlide].answers ? (
                 <>
-                  {GameData[store.getCurrentSlide].content()}
+                  {TasksData[store.getCurrentSlide].content()}
                   <FormGroup>
-                    {GameData[store.getCurrentSlide].answers?.map((item: any, i: number) => {
+                    {TasksData[store.getCurrentSlide].answers?.map((item: any, i: number) => {
                       return (
                         <React.Fragment key={'checkbox' + i}>
-                          {GameData[store.getCurrentSlide].type === "multiple" ? (
+                          {TasksData[store.getCurrentSlide].type === "multiple" ? (
                             <Multiple item={item} />
-                          ) : GameData[store.getCurrentSlide].type === "single" ? (
+                          ) : TasksData[store.getCurrentSlide].type === "single" ? (
                             <Single item={item} />
-                          ) : GameData[store.getCurrentSlide].type === "input" ? (
+                          ) : TasksData[store.getCurrentSlide].type === "input" ? (
                             <Input item={item} />
-                          ) : GameData[store.getCurrentSlide].type === "multipleInput" ? (
+                          ) : TasksData[store.getCurrentSlide].type === "multipleInput" ? (
                             <MultipleInput item={item} />
-                          ) : GameData[store.getCurrentSlide].type === "matchImages" ? (
-                            <></>
+                          ) : TasksData[store.getCurrentSlide].type === "matchImages" ? (
+                            <MatchImages item={item} />
                           ) : (
                             <Order item={item} />
                           )}
@@ -328,11 +336,11 @@ const Tasks = observer(() => {
                 </>
               ) : (
                 <>
-                  {GameData[store.getCurrentSlide].content()}
+                  {TasksData[store.getCurrentSlide].content()}
                 </>
               )}
-              {GameData[store.getCurrentSlide].type !== "single" && (
-                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => { store.setAnsweredSlide(store.getCurrentSlide) }} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
+              {TasksData[store.getCurrentSlide].type !== "single" && (
+                <Button disabled={store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered} onClick={() => store.setAnsweredSlide(store.getCurrentSlide)} variant="contained" sx={{ color: 'common.white', mt: 2, display: store.getScored.find(slide => slide.slideId === store.getCurrentSlide).ready && !store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered ? 'inline-flex' : 'none' }}>Ответить</Button>
               )}
               {store.getScored.every(item => item.answered) && (
                 <Box sx={{ width: '100%', textAlign: 'center' }}>
@@ -355,7 +363,7 @@ const Tasks = observer(() => {
             disabled={!store.getScored.find(slide => slide.slideId === store.getCurrentSlide).answered}
             sx={{
               mr: { xs: 0, sm: 4 },
-              visibility: store.getCurrentSlide === GameData.length - 1 ? 'hidden' : 'visible'
+              visibility: store.getCurrentSlide === TasksData.length - 1 ? 'hidden' : 'visible'
             }}
             onClick={() => setSlide(store.getCurrentSlide + 1)}>
             <ArrowForwardIosIcon sx={{
@@ -371,3 +379,7 @@ const Tasks = observer(() => {
 });
 
 export default Tasks
+
+// export default function Tasks() {
+//   return <></>
+// };

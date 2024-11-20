@@ -1,12 +1,12 @@
-
-import { Alert, AppBar, Badge, Box, Button, Card, Dialog, DialogContent, DialogTitle, Grid, Link, Toolbar, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Alert, AppBar, Badge, Box, Button, Card, CircularProgress, Dialog, DialogContent, DialogTitle, Grid, IconButton, Link, Toolbar, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import LaboratoryData from '@data/LaboratoryData';
 import { observer } from 'mobx-react-lite';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
-import desk from '@images/laboratory-desk.jpg';
+import React, { useState } from 'react';
 import { Experiment, Item, LaboratoryType, Step } from '../types/laboratoryTypes';
 
 interface ModalOpen {
@@ -30,7 +30,8 @@ const Laboratory = observer(() => {
 
   const [currentExperiment, setCurrentExperiment] = useState<number>(1);
   const [currentStep, setCurrentStep] = useState<number>(1);
-  const [stepData, setStepData] = useState<Step[]>(data.steps.map((el, i) => { return { ...el, isVisible: i === 0 ? true : false } }));
+  const [attempts , setAttempts ] = useState<number>(1);
+  const [stepData, setStepData] = useState<Step[]>(data.steps.map((el, i) => { return { ...el, isVisible: true } }));
   const [inventory, setInventory] = useState<Item[]>(data.equipment);
   const [inventoryOnDesk, setInventoryOnDesk] = useState<Item[] | null>(null);
   const [modalOpen, setModalOpen] = useState<ModalOpen>({
@@ -53,7 +54,7 @@ const Laboratory = observer(() => {
           return el;
         })
         .filter(Boolean) as Item[];
-      }
+    }
     );
   };
 
@@ -73,19 +74,32 @@ const Laboratory = observer(() => {
     });
     removeInventory(item.name);
   };
+  const getResult = () => {
+    setCurrentStep(3);
+    setInventoryOnDesk(prevInventory =>
+      prevInventory.map(item =>
+        item.type === "reagent"
+          ? {
+            ...item,
+            top: data.experiments[currentExperiment - 1].resultTop,
+            left: data.experiments[currentExperiment - 1].resultLeft
+          }
+          : item
+      )
+    );
 
-  const titleRef = useRef<HTMLDivElement>(null);
-  const [marginLeft, setMarginLeft] = useState(0);
-
-  useEffect(() => {
-    if (titleRef.current) {
-      const titleWidth = titleRef.current.offsetWidth;
-      const toolbarWidth = titleRef.current.parentElement?.offsetWidth || 0;
-      const availableSpace = (toolbarWidth - titleWidth) / 2;
-
-      setMarginLeft(availableSpace);
-    }
-  }, []);
+    setTimeout(() => {
+      setCurrentStep(4);
+    }, 4000);
+  };
+  const resetExperiment = () => {
+    setCurrentExperiment(1);
+    setCurrentStep(1);
+    setStepData(data.steps.map((el, i) => { return { ...el, isVisible: true } }));
+    setInventory(data.equipment);
+    setInventoryOnDesk(null);
+    setAttempts(prev => prev + 1);
+  };
 
   return (
     <Grid container>
@@ -168,7 +182,7 @@ const Laboratory = observer(() => {
           <Link href="" onClick={e => {
             e.preventDefault();
             setModalOpen(prev => { return { ...prev, experiment: true } })
-            }}>Посмотреть задание</Link>
+          }}>Посмотреть задание</Link>
         </Box>
 
         <Box
@@ -182,7 +196,7 @@ const Laboratory = observer(() => {
             aspectRatio: "1024 / 576", // Используем aspectRatio, чтобы блок сохранял пропорции
             border: "2px solid " + theme.palette.primary.main,
             borderRadius: '40px',
-            backgroundImage: `url(${desk})`,
+            backgroundImage: `url(${data.labDesk})`,
             backgroundSize: "contain", // Сохраняем пропорции изображения внутри блока
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -197,44 +211,111 @@ const Laboratory = observer(() => {
                 position: "absolute",
                 top: `${item.top}%`,
                 left: `${item.left}%`,
+                zIndex: item.zIndex,
                 backgroundImage: `url(${item.thumb})`,
                 backgroundSize: "contain", // Сохраняем пропорции изображения внутри блока
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 width: item.width + '%',
                 height: "auto",
-                aspectRatio: "100 / 100"
+                aspectRatio: "100 / 100",
+                transition: "all 1s ease",
+                opacity: currentStep === 4 && item.type === 'reagent' ? 0 : 1
               }}
             >
             </Box>
           ))}
-          <Alert severity="info" onClose={() => {
+          <Box
+            sx={{
+              position: "absolute",
+              top: data.experiments[currentExperiment - 1].resultImageTop + '%',
+              left: data.experiments[currentExperiment - 1].resultImageLeft + '%',
+              zIndex: 4,
+              backgroundImage: `url(${data.experiments[currentExperiment - 1].resultImage})`,
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              width: '19%',
+              height: "auto",
+              aspectRatio: "100 / 100",
+              transition: "all 2s ease",
+              visibility: currentStep === 4 ? 'visible' : 'hidden',
+              opacity: currentStep === 4 ? 1 : 0
+            }}
+          >
+          </Box>
+          <Alert severity="info" icon={currentStep === 3 ? <CircularProgress size="22px" /> : <InfoIcon fontSize="inherit" />} onClose={() => {
             setStepData(prev => {
-                const existingItem = prev.find(el => el.id === currentStep);
-                if (existingItem) {
-                  return prev.map(el =>
-                    el.id === currentStep ? { ...el, isVisible: false } : el
-                  );
-                }
+              const existingItem = prev.find(el => el.id === currentStep);
+              if (existingItem) {
+                return prev.map(el =>
+                  el.id === currentStep ? { ...el, isVisible: false } : el
+                );
+              }
             });
           }} sx={{
             position: 'absolute',
             top: '5px',
             right: '5px',
-            width: '40%',
-            borderRadius: '20px'
-          }}>{stepData.find(el => el.id === currentStep).text}</Alert>
-          <Button variant='contained' color="inherit" onClick={() => {}} sx={{
-            display: currentStep === 2 ? 'inline-flex' : 'none'
+            zIndex: 5,
+            width: {
+              xs: '98%',
+              sm: '40%'
+            },
+            borderRadius: '20px',
+            "& .MuiAlert-message": {
+              textAlign: 'left'
+            },
+            "& .MuiAlert-message p": {
+              fontSize: {
+                xs: '0.6rem',
+                sm: '0.875rem'
+              }
+            },
+            display: stepData.find(el => el.id === currentStep).isVisible ? 'flex' : 'none'
+          }}>
+            {stepData.find(el => el.id === currentStep).text()}
+            {currentStep === 4 && data.experiments[currentExperiment - 1].resultFormula.map(el =>
+              <React.Fragment key={el}>
+                <Typography variant='h6' component="div" gutterBottom textAlign={'center'}>
+                  {el}
+                <IconButton title='Копировать' aria-label="delete" size="small" onClick={() => window.navigator.clipboard.writeText(el)}>
+                  <ContentCopyIcon fontSize="inherit" />
+                </IconButton>
+                </Typography>
+              </React.Fragment>
+            )}
+          </Alert>
+          <Button size={isMobile ? 'small' : 'medium'} variant="contained" onClick={getResult} sx={{
+            display: currentStep === 2 ? 'inline-flex' : 'none',
+            color: 'common.white',
+            position: 'absolute',
+            bottom: '5px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 5
           }}>
             Выполнить
           </Button>
+          {attempts === 1 && (
+          <Button size={isMobile ? 'small' : 'medium'} variant="contained" onClick={resetExperiment} sx={{
+            display: currentStep === 4 ? 'inline-flex' : 'none',
+            color: 'common.white',
+            position: 'absolute',
+            bottom: '5px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 5
+          }}>
+            Повторить
+          </Button>
+          )}
         </Box>
 
 
         {/* Панель реактивов */}
         <Box sx={{ borderTop: "2px solid " + theme.palette.primary.main, py: 2 }}>
-          <Typography variant="h6" textAlign="center">
+          <Typography variant="h6" textAlign="center" mb={2}>
             Реактивы и оборудование
           </Typography>
           <Grid container spacing={2} justifyContent="center">
@@ -267,7 +348,7 @@ const Laboratory = observer(() => {
                       <img
                         src={item.thumb}
                         alt={item.name}
-                        style={{ width: '50px', height: '50px' }}
+                        style={{ width: '50px', height: '50px', userSelect: 'none' }}
                       />
                     </Card>
                   </Badge>
@@ -338,3 +419,7 @@ const Laboratory = observer(() => {
 });
 
 export default Laboratory;
+
+// export default function Laboratory() {
+//   return <></>
+// };

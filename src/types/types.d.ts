@@ -14,7 +14,15 @@ declare module '@data/GameData' {
   const value: any;
   export default value;
 }
+declare module '@data/AnimationData' {
+  const value: any;
+  export default value;
+}
 declare module '@data/LaboratoryData' {
+  const value: any;
+  export default value;
+}
+declare module '@data/TasksData' {
   const value: any;
   export default value;
 }

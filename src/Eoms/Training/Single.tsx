@@ -5,7 +5,7 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { Single as SingleTask } from "../../types/gameTypes";
+import { Single as SingleTask } from "../../types/trainingTypes";
 
 interface SingleProps {
   item: SingleTask;
