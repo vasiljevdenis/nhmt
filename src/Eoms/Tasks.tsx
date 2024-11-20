@@ -147,7 +147,7 @@ const Tasks = observer(() => {
         position: 'relative',
         py: 1
       }}>
-        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Интерактивный тренажер по выполнению заданий</Typography>
+        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Интерактивная мини-игра</Typography>
         <Button variant="text" startIcon={<ArrowBackIosIcon />}
           sx={{
             textTransform: 'none',

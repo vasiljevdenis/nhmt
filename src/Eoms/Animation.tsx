@@ -96,7 +96,7 @@ const Animation = observer(() => {
         py: 1,
         position: 'relative'
       }}>
-        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Анимация</Typography>
+        <Typography variant='h6' component="h2" color={"common.white"} textAlign={'center'} fontWeight={600}>Видеолекция</Typography>
         <Button variant="text" startIcon={<ArrowBackIosIcon />}
           sx={{
             textTransform: 'none',
@@ -111,7 +111,7 @@ const Animation = observer(() => {
       </Grid>
       <Grid item xs={12} p={2}>
         <Typography variant='body1' component="p" gutterBottom>{import.meta.env.VITE_PREAMBLE}</Typography>
-        <Typography variant='body1' component="p">Чтобы перейти к учебному материалу, нажмите на видеоролик.</Typography>
+        <Typography variant='body1' component="p">Чтобы перейти к учебному материалу, нажмите на видеолекцию.</Typography>
       </Grid>
       {AnimationData.map(el => (
         <Grid key={'item' + el.id} item xs={12} sm={6} md={3} p={2}>

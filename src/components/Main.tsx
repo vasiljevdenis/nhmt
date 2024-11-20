@@ -97,7 +97,7 @@ const Main = observer(() => {
                 </Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_MASTERING_TYPE === "infographics" ? 'Динамическая инфографика' : 'Анимация'} <br /><br /></Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_MASTERING_TYPE === "infographics" ? 'Динамическая инфографика' : 'Видеолекция'} <br /><br /></Typography>
             <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpen}>
@@ -265,7 +265,7 @@ const Main = observer(() => {
                 }}>Диагностика приобретенных < br /> знаний, умений, навыков <br /></Typography>
               </Grid>
             </Grid>
-            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? 'Интерактивная мини-игра' : 'Интерактивный тренажер по выполнению заданий'} <br /><br /></Typography>
+            <Typography variant='body2' sx={{ color: "#FFFFFFCC" }} component="p" gutterBottom>{import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? 'Интерактивная мини-игра' : 'Интерактивная мини-игра'} <br /><br /></Typography>
             <Box sx={{ textAlign: 'right' }}>
             <Tooltip title="Рекомендации" arrow placement="top">
               <IconButton size='large' aria-label="info" sx={{ color: "#FFFFFFCC" }} onClick={handleClickOpenInter}>
@@ -324,7 +324,7 @@ const Main = observer(() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <span>{import.meta.env.VITE_MASTERING_TYPE === "infographics" ? 'Динамическая инфографика' : 'Анимация'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer', "&:hover": { opacity: '.7' } }} onClick={handleClose} />
+          <span>{import.meta.env.VITE_MASTERING_TYPE === "infographics" ? 'Динамическая инфографика' : 'Видеолекция'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer', "&:hover": { opacity: '.7' } }} onClick={handleClose} />
         </DialogTitle>
         <DialogContent>
           {MainData.infographics()}
@@ -354,7 +354,7 @@ const Main = observer(() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <span>{import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? 'Интерактивная мини-игра' : 'Интерактивный тренажер по выполнению заданий'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer', "&:hover": { opacity: '.7' } }} onClick={handleCloseInter} />
+          <span>{import.meta.env.VITE_DIAGNOSTICS_TYPE === "game" ? 'Интерактивная мини-игра' : 'Интерактивная мини-игра'}</span><CloseIcon sx={{ float: 'right', cursor: 'pointer', "&:hover": { opacity: '.7' } }} onClick={handleCloseInter} />
         </DialogTitle>
         <DialogContent>
           {MainData.game()}
